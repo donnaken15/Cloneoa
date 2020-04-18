@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("enVisioner")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("enViSiONer")]
+[assembly: AssemblyDescription("Cloneoa/Klonoa Level Editor")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("enVisioner")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("donnaken15")]
+[assembly: AssemblyProduct("enViSiONer: the Klonoa level editor")]
+[assembly: AssemblyCopyright("Copyright © Wesley Kennedy 2020, Namco 1997-2007")]
+[assembly: AssemblyTrademark("Namco")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

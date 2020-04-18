@@ -9,18 +9,25 @@
 typedef unsigned char byte;
 typedef unsigned int number; // <-- lol
 typedef char* string;
-typedef unsigned const char nulltype;
 // in case if i want to change these types later
 // forgot LPSTR (no C) existed
 
+struct POINT32 {
+	unsigned int x, y;
+};
+
+struct SIZE32 {
+	unsigned int cx, cy;
+};
+
 static const string title = "Cloneoa", buildtime[] = { __DATE__, __TIME__ };
 
-static class object {
+class object {
 
 };
 
 struct PLAYERINFO {
-	POINT pos;
+	POINT32 pos;
 	byte ctrl; //fast8
 	byte*keys;
 	number lives, gems, stars, health; //fast32
@@ -28,10 +35,12 @@ struct PLAYERINFO {
 
 struct VISION {
 	object*objects;
-	SIZE size;
+	SIZE32 size;
 };
 
 #define LEVEL VISION
+
+static const USHORT VISVER = 0;
 
 #pragma region ctrl defines
 #define CTRL_START	0b01000000
@@ -43,16 +52,16 @@ struct VISION {
 #define CTRL_RIGHT	0b00000001
 #pragma endregion
 
-static /*const*/ SIZE res;
-static const SIZE resmin = { 160, 80 };
+static /*const*/ SIZE32 res;
+static const SIZE32 resmin = { 160, 80 };
 
 enum objtype {
 	item,
 	entity,
 	door,
 	sign,
-	lvlfore,
-	lvlback
+	fore = 0xF,
+	back = 0xE
 };
 
 enum item {
@@ -106,12 +115,12 @@ string strbuf = new char[strbufsz];
 #if _WIN32 || _WIN64 || defined(WIN32) || defined(__NT__)
 #pragma region beta windows
 
-static const string ini = "settings.ini", __static = "static", button = "button";
+static const string __static = "static", button = "button";
 static char ofname[MAX_PATH];
+static string ini;
 
-static HWND hWndmain, hWndCFG;
-static HWND menu[10];
-static POINT center;
+static HWND hWndmain, hWndCFG, menu[10], confctrls[20];
+static POINT32 center;
 
 static OPENFILENAME ofn;
 
@@ -119,6 +128,33 @@ static OPENFILENAME ofn;
 static HWND stdoutdisp;
 static FILE*logdata[3];
 #endif
+
+#define FONTS_ENABLED 1
+#if FONTS_ENABLED
+HFONT arial;
+#endif
+
+#if FONTS_ENABLED
+void SetWindowFont(HWND ctrl, HFONT font) {
+	SendMessage(ctrl, WM_SETFONT, (LPARAM)font, 1);
+}
+#endif
+
+void fileAssoc() {
+	DWORD disp;
+	HKEY regext, regclass, regtemp;
+	if (RegCreateKeyEx(HKEY_CLASSES_ROOT, ".klo",
+		0, NULL, 0, KEY_WRITE, NULL, &regext, &disp) == ERROR_SUCCESS)
+		if (RegSetValue(regext, 0, REG_SZ,
+			"Cloneoa.KLO", 12) == ERROR_SUCCESS)
+			if (RegCloseKey(regext) != ERROR_SUCCESS)
+				fprintf(stderr,"/!\\ %s", "Closing the extension key failed, how weird is that");
+			else { }
+		else
+			fprintf(stderr,"/!\\ %s", "Setting extension value failed");
+	else
+		fprintf(stderr, "/!\\ %s", "Creating extension key failed");
+}
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WindowProcConf(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -141,6 +177,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	wc.lpszClassName = title;
 
 	RegisterClassEx(&wc);
+	
+	GetCurrentDirectoryA(strbufsz, strbuf);
+	sprintf(strbuf, "%s\\settings.ini", strbuf);
+	ini = strbuf;
 
 	res.cx = GetPrivateProfileInt("GFX", "ResX", 360, ini);
 	res.cy = GetPrivateProfileInt("GFX", "ResY", 320, ini);
@@ -189,6 +229,19 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	menu[8] = CreateWindowA(__static, strbuf,
 		WS_CHILD | WS_VISIBLE, 0, 0, 0, 0, hWndmain, 0, wc.hInstance, 0);
 
+#if FONTS_ENABLED
+	arial = CreateFontA(17, 0, 0, 0, 400, 0, 0, 0, 0, 0, 0, 0, 0x20, "Arial");
+	SetWindowFont(menu[0], arial);
+	SetWindowFont(menu[1], arial);
+	SetWindowFont(menu[2], arial);
+	SetWindowFont(menu[3], arial);
+	SetWindowFont(menu[4], arial);
+	SetWindowFont(menu[5], arial);
+	SetWindowFont(menu[6], arial);
+	SetWindowFont(menu[7], arial);
+	SetWindowFont(menu[8], arial);
+#endif
+
 	ZeroMemory(&ofname, sizeof(ofname));
 	ZeroMemory(&ofn, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
@@ -219,7 +272,28 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		270, 340, hWndmain, NULL, hInstance, NULL);
 	//ShowWindow(hWndCFG, SW_HIDE);
 #pragma endregion
+#pragma region config *literal* controls
+	confctrls[0] = CreateWindowA(__static, "Graphics",
+		WS_CHILD | WS_VISIBLE, 12, 12, 176, 17, hWndCFG,
+		0, wc.hInstance, 0);
+	confctrls[1] = CreateWindowA(__static, "Sound",
+		WS_CHILD | WS_VISIBLE, 12, 96, 176, 17, hWndCFG,
+		0, wc.hInstance, 0);
+	confctrls[2] = CreateWindowA(__static, "System",
+		WS_CHILD | WS_VISIBLE, 12, 180, 176, 17, hWndCFG,
+		0, wc.hInstance, 0);
+	confctrls[3] = CreateWindowA(button, "Write File Associations",
+		WS_CHILD | WS_VISIBLE, 16, 208, 166, 26, hWndCFG,
+		0, wc.hInstance, 0);
+#if FONTS_ENABLED
+	SetWindowFont(confctrls[0], arial);
+	SetWindowFont(confctrls[1], arial);
+	SetWindowFont(confctrls[2], arial);
+	SetWindowFont(confctrls[3], arial);
+#endif
 #pragma endregion
+#pragma endregion
+
 
 #if LOGGING
 	for (int i = 0; i < 3; i++)
@@ -294,9 +368,6 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 #endif
 		PostQuitMessage(0);
 	} break;
-	case WM_SYSCOMMAND:
-	case SC_CLOSE:
-		break;
 	}
 
 	return DefWindowProc(hWnd, message, wParam, lParam);
@@ -309,6 +380,7 @@ LRESULT CALLBACK WindowProcConf(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
 	case WM_COMMAND:
 		switch (wParam) {
 		case 0:
+			fileAssoc();
 			break;
 		case 1:
 			break;

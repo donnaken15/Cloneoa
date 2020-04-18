@@ -8,9 +8,10 @@ namespace enVisioner
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
+            //Application.EnableVisualStyles();
+            //Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.NoneEnabled;
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new editor());
+            Application.Run(new manager());
         }
     }
 }

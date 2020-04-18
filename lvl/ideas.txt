@@ -2,6 +2,10 @@ header
 0x00 - magic number (0x2)
 ????
 0xXX - start pos (0x4)
+0xXX - level type (0x1)
+X - standard
+1 - autoscroll
+2 - board
 0xXX - world gfx id (0x1)
 0xXX - music id (0x1)
 0 means nothing will play or >1 is music of worlds or level will look like solid colors
@@ -27,16 +31,40 @@ item:
 entity:
 0 - enemy (red)
 1 - enemy (green)
-2 - floating ball
-3 - box (based on red enemy)
+2 - box (based on red enemy)
+3 - floating ball
+5 - copter
+4 - spike thing
+5 - enemy bomb
 door:
 0 - finish door
 1 - locked door (red key)
 2 - locked door (blue key)
-3 - linked warp
+3 - locked door (green key)
+4 - linked warp
+5 - pinball door lol
+6 - switch door
 level parts:
 0 - ground
 X - spike / damage
 X - turbulance
+X - switch
+X - button
+X - disappearing platforms
+X - seesaw spring
+X - breakable box
+X - explosion redirection box
+X - growing box
 background parts:
 X - fence
+ground properties:
+? - can rotate by switch
+switch properties:
+0 - standard
+1 - toggle
+1 - timed
+2 - room rotater
+0x02 - properties of object
+0x08 - pos x
+0x0C - pos y
+expand object properties if sign with string

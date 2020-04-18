@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace enVisioner
 {
-    public partial class editor : Form
+    public partial class editing : Form
     {
-        public editor()
+        public editing()
         {
             InitializeComponent();
         }

@@ -11,6 +11,21 @@
     <AssemblyName>enVisioner</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,27 +39,52 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>exe2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="editor.cs">
+    <Compile Include="about.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="editor.Designer.cs">
-      <DependentUpon>editor.cs</DependentUpon>
+    <Compile Include="about.Designer.cs">
+      <DependentUpon>about.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="manager.Designer.cs">
+      <DependentUpon>manager.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="editing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editing.Designer.cs">
+      <DependentUpon>editing.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="about.resx">
+      <DependentUpon>about.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="manager.resx">
+      <DependentUpon>manager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -53,7 +93,12 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="editing.resx">
+      <DependentUpon>editing.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -63,6 +108,192 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NEW.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OPEN.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARC.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BACK.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BLD.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BUTTON.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CAMERA.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CNT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\COPY.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CTR.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CUT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DBLUNDR.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DELETE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DISCNET.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DRAWING.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ELLIPSE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FIND.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FREEFORM.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FRONT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GROUP.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HELP.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HELP2.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ITL.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JST.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LFT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LINE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LINESTYL.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAPNET.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MCR.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PASTE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PRINT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PROP.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RECTANGL.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\REDO.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SMALLCAP.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SORTASC.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SORTDES.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SPELLING.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\STRIKTHR.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUM.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TAB-CNTR.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TAB-DEC.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TAB-LEFT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TAB-RHT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UNDO.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UNDRLN.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UNGROUP.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UP1LVL.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VW-DTLS.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VW-LIST.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VW-LRGIC.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VW-SMLIC.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WORDUNDR.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newobj.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hh11.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hh0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="exe2.ico" />
+    <Content Include="icon.ico" />
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
