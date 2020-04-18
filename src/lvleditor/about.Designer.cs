@@ -1,4 +1,6 @@
-﻿namespace enVisioner
+﻿using System.Windows.Forms;
+
+namespace enVisioner
 {
     partial class about
     {

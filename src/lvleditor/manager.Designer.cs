@@ -28,49 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(manager));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpenRecent = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSepFile1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuUndo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRedo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEditSep1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.menuView = new System.Windows.Forms.ToolStripMenuItem();
             this.menuWindows = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolbar = new System.Windows.Forms.ToolStrip();
-            this.toolSepFile = new System.Windows.Forms.ToolStripSeparator();
-            this.toolSepEdit = new System.Windows.Forms.ToolStripSeparator();
-            this.toolSepObject = new System.Windows.Forms.ToolStripSeparator();
-            this.toolSepMisc = new System.Windows.Forms.ToolStripSeparator();
-            this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.toolLoadProg = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolLoadText = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolNew = new System.Windows.Forms.ToolStripButton();
             this.toolOpen = new System.Windows.Forms.ToolStripButton();
             this.toolSave = new System.Windows.Forms.ToolStripButton();
+            this.toolSepFile = new System.Windows.Forms.ToolStripSeparator();
             this.toolUndo = new System.Windows.Forms.ToolStripButton();
             this.toolRedo = new System.Windows.Forms.ToolStripButton();
+            this.toolSepEdit = new System.Windows.Forms.ToolStripSeparator();
             this.toolCut = new System.Windows.Forms.ToolStripButton();
             this.toolCopy = new System.Windows.Forms.ToolStripButton();
             this.toolPaste = new System.Windows.Forms.ToolStripButton();
+            this.toolSepObject = new System.Windows.Forms.ToolStripSeparator();
             this.toolNewObj = new System.Windows.Forms.ToolStripButton();
             this.toolObjProp = new System.Windows.Forms.ToolStripButton();
             this.toolObjFind = new System.Windows.Forms.ToolStripButton();
             this.toolObjRemove = new System.Windows.Forms.ToolStripButton();
+            this.toolSepMisc = new System.Windows.Forms.ToolStripSeparator();
             this.toolHelp = new System.Windows.Forms.ToolStripButton();
-            this.menuNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuUndo = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuRedo = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuCut = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuCopy = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuPaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.guideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.toolLoadProg = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolLoadText = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusSep1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.fileDiagOpen = new System.Windows.Forms.OpenFileDialog();
+            this.fileDiagSave = new System.Windows.Forms.SaveFileDialog();
+            this.commonUpdater = new System.Windows.Forms.Timer(this.components);
             this.mainMenu.SuspendLayout();
             this.mainToolbar.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -110,12 +115,43 @@
             this.menuFile.Text = "File";
             this.menuFile.DropDownOpening += new System.EventHandler(this.disableUseless1);
             // 
+            // menuNew
+            // 
+            this.menuNew.Image = global::enVisioner.Properties.Resources.NEW;
+            this.menuNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menuNew.ImageTransparentColor = System.Drawing.Color.Silver;
+            this.menuNew.Name = "menuNew";
+            this.menuNew.Padding = new System.Windows.Forms.Padding(0);
+            this.menuNew.ShortcutKeyDisplayString = "Ctrl+N";
+            this.menuNew.Size = new System.Drawing.Size(237, 22);
+            this.menuNew.Text = "New";
+            this.menuNew.Click += new System.EventHandler(this.newVision);
+            // 
+            // menuOpen
+            // 
+            this.menuOpen.Image = global::enVisioner.Properties.Resources.OPEN;
+            this.menuOpen.ImageTransparentColor = System.Drawing.Color.Silver;
+            this.menuOpen.Name = "menuOpen";
+            this.menuOpen.ShortcutKeyDisplayString = "Ctrl+O";
+            this.menuOpen.Size = new System.Drawing.Size(237, 24);
+            this.menuOpen.Text = "Open";
+            this.menuOpen.Click += new System.EventHandler(this.fileLoad);
+            // 
             // menuOpenRecent
             // 
             this.menuOpenRecent.Name = "menuOpenRecent";
             this.menuOpenRecent.ShortcutKeyDisplayString = "Alt+F+R+...";
             this.menuOpenRecent.Size = new System.Drawing.Size(237, 24);
             this.menuOpenRecent.Text = "Recent Files";
+            // 
+            // menuSave
+            // 
+            this.menuSave.Image = global::enVisioner.Properties.Resources.SAVE;
+            this.menuSave.ImageTransparentColor = System.Drawing.Color.Silver;
+            this.menuSave.Name = "menuSave";
+            this.menuSave.ShortcutKeyDisplayString = "Ctrl+S";
+            this.menuSave.Size = new System.Drawing.Size(237, 24);
+            this.menuSave.Text = "Save";
             // 
             // menuSaveAs
             // 
@@ -128,6 +164,15 @@
             // 
             this.menuSepFile1.Name = "menuSepFile1";
             this.menuSepFile1.Size = new System.Drawing.Size(234, 6);
+            // 
+            // menuExit
+            // 
+            this.menuExit.Image = global::enVisioner.Properties.Resources.DELETE;
+            this.menuExit.ImageTransparentColor = System.Drawing.Color.Silver;
+            this.menuExit.Name = "menuExit";
+            this.menuExit.Size = new System.Drawing.Size(237, 24);
+            this.menuExit.Text = "Exit";
+            this.menuExit.Click += new System.EventHandler(this.quitProg);
             // 
             // menuEdit
             // 
@@ -145,10 +190,56 @@
             this.menuEdit.Text = "Edit";
             this.menuEdit.DropDownOpening += new System.EventHandler(this.disableUseless1);
             // 
+            // menuUndo
+            // 
+            this.menuUndo.Image = global::enVisioner.Properties.Resources.UNDO;
+            this.menuUndo.ImageTransparentColor = System.Drawing.Color.Silver;
+            this.menuUndo.Name = "menuUndo";
+            this.menuUndo.ShortcutKeyDisplayString = "Ctrl+Z";
+            this.menuUndo.Size = new System.Drawing.Size(164, 24);
+            this.menuUndo.Text = "Undo";
+            // 
+            // menuRedo
+            // 
+            this.menuRedo.Image = global::enVisioner.Properties.Resources.REDO;
+            this.menuRedo.ImageTransparentColor = System.Drawing.Color.Silver;
+            this.menuRedo.Name = "menuRedo";
+            this.menuRedo.ShortcutKeyDisplayString = "Ctrl+Y";
+            this.menuRedo.Size = new System.Drawing.Size(164, 24);
+            this.menuRedo.Text = "Redo";
+            // 
             // menuEditSep1
             // 
             this.menuEditSep1.Name = "menuEditSep1";
             this.menuEditSep1.Size = new System.Drawing.Size(161, 6);
+            // 
+            // menuCut
+            // 
+            this.menuCut.Image = global::enVisioner.Properties.Resources.CUT;
+            this.menuCut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menuCut.ImageTransparentColor = System.Drawing.Color.Silver;
+            this.menuCut.Name = "menuCut";
+            this.menuCut.ShortcutKeyDisplayString = "Ctrl+X";
+            this.menuCut.Size = new System.Drawing.Size(164, 24);
+            this.menuCut.Text = "Cut";
+            // 
+            // menuCopy
+            // 
+            this.menuCopy.Image = global::enVisioner.Properties.Resources.COPY;
+            this.menuCopy.ImageTransparentColor = System.Drawing.Color.Silver;
+            this.menuCopy.Name = "menuCopy";
+            this.menuCopy.ShortcutKeyDisplayString = "Ctrl+C";
+            this.menuCopy.Size = new System.Drawing.Size(164, 24);
+            this.menuCopy.Text = "Copy";
+            // 
+            // menuPaste
+            // 
+            this.menuPaste.Image = global::enVisioner.Properties.Resources.PASTE;
+            this.menuPaste.ImageTransparentColor = System.Drawing.Color.Silver;
+            this.menuPaste.Name = "menuPaste";
+            this.menuPaste.ShortcutKeyDisplayString = "Ctrl+V";
+            this.menuPaste.Size = new System.Drawing.Size(164, 24);
+            this.menuPaste.Text = "Paste";
             // 
             // menuView
             // 
@@ -180,6 +271,25 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 23);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Image = global::enVisioner.Properties.Resources.hh11;
+            this.aboutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.ShortcutKeyDisplayString = "F9";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.showAbout);
+            // 
+            // guideToolStripMenuItem
+            // 
+            this.guideToolStripMenuItem.Image = global::enVisioner.Properties.Resources.hh0;
+            this.guideToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.guideToolStripMenuItem.Name = "guideToolStripMenuItem";
+            this.guideToolStripMenuItem.ShortcutKeyDisplayString = "F10";
+            this.guideToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
+            this.guideToolStripMenuItem.Text = "Guide";
+            // 
             // mainToolbar
             // 
             this.mainToolbar.AutoSize = false;
@@ -210,53 +320,6 @@
             this.mainToolbar.Stretch = true;
             this.mainToolbar.TabIndex = 2;
             // 
-            // toolSepFile
-            // 
-            this.toolSepFile.AutoSize = false;
-            this.toolSepFile.Name = "toolSepFile";
-            this.toolSepFile.Size = new System.Drawing.Size(3, 19);
-            // 
-            // toolSepEdit
-            // 
-            this.toolSepEdit.AutoSize = false;
-            this.toolSepEdit.Name = "toolSepEdit";
-            this.toolSepEdit.Size = new System.Drawing.Size(3, 19);
-            // 
-            // toolSepObject
-            // 
-            this.toolSepObject.AutoSize = false;
-            this.toolSepObject.Name = "toolSepObject";
-            this.toolSepObject.Size = new System.Drawing.Size(3, 19);
-            // 
-            // toolSepMisc
-            // 
-            this.toolSepMisc.AutoSize = false;
-            this.toolSepMisc.Name = "toolSepMisc";
-            this.toolSepMisc.Size = new System.Drawing.Size(3, 19);
-            // 
-            // statusBar
-            // 
-            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolLoadProg,
-            this.toolLoadText});
-            this.statusBar.Location = new System.Drawing.Point(0, 660);
-            this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(792, 24);
-            this.statusBar.TabIndex = 3;
-            // 
-            // toolLoadProg
-            // 
-            this.toolLoadProg.Name = "toolLoadProg";
-            this.toolLoadProg.Size = new System.Drawing.Size(100, 18);
-            // 
-            // toolLoadText
-            // 
-            this.toolLoadText.AutoSize = false;
-            this.toolLoadText.Name = "toolLoadText";
-            this.toolLoadText.Size = new System.Drawing.Size(100, 19);
-            this.toolLoadText.Text = "Ready";
-            this.toolLoadText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // toolNew
             // 
             this.toolNew.AutoSize = false;
@@ -281,6 +344,7 @@
             this.toolOpen.Name = "toolOpen";
             this.toolOpen.Size = new System.Drawing.Size(20, 20);
             this.toolOpen.ToolTipText = "Open File";
+            this.toolOpen.Click += new System.EventHandler(this.fileLoad);
             // 
             // toolSave
             // 
@@ -294,6 +358,12 @@
             this.toolSave.Name = "toolSave";
             this.toolSave.Size = new System.Drawing.Size(20, 20);
             this.toolSave.ToolTipText = "Save File";
+            // 
+            // toolSepFile
+            // 
+            this.toolSepFile.AutoSize = false;
+            this.toolSepFile.Name = "toolSepFile";
+            this.toolSepFile.Size = new System.Drawing.Size(3, 19);
             // 
             // toolUndo
             // 
@@ -320,6 +390,12 @@
             this.toolRedo.Name = "toolRedo";
             this.toolRedo.Size = new System.Drawing.Size(20, 20);
             this.toolRedo.Text = "Redo";
+            // 
+            // toolSepEdit
+            // 
+            this.toolSepEdit.AutoSize = false;
+            this.toolSepEdit.Name = "toolSepEdit";
+            this.toolSepEdit.Size = new System.Drawing.Size(3, 19);
             // 
             // toolCut
             // 
@@ -359,6 +435,12 @@
             this.toolPaste.Name = "toolPaste";
             this.toolPaste.Size = new System.Drawing.Size(20, 20);
             this.toolPaste.Text = "Paste";
+            // 
+            // toolSepObject
+            // 
+            this.toolSepObject.AutoSize = false;
+            this.toolSepObject.Name = "toolSepObject";
+            this.toolSepObject.Size = new System.Drawing.Size(3, 19);
             // 
             // toolNewObj
             // 
@@ -411,6 +493,12 @@
             this.toolObjRemove.Name = "toolObjRemove";
             this.toolObjRemove.Size = new System.Drawing.Size(20, 20);
             // 
+            // toolSepMisc
+            // 
+            this.toolSepMisc.AutoSize = false;
+            this.toolSepMisc.Name = "toolSepMisc";
+            this.toolSepMisc.Size = new System.Drawing.Size(3, 19);
+            // 
             // toolHelp
             // 
             this.toolHelp.AutoSize = false;
@@ -425,109 +513,58 @@
             this.toolHelp.ToolTipText = "Help";
             this.toolHelp.Click += new System.EventHandler(this.showAbout);
             // 
-            // menuNew
+            // statusBar
             // 
-            this.menuNew.Image = global::enVisioner.Properties.Resources.NEW;
-            this.menuNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menuNew.ImageTransparentColor = System.Drawing.Color.Silver;
-            this.menuNew.Name = "menuNew";
-            this.menuNew.Padding = new System.Windows.Forms.Padding(0);
-            this.menuNew.ShortcutKeyDisplayString = "Ctrl+N";
-            this.menuNew.Size = new System.Drawing.Size(237, 22);
-            this.menuNew.Text = "New";
-            this.menuNew.Click += new System.EventHandler(this.newVision);
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolLoadProg,
+            this.toolLoadText,
+            this.statusSep1});
+            this.statusBar.Location = new System.Drawing.Point(0, 660);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(792, 24);
+            this.statusBar.TabIndex = 3;
             // 
-            // menuOpen
+            // toolLoadProg
             // 
-            this.menuOpen.Image = global::enVisioner.Properties.Resources.OPEN;
-            this.menuOpen.ImageTransparentColor = System.Drawing.Color.Silver;
-            this.menuOpen.Name = "menuOpen";
-            this.menuOpen.ShortcutKeyDisplayString = "Ctrl+O";
-            this.menuOpen.Size = new System.Drawing.Size(237, 24);
-            this.menuOpen.Text = "Open";
+            this.toolLoadProg.Maximum = 1;
+            this.toolLoadProg.Name = "toolLoadProg";
+            this.toolLoadProg.Size = new System.Drawing.Size(100, 18);
+            this.toolLoadProg.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
-            // menuSave
+            // toolLoadText
             // 
-            this.menuSave.Image = global::enVisioner.Properties.Resources.SAVE;
-            this.menuSave.ImageTransparentColor = System.Drawing.Color.Silver;
-            this.menuSave.Name = "menuSave";
-            this.menuSave.ShortcutKeyDisplayString = "Ctrl+S";
-            this.menuSave.Size = new System.Drawing.Size(237, 24);
-            this.menuSave.Text = "Save";
+            this.toolLoadText.AutoSize = false;
+            this.toolLoadText.Name = "toolLoadText";
+            this.toolLoadText.Size = new System.Drawing.Size(100, 19);
+            this.toolLoadText.Text = "Ready";
+            this.toolLoadText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // menuExit
+            // statusSep1
             // 
-            this.menuExit.Image = global::enVisioner.Properties.Resources.DELETE;
-            this.menuExit.ImageTransparentColor = System.Drawing.Color.Silver;
-            this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(237, 24);
-            this.menuExit.Text = "Exit";
-            this.menuExit.Click += new System.EventHandler(this.quitProg);
+            this.statusSep1.Name = "statusSep1";
+            this.statusSep1.Size = new System.Drawing.Size(12, 19);
+            this.statusSep1.Text = "|";
             // 
-            // menuUndo
+            // fileDiagOpen
             // 
-            this.menuUndo.Image = global::enVisioner.Properties.Resources.UNDO;
-            this.menuUndo.ImageTransparentColor = System.Drawing.Color.Silver;
-            this.menuUndo.Name = "menuUndo";
-            this.menuUndo.ShortcutKeyDisplayString = "Ctrl+Z";
-            this.menuUndo.Size = new System.Drawing.Size(164, 24);
-            this.menuUndo.Text = "Undo";
+            this.fileDiagOpen.DefaultExt = "klo";
+            this.fileDiagOpen.Filter = "Level File|*.klo|All Files|*.*";
+            this.fileDiagOpen.Multiselect = true;
+            this.fileDiagOpen.RestoreDirectory = true;
+            this.fileDiagOpen.Title = "Open File";
             // 
-            // menuRedo
+            // fileDiagSave
             // 
-            this.menuRedo.Image = global::enVisioner.Properties.Resources.REDO;
-            this.menuRedo.ImageTransparentColor = System.Drawing.Color.Silver;
-            this.menuRedo.Name = "menuRedo";
-            this.menuRedo.ShortcutKeyDisplayString = "Ctrl+Y";
-            this.menuRedo.Size = new System.Drawing.Size(164, 24);
-            this.menuRedo.Text = "Redo";
+            this.fileDiagSave.DefaultExt = "klo";
+            this.fileDiagSave.Filter = "Level File|*.klo|All Files|*.*";
+            this.fileDiagSave.RestoreDirectory = true;
+            this.fileDiagSave.Title = "Save File";
             // 
-            // menuCut
+            // commonUpdater
             // 
-            this.menuCut.Image = global::enVisioner.Properties.Resources.CUT;
-            this.menuCut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menuCut.ImageTransparentColor = System.Drawing.Color.Silver;
-            this.menuCut.Name = "menuCut";
-            this.menuCut.ShortcutKeyDisplayString = "Ctrl+X";
-            this.menuCut.Size = new System.Drawing.Size(164, 24);
-            this.menuCut.Text = "Cut";
-            // 
-            // menuCopy
-            // 
-            this.menuCopy.Image = global::enVisioner.Properties.Resources.COPY;
-            this.menuCopy.ImageTransparentColor = System.Drawing.Color.Silver;
-            this.menuCopy.Name = "menuCopy";
-            this.menuCopy.ShortcutKeyDisplayString = "Ctrl+C";
-            this.menuCopy.Size = new System.Drawing.Size(164, 24);
-            this.menuCopy.Text = "Copy";
-            // 
-            // menuPaste
-            // 
-            this.menuPaste.Image = global::enVisioner.Properties.Resources.PASTE;
-            this.menuPaste.ImageTransparentColor = System.Drawing.Color.Silver;
-            this.menuPaste.Name = "menuPaste";
-            this.menuPaste.ShortcutKeyDisplayString = "Ctrl+V";
-            this.menuPaste.Size = new System.Drawing.Size(164, 24);
-            this.menuPaste.Text = "Paste";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Image = global::enVisioner.Properties.Resources.hh11;
-            this.aboutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.ShortcutKeyDisplayString = "F9";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.showAbout);
-            // 
-            // guideToolStripMenuItem
-            // 
-            this.guideToolStripMenuItem.Image = global::enVisioner.Properties.Resources.hh0;
-            this.guideToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.guideToolStripMenuItem.Name = "guideToolStripMenuItem";
-            this.guideToolStripMenuItem.ShortcutKeyDisplayString = "F10";
-            this.guideToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
-            this.guideToolStripMenuItem.Text = "Guide";
+            this.commonUpdater.Enabled = true;
+            this.commonUpdater.Interval = 13;
+            this.commonUpdater.Tick += new System.EventHandler(this.commonTick);
             // 
             // manager
             // 
@@ -545,6 +582,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "enViSiONer_v0.04";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.attemptClose);
+            this.LocationChanged += new System.EventHandler(this.updateWinSettings);
+            this.SizeChanged += new System.EventHandler(this.updateWinSettings);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.mainToolbar.ResumeLayout(false);
@@ -600,6 +639,10 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuWindows;
+        private System.Windows.Forms.OpenFileDialog fileDiagOpen;
+        private System.Windows.Forms.SaveFileDialog fileDiagSave;
+        private System.Windows.Forms.Timer commonUpdater;
+        private System.Windows.Forms.ToolStripStatusLabel statusSep1;
     }
 }
 

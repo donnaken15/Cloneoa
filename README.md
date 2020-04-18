@@ -22,10 +22,10 @@ some custom content, but apparently not.<br/>
 
 ## Credits
 
-| Role                      | User       |
+| Role                      | User                 |
 |:--------------------------|---------------------:|
 | Music Ripping             | Zophar               |
 | Sprite Ripping            | Frario               |
 | Code & Ideas / Director   | donnaken15           |
-| Main Icon                 | SonaleeTheHedgehog23 |
+| KH:DnSM / Main Icon Rip   | SonaleeTheHedgehog23 |
 | Original Game             | Namco                |

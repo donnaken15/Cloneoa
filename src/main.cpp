@@ -40,6 +40,9 @@ struct VISION {
 
 #define LEVEL VISION
 
+#define LOBIT(b) (b & 0xf)
+#define HIBIT(b) (b >> 4)
+
 static const USHORT VISVER = 0;
 
 #pragma region ctrl defines
@@ -342,6 +345,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 		case 1:
 			ShowWindow(hWndCFG, SW_SHOW);
 			EnableWindow(hWndmain, 0);
+			break;
+		case 2:
+			ShellExecute(hWndmain,"open","enVisioner.exe",0,0,SW_SHOW);
 			break;
 		}
 		break;

@@ -11,7 +11,7 @@ X - standard
 0 means nothing will play or >1 is music of worlds or level will look like solid colors
 F or invalid numbers can be custom but more data will be needed
 
-^ V might squash both of these things (sep) into one byte and then do bitwise
+^ V might squash both of these things (sep.ly) into one byte and then do bitwise
 
 object structure
 0x00 - id
@@ -24,7 +24,7 @@ object structure
 0x01 - id of id (lol)
 item:
 0 - gem
-1 - diamond (whatever that is)
+1 - diamond
 2 - heart
 3 - star
 4 - life
@@ -38,12 +38,10 @@ entity:
 5 - enemy bomb
 door:
 0 - finish door
-1 - locked door (red key)
-2 - locked door (blue key)
-3 - locked door (green key)
-4 - linked warp
-5 - pinball door lol
-6 - switch door
+1 - locked door
+2 - linked warp
+3 - pinball door lol
+4 - switch door
 level parts:
 0 - ground
 X - spike / damage
