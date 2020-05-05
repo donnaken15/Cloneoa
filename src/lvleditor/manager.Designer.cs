@@ -94,7 +94,7 @@
             this.mainMenu.Name = "mainMenu";
             this.mainMenu.Padding = new System.Windows.Forms.Padding(2, 2, 2, 5);
             this.mainMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.mainMenu.Size = new System.Drawing.Size(792, 28);
+            this.mainMenu.Size = new System.Drawing.Size(892, 28);
             this.mainMenu.TabIndex = 1;
             // 
             // menuFile
@@ -316,7 +316,7 @@
             this.mainToolbar.Name = "mainToolbar";
             this.mainToolbar.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.mainToolbar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.mainToolbar.Size = new System.Drawing.Size(792, 22);
+            this.mainToolbar.Size = new System.Drawing.Size(892, 22);
             this.mainToolbar.Stretch = true;
             this.mainToolbar.TabIndex = 2;
             // 
@@ -454,6 +454,7 @@
             this.toolNewObj.Name = "toolNewObj";
             this.toolNewObj.Size = new System.Drawing.Size(20, 20);
             this.toolNewObj.Text = "New Object";
+            this.toolNewObj.Click += new System.EventHandler(this.newObjBtn);
             // 
             // toolObjProp
             // 
@@ -511,7 +512,6 @@
             this.toolHelp.Size = new System.Drawing.Size(20, 20);
             this.toolHelp.Text = "Help";
             this.toolHelp.ToolTipText = "Help";
-            this.toolHelp.Click += new System.EventHandler(this.showAbout);
             // 
             // statusBar
             // 
@@ -519,9 +519,9 @@
             this.toolLoadProg,
             this.toolLoadText,
             this.statusSep1});
-            this.statusBar.Location = new System.Drawing.Point(0, 660);
+            this.statusBar.Location = new System.Drawing.Point(0, 780);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(792, 24);
+            this.statusBar.Size = new System.Drawing.Size(892, 24);
             this.statusBar.TabIndex = 3;
             // 
             // toolLoadProg
@@ -571,7 +571,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 684);
+            this.ClientSize = new System.Drawing.Size(892, 804);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.mainToolbar);
             this.Controls.Add(this.mainMenu);

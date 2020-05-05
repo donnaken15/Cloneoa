@@ -1,2 +1,1 @@
-pushd .
-start "" bin\Cloneoa
+pushd&start "" bin\Cloneoa

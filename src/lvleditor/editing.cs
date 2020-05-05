@@ -4,26 +4,35 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using KLOAPI;
+using System.Text;
 
 namespace enVisioner
 {
     public partial class editing : Form
     {
         PropEdit_NULL PropEdit_NULL_Subst = new PropEdit_NULL();
-        PropEdit_Level PropEdit_Level_Subst = new PropEdit_Level();
-        static int PropEdit_Selector = 0;
+        Vision.Header PropEdit_Level_Subst;
+        static int PropEdit_Selector = 0,
+            hextext_selstart, hextext_sellen, hextext_fix = 0;
 
         static byte[] header = { 0xAC, 0x1E, 0, 0, 0, 0x11,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, shifter = new byte[10];
 
-        static List<byte> data = new List<byte>(header);
+        //static List<byte> data = new List<byte>(header);
 
-        static Vision vision;
+        public Vision vision;
 
-        public editing(bool newFile = true)
+        public editing()
         {
             InitializeComponent();
             vision = new Vision();
+            objlister.Nodes[0].Expand();
+        }
+
+        public editing(byte[] input)
+        {
+            InitializeComponent();
+            vision = new Vision(input);
             objlister.Nodes[0].Expand();
         }
 
@@ -32,9 +41,10 @@ namespace enVisioner
             switch (e.Node.Name)
             {
                 case "vision":
-                    PropEdit_Level_Subst.LevelType = data[4];
-                    PropEdit_Level_Subst.ThemeID = ByteAccess.HiBit(data[5]);
-                    PropEdit_Level_Subst.MusicID = ByteAccess.LoBit(data[5]);
+                    PropEdit_Level_Subst = vision.header;
+                    //PropEdit_Level_Subst.LevelType = vision.header.LevelType;
+                    //PropEdit_Level_Subst.ThemeID = vision.header.ThemeID;//ByteAccess.HiBit(vision.header.data[5]);
+                    //PropEdit_Level_Subst.MusicID = ;//ByteAccess.LoBit(vision.header.data[5]);
                     objectEditorPanel.SelectedObject = PropEdit_Level_Subst;
                     PropEdit_Selector = 1;
                     break;
@@ -45,22 +55,75 @@ namespace enVisioner
             }
         }
 
+        private void hextextKeys(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar >= '0' && e.KeyChar <= '9') || !(e.KeyChar > 'A' && e.KeyChar <= 'F'))
+                e.Handled = false;
+        }
+
+        private void hextextKeys(object sender, KeyEventArgs e)
+        {
+            
+        }
+
         private void changeByPropEdit(object s, PropertyValueChangedEventArgs e)
         {
             switch (PropEdit_Selector)
             {
                 case 1:
-                    data[4] = PropEdit_Level_Subst.LevelType;
+                    vision.header.data[4] = PropEdit_Level_Subst.LevelType;
                     ByteAccess.Is4Bits(PropEdit_Level_Subst.MusicID);
-                    ByteAccess.Is4Bits(PropEdit_Level_Subst.ThemeID);    
-                    data[5] = (byte)(PropEdit_Level_Subst.MusicID + (PropEdit_Level_Subst.ThemeID * 16));
+                    ByteAccess.Is4Bits(PropEdit_Level_Subst.ThemeID);
+                    vision.header.data[5] = (byte)(PropEdit_Level_Subst.MusicID + (PropEdit_Level_Subst.ThemeID * 16));
                     break;
             }
         }
 
+        private void updateData(object sender, EventArgs e)
+        {
+            if (hextext_fix == 0)
+            {
+                if (hextext.SelectionStart != 0)
+                {
+                    hextext_selstart = hextext.SelectionStart;
+                    //hextext.Text.Remove(hextext_selstart, 2);
+                }
+                hextext_fix = 1;
+                //hextext_sellen = hextext.SelectionLength;
+                //if (hextext.Text.Replace("\n", "").Replace("\r", "").Length % 2 != 0)
+                //hextext.Text += "0";
+                if (hextext.Text.Length < 32)
+                {
+                    hextext.Text = BitConverter.ToString(vision.header.data).Replace("-", string.Empty);
+                }
+                else
+                {
+                    //vision.header.data = Encoding.ASCII.GetBytes(hextext.Text.Substring(32));
+                    for (int i = 2; i < vision.header.data.Length; i++)
+                        vision.header.data[i] = byte.Parse(hextext.Text.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
+                }
+                hextext.Text.Remove(5, 1);
+                hextext_fix = 0;
+                hextext.SelectionStart = hextext_selstart;
+            }
+            //hextext.Select(hextext_selstart, 0);
+            //MessageBox.Show(byte.Parse(hextext.Text.Substring(0, 2), System.Globalization.NumberStyles.HexNumber).ToString("X"));
+        }
+        
+        private void updatePropEdit(object sender, LayoutEventArgs e)
+        {
+            objectEditorPanel.SelectedObject = PropEdit_Level_Subst;
+        }
+
         private void updateDataDisplay(object sender, PaintEventArgs e)
         {
-            hextext.Text = BitConverter.ToString(data.ToArray()).Replace("-",string.Empty);
+            hextext.Text = BitConverter.ToString(vision.header.data).Replace("-", string.Empty) + '\n';
+            if (vision.data.ToArray().Length > 10)
+                hextext.Text += BitConverter.ToString(vision.data.ToArray()).Replace("-", string.Empty);
+            for (int i = 16; i < hextext.Text.Length; i += 16)
+            {
+                hextext.Text.Insert(i, "\n");
+            }
         }
 
         /*private void editrawdatatbox(object sender, KeyEventArgs e)
@@ -105,7 +168,7 @@ namespace enVisioner
         Warp
     };
 
-    [DefaultProperty("StartPosition")]
+    /*[DefaultProperty("StartPosition")]
     public class PropEdit_Level
     {
         [Category("Information"), Description("0 - Normal, 1 - Autoscroll, 2 - Board")]
@@ -121,7 +184,7 @@ namespace enVisioner
 
         [Category("Information"), Description("Player's starting position")]
         public Point StartPosition { get; set; }
-    }
+    }*/
 
     [DefaultProperty("Type")]
     public class PropEdit_Item

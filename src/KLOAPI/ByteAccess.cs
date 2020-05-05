@@ -44,7 +44,7 @@ namespace KLOAPI
             if (v < 16)
                 return true;
             else
-                throw new InvalidOperationException("Music / Theme ID must have a value less than 16");
+                throw new InvalidOperationException("Value must be less than 16");
         }
     }
 }

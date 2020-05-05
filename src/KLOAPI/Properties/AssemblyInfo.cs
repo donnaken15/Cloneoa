@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("KLOAPI")]
-[assembly: AssemblyDescription("Tools and parsing for Klonoa levels")]
+[assembly: AssemblyDescription("Tools and data for Klonoa levels")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("donnaken15")]
 [assembly: AssemblyProduct("KLOAPI")]

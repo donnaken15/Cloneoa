@@ -3,15 +3,18 @@
 #define SFX_ENABLE_MMS 1
 
 #if GFX_ENABLE_D3D9
-#include "C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h"
-#include "C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3dx9.h"
+//#include "C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h"
+//#include "C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3dx9.h"
+#include "E:\\11up\\d3d9.h"
+#include "E:\\11UP\\d3dx9.h"
 #endif
 
 #include <Windows.h>
 
 #if GFX_ENABLE_D3D9
 #pragma comment (lib, "\"C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Lib\\x86\\d3d9.lib\"")
-#pragma comment (lib, "\"C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Lib\\x86\\d3dx9.lib\"")
+//#pragma comment (lib, "\"C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Lib\\x86\\d3dx9.lib\"")
+#pragma comment (lib, "\"E:\\11up\\d3dx9.lib\"")
 #endif
 #endif
 
@@ -73,7 +76,7 @@ static byte mode = 0, musicpos = 0;//, pod = 0;
 static FLOAT speed = 1;
 
 // STUPID TIMING STUFF
-#define NO_STEPPING_IN_BETWEEN_FRAMES 0
+#define NO_STEPPING_IN_BETWEEN_FRAMES 1
 
 #pragma endregion
 
@@ -165,37 +168,34 @@ USHORT key(int a)
 
 void ctrl()
 {
-	if (mode) {
-		//MessageBox(hWndmain, "", "", 0);
-		if (key(player.keys[CTRL_START]))
-		{
+	if (key(player.keys[CTRL_START]))
+	{
 
-		}
-		if (key(player.keys[CTRL_FIRE]))
-		{
+	}
+	if (key(player.keys[CTRL_FIRE]))
+	{
 
-		}
-		if (key(player.keys[CTRL_JUMP]))
-		{
+	}
+	if (key(player.keys[CTRL_JUMP]))
+	{
 
-		}
-		if (key(player.keys[CTRL_LEFT]))
-		{
-			player.pos.x -= (delta * (player.speed / 16)) - (0.95 * (player.pos.x > 0));//(-64 * player.pos.x > 0);// * (0.53333333333 * player.pos.x > 0);
-		}
-		if (key(player.keys[CTRL_UP]))
-		{
+	}
+	if (key(player.keys[CTRL_LEFT]))
+	{
+		player.pos.x -= (delta * (player.speed / 16)) - (0.95 * (player.pos.x > 0));//(-64 * player.pos.x > 0);// * (0.53333333333 * player.pos.x > 0);
+	}
+	if (key(player.keys[CTRL_UP]))
+	{
 
-		}
-		if (key(player.keys[CTRL_DOWN]))
-		{
+	}
+	if (key(player.keys[CTRL_DOWN]))
+	{
 
-		}
-		if (key(player.keys[CTRL_RIGHT]))
-		{
-			if (!key(player.keys[CTRL_LEFT]))
-				player.pos.x += (delta * (player.speed / 16)) - (0.95 * (player.pos.x < 0));
-		}
+	}
+	if (key(player.keys[CTRL_RIGHT]))
+	{
+		if (!key(player.keys[CTRL_LEFT]))
+			player.pos.x += (delta * (player.speed / 16)) - (0.95 * (player.pos.x < 0));
 	}
 }
 
@@ -207,8 +207,8 @@ static LPD3DXSPRITE				d3d_drawing;
 static LPDIRECT3D9				d3d_main;
 static LPDIRECT3DDEVICE9		d3d_device;
 static LPD3DXFONT				d3d_fonts[2];
-static D3DXVECTOR3				d3d_pos[poscount];
-//static HFONT hfonts[2];
+static D3DXVECTOR2				d3d_pos[poscount];
+static HFONT					hfonts[2];
 
 static void NewTexture(LPCSTR fname, D3DFORMAT fmt, LPDIRECT3DTEXTURE9 *tex);
 
@@ -239,14 +239,18 @@ void gfx_d3d9_init() {
 		D3DCREATE_MULTITHREADED, &d3dpp, &d3d_device);
 	d3d_device->SetRenderState(D3DRS_LIGHTING, FALSE);
 	d3d_device->SetRenderState(D3DRS_ZENABLE, FALSE);
-	NewTexture(workingdir("gfx\\player_noa.png"), D3DFMT_A8R8G8B8, &d3d_textures[0]);
+	NewTexture(workingdir("gfx\\player.png"), D3DFMT_A8R8G8B8, &d3d_textures[0]);
 	NewTexture(workingdir("gfx\\hud.png"), D3DFMT_A8R8G8B8, &d3d_textures[1]);
 	NewTexture(workingdir("gfx\\obj.png"), D3DFMT_A8R8G8B8, &d3d_textures[2]);
 	D3DXCreateSprite(d3d_device, &d3d_drawing);
 	for (int i = 0; i < 16; i++)
-		d3d_pos[i] = D3DXVECTOR3(pos[i].x, pos[i].y, 0);
-	//hfonts[0] = CreateFontA(16, 6, 0, 0, 0, false, false, false, 0, 0, 0, 0, 0, "Arial");
-	D3DXCreateFontA(d3d_device, 22, 0, 0, 1, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, NONANTIALIASED_QUALITY, DEFAULT_PITCH || FF_DONTCARE, "Arial", &d3d_fonts[0]);
+		d3d_pos[i] = D3DXVECTOR2(pos[i].x, pos[i].y);
+		//d3d_pos[i] = D3DXVECTOR3(pos[i].x, pos[i].y, 0);
+	hfonts[0] = CreateFontA(16, 6, 0, 0, 0, false, false, false, 0, 0, 0, 0, 0, "Arial");
+	for (int i = 0; i <= 1; i++)
+		D3DXCreateFont(d3d_device, hfonts[i], &d3d_fonts[i]);
+	//D3DXCreateFont(d3d_device, 22, 0, 0, 1, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, NONANTIALIASED_QUALITY, DEFAULT_PITCH || FF_DONTCARE, "Arial", &d3d_fonts[0]);
+
 }
 
 static void drawText(int i, LPSTR text, int left, int top, int right, int bottom, D3DCOLOR COLOR);
@@ -257,7 +261,7 @@ static void drawText(int i, LPSTR text, int left, int top, int right, int bottom
 	rect[15].right = right;
 	rect[15].top = top;
 	rect[15].bottom = bottom;
-	d3d_fonts[i]->DrawTextA(0, text, -1, &rect[15], NULL, COLOR);
+	d3d_fonts[i]->DrawTextA(/*0, */text, -1, &rect[15], NULL, COLOR);
 }
 #endif
 
@@ -318,22 +322,22 @@ void draw()
 
 	d3d_device->BeginScene();
 
-	d3d_drawing->Begin(0);
+	d3d_drawing->Begin();
 
 	//d3d_drawing->Draw(d3d_textures[0], NULL, NULL, 0, 0, NULL, 0xFFFFFFFF);
 
 	sprintf(strbuf, "FRAME: %llu\nCLOCK: %llu\nPOS: %dX%d\nDELTA: %d", frame, clock, player.pos.x, player.pos.y, delta);
 	drawText(0, strbuf, 0, 0, 300, 200, D3DCOLOR_ARGB(255, 0, 255, 0));
 
-	d3d_drawing->Draw(d3d_textures[1], &rect[1], 0, &d3d_pos[1], 0xFFFFFFFF);
+	d3d_drawing->Draw(d3d_textures[1], &rect[1], 0, 0, 0, &d3d_pos[1], 0xFFFFFFFF);
 
 	if (res.cx - rect[1].right > 0)
 		for (int i = 0; i < res.cx - rect[1].right; i++)
-			d3d_drawing->Draw(d3d_textures[1], &rect[2], 0, &D3DXVECTOR3(rect[1].right + i, d3d_pos[2].y, 0), 0xFFFFFFFF);
+			d3d_drawing->Draw(d3d_textures[1], &rect[2], 0, 0, 0, &D3DXVECTOR2(rect[1].right + i, d3d_pos[2].y), 0xFFFFFFFF);
 
-	d3d_drawing->Draw(d3d_textures[1], &rect[3], 0, &d3d_pos[3], 0xFFFFFFFF);
+	d3d_drawing->Draw(d3d_textures[1], &rect[3], 0, 0, 0, &d3d_pos[3], 0xFFFFFFFF);
 
-	//d3d_drawing->Draw(d3d_textures[0], &rect[10], 0, &D3DXVECTOR3(player.pos.x,player.pos.y,0), 0xFFFFFFFF);
+	d3d_drawing->Draw(d3d_textures[0], &rect[10], 0, 0, 0, &D3DXVECTOR2(player.pos.x,player.pos.y), 0xFFFFFFFF);
 
 	if (key(VK_TAB))
 		drawText(0, ">>", res.cx-20, 0, res.cx+4, 32, D3DCOLOR_ARGB(127, 255, 0, 0));

@@ -37,7 +37,7 @@ namespace KLOAPI
         
         static void PrintData()
         {
-            Console.WriteLine(BitConverter.ToString(header.raw));
+            Console.WriteLine(BitConverter.ToString(header.data));
         }
     }
 }

@@ -1,5 +1,5 @@
- <img src="gfx/logo.png" alt="Cloneoa logo" title="Badum tss"/>
-<!--[](gfx/logo.png "Badum tss")-->
+<img src="gfx/logo.png" alt="Cloneoa logo" title="Badum tss"/>
+<!-- [](gfx/logo.png "Badum tss")-->
 
 ## the Klonoa custom level engine project
 
@@ -22,10 +22,13 @@ some custom content, but apparently not.<br/>
 
 ## Credits
 
-| Role                      | User                 |
-|:--------------------------|---------------------:|
-| Music Ripping             | Zophar               |
-| Sprite Ripping            | Frario               |
-| Code & Ideas / Director   | donnaken15           |
-| KH:DnSM / Main Icon Rip   | SonaleeTheHedgehog23 |
-| Original Game             | Namco                |
+| Role                            | User                 |
+|:--------------------------------|---------------------:|
+| Music Ripping                   | Zophar               |
+| Sprite Ripping                  | SpritersResource     |
+| Code & Ideas / Director / Edits | donnaken15           |
+| KH:DnSM / Main Icon Rip         | SonaleeTheHedgehog23 |
+| Original Game                   | Namco                |
+
+View real time progress of code here (non-git updated):
+http://donnaken15.tk/prg/Cloneoa

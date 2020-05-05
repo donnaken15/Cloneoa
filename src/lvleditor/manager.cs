@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using KLOAPI;
 
 namespace enVisioner
 {
     public partial class manager : Form
     {
-        /// <summary>
+        /*/// <summary>
         /// https://www.codeproject.com/Articles/1966/An-INI-file-handling-class-using-C
         /// </summary>
 
@@ -33,9 +35,12 @@ namespace enVisioner
             int i = GetPrivateProfileString(Section, Key, "", temp,
                                             255, File);
             return temp.ToString();
-        }
+        }*/
 
         static int progresssize = 128;
+
+        static IniFile settings = new IniFile();
+        //static IniFile.IniSection settings_editor;
 
         public manager()
         {
@@ -46,11 +51,34 @@ namespace enVisioner
             toolLoadProg.Value = progresssize;
             toolLoadProg.Size = new Size(progresssize, 18);
             toolLoadText.Width = progresssize;
+            if (File.Exists("settings.ini"))
+            {
+                settings.Load("settings.ini");
+                //settings_editor = new IniFile.IniSection(settings, "Editor");
+                if (settings.GetKeyValue("Editor", "ResX") != string.Empty ||
+                    settings.GetKeyValue("Editor", "ResY") != string.Empty)
+                    Size = new Size(
+                    Convert.ToInt32(settings.GetKeyValue("Editor", "ResX")),
+                    Convert.ToInt32(settings.GetKeyValue("Editor", "ResY")));
+                if (settings.GetKeyValue("Editor", "PosX") != string.Empty ||
+                    settings.GetKeyValue("Editor", "PosY") != string.Empty)
+                {
+                    StartPosition = FormStartPosition.Manual;
+                    Location = new Point(
+                        Convert.ToInt32(settings.GetKeyValue("Editor", "PosX")),
+                        Convert.ToInt32(settings.GetKeyValue("Editor", "PosY")));
+                }
+            }
             //loadsign.Close();
         }
 
         bool QuitProg()
         {
+            settings.SetKeyValue("Editor", "ResX", Size.Width.ToString());
+            settings.SetKeyValue("Editor", "ResY", Size.Height.ToString());
+            settings.SetKeyValue("Editor", "PosX", Location.X.ToString());
+            settings.SetKeyValue("Editor", "PosY", Location.Y.ToString());
+            settings.Save("settings.ini");
             return true;
         }
 
@@ -133,7 +161,12 @@ namespace enVisioner
 
         private void fileLoad(object sender, EventArgs e)
         {
-            fileDiagOpen.ShowDialog();
+            if (fileDiagOpen.ShowDialog() == DialogResult.OK)
+            {
+                editing newlvl = new editing(File.ReadAllBytes(fileDiagOpen.FileName));
+                newlvl.MdiParent = this;
+                newlvl.Show();
+            }
         }
 
         private void commonTick(object sender, EventArgs e)
@@ -163,7 +196,15 @@ namespace enVisioner
 
         private void updateWinSettings(object sender, EventArgs e)
         {
+            // used to be ini writing pos and res, check QuitProg
+        }
 
+        private void newObjBtn(object sender, EventArgs e)
+        {
+            KLOAPI.Object test = new KLOAPI.Object();
+            for (int i = 0; i < 10; i++)
+                ((editing)ActiveMdiChild).vision.data.Add(0);
+            //MdiChildren[0] = new editing() { vision = new Vision() { header = { MusicID = 5 } } };
         }
     }
 }
