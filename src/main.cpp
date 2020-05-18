@@ -67,7 +67,7 @@ static LEVEL level;
 static const unsigned long strbufsz = 512;
 string strbuf = new char[strbufsz];
 static maxplus frame, drawintv = 16, intvcurr = 0, interval = 4,
-lastintv, clock, clocklast, clockstart, clockpauselast,
+lastintv, clock, clocklast, clockstart, clockpauselast, clockmusiclpst,
 clockmusicint, clockmusicintlen, clockpause, delta;
 static byte mode = 0, musicpos = 0;//, pod = 0;
 static FLOAT speed = 1;
@@ -134,7 +134,7 @@ uint_fast16_t chrswap(string &a, size_t b, char c, char d) {
 static string workingdir(string append)
 {
 	GetCurrentDirectoryA(strbufsz, strbuf);
-	sprintf(strbuf,"%s\\%s",strbuf,append);
+	sprintf(strbuf, "%s\\%s", strbuf, append);
 	return strbuf;
 }
 
@@ -181,7 +181,7 @@ void ctrl()
 		}
 		if (key(player.keys[CTRL_LEFT]))
 		{
-			player.pos.x -= (delta * (player.speed / 16)) - (0.95 * (player.pos.x > 0));//(-64 * player.pos.x > 0);// * (0.53333333333 * player.pos.x > 0);
+			player.pos.x -= (delta * (player.speed / 8)) - (0.95 * (player.pos.x > 0));//(-64 * player.pos.x > 0);// * (0.53333333333 * player.pos.x > 0);
 		}
 		if (key(player.keys[CTRL_UP]))
 		{
@@ -194,7 +194,7 @@ void ctrl()
 		if (key(player.keys[CTRL_RIGHT]))
 		{
 			if (!key(player.keys[CTRL_LEFT]))
-				player.pos.x += (delta * (player.speed / 16)) - (0.95 * (player.pos.x < 0));
+				player.pos.x += (delta * (player.speed / 8)) - (0.95 * (player.pos.x < 0));
 		}
 	}
 }
@@ -314,7 +314,7 @@ void fileAssoc() {
 void draw()
 {
 #if GFX_ENABLE_D3D9
-	d3d_device->Clear(0, NULL, D3DCLEAR_TARGET, mode*(D3DCOLOR_ARGB(255,255,255,255)), 0.0f, 0);
+	d3d_device->Clear(0, NULL, D3DCLEAR_TARGET, mode*(D3DCOLOR_ARGB(255, 255, 255, 255)), 0.0f, 0);
 
 	d3d_device->BeginScene();
 
@@ -333,10 +333,10 @@ void draw()
 
 	d3d_drawing->Draw(d3d_textures[1], &rect[3], 0, &d3d_pos[3], 0xFFFFFFFF);
 
-	//d3d_drawing->Draw(d3d_textures[0], &rect[10], 0, &D3DXVECTOR3(player.pos.x,player.pos.y,0), 0xFFFFFFFF);
+	d3d_drawing->Draw(d3d_textures[0], &rect[10], 0, &D3DXVECTOR3(player.pos.x, player.pos.y, 0), 0xFFFFFFFF);
 
 	if (key(VK_TAB))
-		drawText(0, ">>", res.cx-20, 0, res.cx+4, 32, D3DCOLOR_ARGB(127, 255, 0, 0));
+		drawText(0, ">>", res.cx - 20, 0, res.cx + 4, 32, D3DCOLOR_ARGB(127, 255, 0, 0));
 
 	d3d_drawing->End();
 
@@ -358,13 +358,13 @@ void draw()
 void sfx_init()
 {
 	workingdir();
-	sprintf_s(strbuf+(strbufsz/2), (strbufsz/2), "open %s/mus/w01_int.wav alias music_start", strbuf);
+	sprintf_s(strbuf + (strbufsz / 2), (strbufsz / 2), "open %s/mus/w01_int.wav alias music_start", strbuf);
 	chrswap(strbuf, strbufsz, '\\', '/');
-	mciSendString(strbuf+(strbufsz/2), NULL, 0, NULL);
+	mciSendString(strbuf + (strbufsz / 2), NULL, 0, NULL);
 	workingdir();
-	sprintf_s(strbuf+(strbufsz/2), (strbufsz/2), "open %s/mus/w01_lp.wma alias music_loop", strbuf);
+	sprintf_s(strbuf + (strbufsz / 2), (strbufsz / 2), "open %s/mus/w01_lp.wma alias music_loop", strbuf);
 	chrswap(strbuf, strbufsz, '\\', '/');
-	mciSendString(strbuf+(strbufsz/2), NULL, 0, NULL);
+	mciSendString(strbuf + (strbufsz / 2), NULL, 0, NULL);
 }
 
 void sfx() {
@@ -375,16 +375,27 @@ void sfx() {
 		//MessageBox(hWndmain, strbuf, "", 0);
 		mciSendString("play music_start", NULL, 0, NULL);
 		clockmusicint = clocklast - clockstart;
-		sprintf(strbuf, "%d", clockmusicint + clockmusicintlen);
+		//sprintf(strbuf, "%d", clockmusicint + clockmusicintlen);
 		//MessageBox(hWndmain, strbuf, "", 0);
 		//playSndF("..\\mus\\w01_int.wav", 0);
 		musicpos = 1;
 	}
-	if (clock >= (clockmusicintlen + clockmusicint - 100) * speed && musicpos == 1) {
-		mciSendString("play music_loop repeat", NULL, 0, NULL);
+	if (clock >= (clockmusicintlen + clockmusicint - 100 - (2400 * musicpos > 1)) * speed && musicpos > 0) {
 		//playSndF("..\\mus\\w01_lp.wav", 1);
+		clockmusiclpst = clocklast;
+		clockmusicint = clock;
+		mciSendString("play music_loop from 0", NULL, 0, NULL);
+		mciSendString("status music_loop length track 1", strbuf, strbufsz, NULL);
+		clockmusicintlen = atoi(strbuf);
 		musicpos = 2;
 	}
+	//if (clocklast >= (clockmusiclpst + clockmusicintlen) && musicpos == 2)
+	//{
+		//clockmusiclpst = clocklast;
+		//mciSendString("play music_loop from 0", NULL, 0, NULL);
+		//mciSendString("status music_loop length track 1", strbuf, strbufsz, NULL);
+		//clockmusicintlen = atoi(strbuf);
+	//}
 #endif
 }
 
@@ -424,7 +435,7 @@ void win_init() {
 	//mciSendString(TEXT("play ../mus/file.wma"), NULL, 0, NULL);
 	//mciSendString(TEXT("play ../mus/file.wma wait"), NULL, 0, NULL);
 	play();
-	
+
 }
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -562,7 +573,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 #pragma endregion
 	}
 
-	_fullpath(strbuf,__argv[0],strbufsz);
+	_fullpath(strbuf, __argv[0], strbufsz);
 	//MessageBox(hWndmain, strbuf, "", 0);
 
 #if LOGGING
@@ -573,7 +584,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	player.keys[CTRL_LEFT] = VK_LEFT;
 	player.keys[CTRL_RIGHT] = VK_RIGHT;
-	player.speed = 2;
+	player.speed = 1;
 
 	if (__argc > 1)
 		win_init();
@@ -610,7 +621,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			}
 			if (!mode) {
 				clockpauselast = time();
-				playSndF("sfx\\pause.wav",0);
+				playSndF("sfx\\pause.wav", 0);
 				draw();
 			}
 			else
@@ -629,9 +640,14 @@ int WINAPI WinMain(HINSTANCE hInstance,
 #endif
 			//while (time() - lastintv < interval);
 			if (frame > 0) {
-				delta = clocklast - intvcurr;
+				delta = time() - clockstart - clockpause - clock;
+				//delta = time() - intvcurr - clockpause;
+				//delta = clocklast - clockstart - clockpause - clock;
+				//sprintf(strbuf,"%u",delta);
+				//MessageBoxA(hWndmain,strbuf,"",0);
 				//if (delta < 1)
-					//delta = 1;
+				//delta = 1;
+				//delta = drawintv;
 			}
 			ctrl();
 			sfx();
