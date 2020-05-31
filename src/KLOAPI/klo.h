@@ -8,39 +8,6 @@ struct OBJDATA {
 	POINT32 POS;
 };
 
-class OBJECT {
-private:
-	void init(OBJDATA OBJ)
-	{
-		id = OBJ.ID;
-		for (int i = 0; i < 8; i++)
-			props[i] = OBJ.PROPS[i];
-		startpos = OBJ.POS;
-		pos = startpos;
-	}
-public:
-	BYTE id, props[7];
-	POINT32 startpos, pos;
-	maxplus clockstart, clock;
-	OBJECT(OBJDATA OBJ)
-	{
-		init(OBJ);
-	}
-	OBJECT(OBJDATA OBJ, maxplus CURTIME)
-	{
-		init(OBJ);
-		clockstart = CURTIME;
-	}
-	void step()
-	{
-
-	}
-	void draw()
-	{
-
-	}
-};
-
 struct PLAYERINFO {
 	POINT32 pos;
 	byte ctrl//; //fast8

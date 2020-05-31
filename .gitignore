@@ -6,6 +6,7 @@
 err.txt
 in.txt
 out.txt
+*.htac*
 
 # User-specific files
 *.rsuser
