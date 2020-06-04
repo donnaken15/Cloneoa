@@ -2,16 +2,6 @@ draw_sprite_general(hudspr,0,153,0,1,16,view_xview[0],view_yview[0]+view_hview[0
 draw_sprite_part(hudspr,0,0,0,153,16,view_xview[0],view_yview[0]+view_hview[0]-16)
 draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+view_hview[0]-16)
 
-//image_index += image_speed
-
-//image_index += 1
-
-//show_message(string(char_index))
-//show_message(string(char_speed))
-
-//view_xview[0] = round(view_xview[0])
-//view_yview[0] = round(view_yview[0])
-
 switch (floor(char_index))
 {
     case -1:
