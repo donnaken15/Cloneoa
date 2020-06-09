@@ -1,0 +1,18 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=..\bin\info.chm
+Contents file=toc.hhc
+Default Font=Arial,14,0
+Default topic=i.html
+Display compile progress=Yes
+Index file=idx.hhk
+Language=0x409 English (United States)
+Title=Cloneoa Help
+
+
+[INFOTYPES]
+Category:GUI
+CategoryDesc:Graphical interface help
+Category:API
+CategoryDesc:Direct level editing help
+

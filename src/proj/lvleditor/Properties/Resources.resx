@@ -118,182 +118,230 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="DBLUNDR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DBLUNDR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ARC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ARC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LINESTYL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LINESTYL.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="REDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\REDO.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FREEFORM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FREEFORM.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FRONT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FRONT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CTR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CTR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="hh0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hh0.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BUTTON" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BUTTON.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="STRIKTHR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\STRIKTHR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="JST" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\JST.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PROP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PROP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TABCNTR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TAB-CNTR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TABLEFT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TAB-LEFT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FIND" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FIND.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ITL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ITL.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DRAWING" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DRAWING.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MCR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MCR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DISCNET" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DISCNET.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UP1LVL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UP1LVL.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="COPY" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\COPY.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HELP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HELP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="VWDTLS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VW-DTLS.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LFT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LFT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GROUP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BACK" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BACK.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SORTASC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SORTASC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="VWSMLIC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VW-SMLIC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="VWLRGIC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VW-LRGIC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TABRHT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TAB-RHT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PRINT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PRINT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UNDRLN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UNDRLN.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="UNGROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UNGROUP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PASTE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PASTE.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CUT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CUT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="hh11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hh11.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SPELLING" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SPELLING.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NEW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NEW.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SORTDES" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SORTDES.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DELETE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DELETE.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="UNDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UNDO.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TABCNTR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TAB-CNTR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CAMERA" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CAMERA.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="spr_enemy3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_enemy3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TABDEC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TAB-DEC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ELLIPSE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ELLIPSE.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CNT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CNT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="VWSMLIC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VW-SMLIC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SAVE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SAVE.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RECTANGL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RECTANGL.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FRONT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FRONT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HELP2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HELP2.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LINE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LINE.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BLD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BLD.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SUM.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MAPNET" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MAPNET.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LINK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LINK.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="VWLIST" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\VW-LIST.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OPEN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OPEN.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="spr_ply" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_ply.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="newobj" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\newobj.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MCR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MCR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SMALLCAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SMALLCAP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LINESTYL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LINESTYL.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CNT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CNT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ELLIPSE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ELLIPSE.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UNDRLN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UNDRLN.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="STRIKTHR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\STRIKTHR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HELP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HELP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HELP2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HELP2.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VWDTLS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VW-DTLS.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_enemy8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_enemy8.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TABLEFT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TAB-LEFT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_enemy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_enemy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BLD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BLD.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VWLRGIC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VW-LRGIC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SORTDES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SORTDES.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SUM.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CUT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CUT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GROUP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_enemy2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_enemy2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RECTANGL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RECTANGL.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DISCNET" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DISCNET.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NEW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NEW.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DRAWING" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DRAWING.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WORDUNDR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WORDUNDR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="UNGROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UNGROUP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BUTTON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BUTTON.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="spr_enemy7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_enemy7.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_enemy4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_enemy4.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="COPY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\COPY.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newobj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newobj.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_life" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_life.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\JST.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LFT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LFT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CAMERA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CAMERA.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CTR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CTR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OPEN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OPEN.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UNDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UNDO.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MAPNET" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MAPNET.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ARC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ARC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LINE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LINE.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_star" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_star.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SORTASC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SORTASC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UP1LVL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UP1LVL.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BACK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BACK.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_key.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PRINT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PRINT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DBLUNDR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DBLUNDR.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SMALLCAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SMALLCAP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PROP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PROP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hh0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hh0.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ITL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ITL.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TABDEC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TAB-DEC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_gem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_gem.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SPELLING" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SPELLING.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_heal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_heal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FIND" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FIND.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hh11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hh11.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FREEFORM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FREEFORM.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TABRHT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TAB-RHT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="REDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\REDO.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_enemy6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_enemy6.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_enemy5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_enemy5.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="spr_5g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spr_5g.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

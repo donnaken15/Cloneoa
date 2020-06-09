@@ -191,6 +191,7 @@ namespace enVisioner
             toolObjFind.Enabled = enableOrNot;
             toolObjProp.Enabled = enableOrNot;
             toolObjRemove.Enabled = enableOrNot;
+            toolLink.Enabled = enableOrNot;
         }
         #endregion
 

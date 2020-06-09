@@ -42,7 +42,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -292,6 +292,22 @@
   <ItemGroup>
     <Content Include="exe.ico" />
     <Content Include="icon.ico" />
+    <None Include="Resources\spr_5g.png" />
+    <None Include="Resources\spr_ply.gif" />
+    <None Include="Resources\spr_star.png" />
+    <None Include="Resources\spr_life.png" />
+    <None Include="Resources\spr_key.png" />
+    <None Include="Resources\spr_heal.png" />
+    <None Include="Resources\spr_gem.png" />
+    <None Include="Resources\spr_enemy8.png" />
+    <None Include="Resources\spr_enemy7.png" />
+    <None Include="Resources\spr_enemy6.png" />
+    <None Include="Resources\spr_enemy5.png" />
+    <None Include="Resources\spr_enemy4.png" />
+    <None Include="Resources\spr_enemy3.png" />
+    <None Include="Resources\spr_enemy2.png" />
+    <None Include="Resources\spr_enemy.png" />
+    <None Include="Resources\LINK.BMP" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KLOAPI\KLOAPI.csproj">
