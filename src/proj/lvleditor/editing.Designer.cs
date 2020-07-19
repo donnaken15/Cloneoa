@@ -38,11 +38,11 @@
             this.propEditWrap = new System.Windows.Forms.TabPage();
             this.objectEditorPanel = new System.Windows.Forms.PropertyGrid();
             this.rawedit = new System.Windows.Forms.TabPage();
-            this.hexaddrlabels = new System.Windows.Forms.Label();
+            this.textwrapper = new System.Windows.Forms.Panel();
             this.hextext = new System.Windows.Forms.TextBox();
+            this.hexaddrlabels = new System.Windows.Forms.Label();
             this.hexlabelkey = new System.Windows.Forms.Label();
             this.editorCR = new System.Windows.Forms.SplitContainer();
-            this.textwrapper = new System.Windows.Forms.Panel();
             this.editorLC.Panel1.SuspendLayout();
             this.editorLC.Panel2.SuspendLayout();
             this.editorLC.SuspendLayout();
@@ -52,8 +52,8 @@
             this.props_hexedit.SuspendLayout();
             this.propEditWrap.SuspendLayout();
             this.rawedit.SuspendLayout();
-            this.editorCR.SuspendLayout();
             this.textwrapper.SuspendLayout();
+            this.editorCR.SuspendLayout();
             this.SuspendLayout();
             // 
             // editorLC
@@ -165,17 +165,17 @@
             this.rawedit.UseVisualStyleBackColor = true;
             this.rawedit.Paint += new System.Windows.Forms.PaintEventHandler(this.updateDataDisplay);
             // 
-            // hexaddrlabels
+            // textwrapper
             // 
-            this.hexaddrlabels.AutoSize = true;
-            this.hexaddrlabels.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.hexaddrlabels.Font = new System.Drawing.Font("MS Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hexaddrlabels.Location = new System.Drawing.Point(-3, 15);
-            this.hexaddrlabels.Name = "hexaddrlabels";
-            this.hexaddrlabels.Size = new System.Drawing.Size(41, 11);
-            this.hexaddrlabels.TabIndex = 2;
-            this.hexaddrlabels.Text = "000000";
-            this.hexaddrlabels.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.textwrapper.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.textwrapper.BackColor = System.Drawing.SystemColors.Window;
+            this.textwrapper.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.textwrapper.Controls.Add(this.hextext);
+            this.textwrapper.Location = new System.Drawing.Point(38, 12);
+            this.textwrapper.Name = "textwrapper";
+            this.textwrapper.Size = new System.Drawing.Size(197, 203);
+            this.textwrapper.TabIndex = 3;
             // 
             // hextext
             // 
@@ -198,6 +198,18 @@
             this.hextext.KeyDown += new System.Windows.Forms.KeyEventHandler(this.hextextKeys);
             this.hextext.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hextextKeys);
             // 
+            // hexaddrlabels
+            // 
+            this.hexaddrlabels.AutoSize = true;
+            this.hexaddrlabels.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.hexaddrlabels.Font = new System.Drawing.Font("MS Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hexaddrlabels.Location = new System.Drawing.Point(-3, 15);
+            this.hexaddrlabels.Name = "hexaddrlabels";
+            this.hexaddrlabels.Size = new System.Drawing.Size(41, 11);
+            this.hexaddrlabels.TabIndex = 2;
+            this.hexaddrlabels.Text = "000000";
+            this.hexaddrlabels.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // hexlabelkey
             // 
             this.hexlabelkey.AutoSize = true;
@@ -217,18 +229,6 @@
             this.editorCR.Size = new System.Drawing.Size(488, 541);
             this.editorCR.SplitterDistance = 329;
             this.editorCR.TabIndex = 0;
-            // 
-            // textwrapper
-            // 
-            this.textwrapper.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.textwrapper.BackColor = System.Drawing.SystemColors.Window;
-            this.textwrapper.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.textwrapper.Controls.Add(this.hextext);
-            this.textwrapper.Location = new System.Drawing.Point(38, 12);
-            this.textwrapper.Name = "textwrapper";
-            this.textwrapper.Size = new System.Drawing.Size(197, 203);
-            this.textwrapper.TabIndex = 3;
             // 
             // editing
             // 
@@ -251,9 +251,9 @@
             this.propEditWrap.ResumeLayout(false);
             this.rawedit.ResumeLayout(false);
             this.rawedit.PerformLayout();
-            this.editorCR.ResumeLayout(false);
             this.textwrapper.ResumeLayout(false);
             this.textwrapper.PerformLayout();
+            this.editorCR.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

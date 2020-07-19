@@ -54,7 +54,7 @@ X - breakable box
 X - explosion redirection box
 X - growing box
 background parts:
-X - fence
+X - fence <- make uncollidable tile instead
 ground properties:
 ? - can rotate by switch
 switch properties:
@@ -66,3 +66,6 @@ switch properties:
 0x08 - pos x
 0x0C - pos y
 expand object properties if sign with string
+
+just realized
+tiles could have two parts where hibit has stuff like collision or damage and lobit is a texture id
