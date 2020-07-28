@@ -15,3 +15,12 @@ if (keyboard_check_released(vk_left) ||
 
 if keyboard_check_pressed(vk_tab) room_speed = 1000000
 else if keyboard_check_released(vk_tab) room_speed = 60
+
+//y=30vspeed=0
+gravity=0.4
+
+//if vspeed=0.4 char_index
+
+if y > 128 { vspeed = 0 gravity = 0 y = 30 }
+
+if vspeed >= 4 gravity = 0

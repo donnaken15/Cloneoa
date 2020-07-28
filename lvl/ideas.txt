@@ -66,3 +66,44 @@ switch properties:
 0x08 - pos x
 0x0C - pos y
 expand object properties if sign with string
+
+6/18
+just thought about making two sectors in file, where ones all tiles and ones all objects
+(V would be a little nifty for comments and other data)
+0x04 - tileset sector pointer
+0x04 - tileset sector size
+0x04 - objects sector pointer
+0x04 - objects sector size
+or do
+0x08 - tileset sector size
+0x08 - objects sector size
+
+6/19 big brain now
+width, height
+4/8 bits per level block or something
+bitmap style
+
+0 - air
+1 - general ground (no texture)
+2 - damage
+3 - turbulance
+
+4 - switch
+5 - button
+6 - disappearing platforms
+7 - seesaw spring
+8 - breakable box
+9 - explosion redirection box
+10 - growing box
+
+or
+4 - door
+5 - next part or whatever lol
+
+maybe put 2 or 4 bits to have ground or damage or
+whatever properties and 4 or 6 bits are textures or something
+when hibits are 0 make it ground
+0b01 = damage
+0b10 = something else
+0b11 = scenery / background / uncollideable
+maybe
