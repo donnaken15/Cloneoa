@@ -1,2 +1,8 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.cs  diff=csharp
+*.gml diff=gamemaker
+*.klo binary
+*.png binary
+*.gif binary
+*.wav binary
