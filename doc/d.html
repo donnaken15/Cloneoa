@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Visual Analysis of Level Files</title>
+		<style>
+			table {
+				border-collapse: collapse;
+			}
+			table, tbody, tr, td, th {
+				padding: 4px;
+			}
+			h1, h2, h3, h4, h5 {
+				margin: 3px;
+				padding: 3px;
+			}
+			* {
+				font-family: arial, sans-serif, times new roman, times, serif, courier new, courier, monospace;
+				padding:0;
+				font-size:12px;
+			}
+			.center {
+				text-align: center;
+			}
+			.ni {
+				display:none;
+			}
+			th {
+				font-weight:100;
+			}
+			td:nth-child(2) {
+				border: solid black 1px;
+				font-weight:600;
+				box-shadow: 4px 4px 0 1px #555;
+			}
+			td:nth-child(4) {
+				text-align:left
+			}
+			#bg1 {
+				background-image:url(data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAAAXNSR0IArs4c6QAAAAZQTFRFuqn+y6n+vYK0tQAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAAxJREFUCNdjcGBgAAAAxABBbIeyqwAAAABJRU5ErkJggg==);
+			}
+			#bg2 {
+				background-image:url(data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAgMAAADUn3btAAAAAXNSR0IArs4c6QAAAAlQTFRFuv7Ly/7Ly/7czxUs6wAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABBJREFUCNdj6GBIZOhgCAMAB5MByLCW4pIAAAAASUVORK5CYII=);
+			}
+			#bg3 {
+				background-image:url(data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAgMAAADUn3btAAAAAXNSR0IArs4c6QAAAAxQTFRF/sup/su6/typ/ty6WPDh0QAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABBJREFUCNdjKGEQZEhnEAQABM8A/vJOkyYAAAAASUVORK5CYII=);
+			}
+			#bg4 {
+				background-image:url(data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACAgMAAAACxpXwAAAAAXNSR0IArs4c6QAAAAlQTFRFi4uLmJiYnp6ehGztTwAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAAxJREFUCNdj4GBwAAAAXABJPBcNIQAAAABJRU5ErkJggg==)
+			}
+			.side {
+				transform:rotate(-90deg);
+				width:inital;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Visual Analysis of Level Files</h1>
+		<table class="center">
+			<tr>
+				<!--th>endian</th-->
+				<th style="width:30px;">file offset</th>
+				<th style="width:140px;">field name</th>
+				<th style="width:30px;">field size</th>
+				<th>description</th>
+			</tr>
+			<tr>
+				<td>0</td>
+				<td id="bg1">HeaderID</td>
+				<td>2</td>
+				<td>value should always be "AC 1E"</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td id="bg1">LevelVersion</td>
+				<td>1</td>
+				<td>must match game's level version or it will not play</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td id="bg1">LevelType</td>
+				<td>1</td>
+				<td>0 = normal, 1 = autoscroll, 2 = hoverboard</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td id="bg1">MusicThemeID</td>
+				<td>1</td>
+				<td>HIBIT: music, LOBIT: tile graphics</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td id="bg4">Unused</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td id="bg1">StartPosition</td>
+				<td>4</td>
+				<td>two 2-bit integers to indicate where the player starts</td>
+			</tr>
+			<tr>
+				<td>12</td>
+				<td id="bg1">LevelSize</td>
+				<td>4</td>
+				<td>two 2-bit integers to indicate size of the level</td>
+			</tr>
+			<tr>
+				<td>16</td>
+				<td id="bg2" height="60">LevelTiles</td>
+				<td class="side">LvSz</td>
+				<td>basically like a bitmap, each byte is one tile;<br/>has 16 byte alignment</td>
+			</tr>
+			<tr>
+				<td>any</td>
+				<td id="bg3" height="60">Objects</td>
+				<td class="side">any</td>
+				<td>the below table represents what this data is made of</td>
+			</tr>
+		</table><br/>
+		<h1>Deconstruction of Objects</h1>
+                <br/>Objects are usually 8 bytes long and this sector of the level file aligns to such<br/><br/>
+		<table class="center">
+			<tr>
+				<th style="width:30px;">byte offset</th>
+				<th style="width:140px;">field name</th>
+				<th style="width:30px;">field size</th>
+				<th>description</th>
+			</tr>
+			<tr>
+				<td>0</td>
+				<td id="bg3">ObjectType</td>
+				<td>1</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td id="bg3">SubObjectType</td>
+				<td>1</td>
+				<td>type of object type</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td id="bg3">Properties</td>
+				<td>2</td>
+				<td>various data belongs<br/>here specific to the<br/>object type</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td id="bg3">Position</td>
+				<td>4</td>
+				<td>two 2-bit integers to indicate where the object is created</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td id="bg4">ExtraData</td>
+				<td class="side">any</td>
+				<td>optional; may be used for signs</td>
+			</tr>
+		</table><br/><br/>
+		<a href="https://validator.w3.org/check?uri=referer">
+			<img src="http://www.w3.org/Icons/valid-xhtml10" border="0"
+				style="border:0px" alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+	</body>
+</html>
