@@ -6,9 +6,11 @@ namespace KLOAPI
     {
         public List<byte> data;
 
+        public XYU16 pos;
+
         public Object()
         {
-            data = new List<byte>(10);
+            data = new List<byte>(8);
         }
 
         public Object(byte[] input)

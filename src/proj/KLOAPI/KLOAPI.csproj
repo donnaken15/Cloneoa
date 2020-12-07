@@ -23,15 +23,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>false</DebugSymbols>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>ISO-2</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>
@@ -45,6 +46,7 @@
     <Compile Include="ByteAccess.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Object.cs" />
+    <Compile Include="Other.cs" />
     <Compile Include="StressTest.cs" />
     <Compile Include="Vision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

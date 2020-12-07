@@ -18,8 +18,7 @@ namespace KLOAPI
         /// </summary>
         public Vision()
         {
-            header = new Header();
-            data = new List<byte>();
+            data = new List<byte>(16);
         }
 
         /// <summary>
@@ -27,27 +26,71 @@ namespace KLOAPI
         /// </summary>
         public Vision(byte[] input)
         {
+            //byte[] temp = new byte[0x10];
+            //Array.Copy(input, 0, temp, 0, 0x10);
+            //header = new Header(temp);
+            //temp = new byte[input.Length - 0x10];
+            //Array.Copy(input, 0x10, temp, 0, input.Length - 0x10);
+            data = new List<byte>(input);
+        }
+
+        /*public Vision(byte[] input)
+        {
             byte[] temp = new byte[0x10];
             Array.Copy(input, 0, temp, 0, 0x10);
             header = new Header(temp);
             temp = new byte[input.Length - 0x10];
             Array.Copy(input, 0x10, temp, 0, input.Length - 0x10);
             data = new List<byte>();
+        }*/
+
+        public Header header
+        {
+            get
+            {
+                byte[] temp = new byte[0x10];
+                Array.Copy(data.ToArray(), 0, temp, 0, 0x10);
+                return new Header(temp);
+            }
+            set
+            {
+                header = value;
+            }
         }
 
-        public Header header;
-
         public List<byte> data;
+
+        public byte[] tiles
+        {
+            get
+            {
+                int sz = header.LevelSize.x* header.LevelSize.y;
+                byte[] tile = new byte[sz];
+                for (int i = 0; i < sz; i++)
+                {
+                    tile[i] = data[0x10 + (int)Math.Floor((double)i/2)];
+                }
+                return tile;
+            }
+        }
+
+        enum TileType
+        {
+            Back,
+            Fore,
+            Overlay,
+            Damage
+        }
 
         public Object[] objects
         {
             get
             {
-                Object[] newvar = new Object[data.Count / 10];
-                for (int i = 0; i < data.Count; i += 10)
+                Object[] newvar = new Object[data.Count / 8];
+                for (int i = 0; i < data.Count; i += 8)
                 {
                     byte[] a = new byte[10];
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0; j < 8; j++)
                         a[j] = data[i + j];
                     newvar[i] = new Object(a);
                 }
@@ -58,7 +101,7 @@ namespace KLOAPI
         //private List<byte> __objects;
 
         /// <summary>
-        /// The level file header.
+        /// The level file header
         /// </summary>
         public class Header
         {
@@ -73,9 +116,12 @@ namespace KLOAPI
                 FileVersion = 2,
                 LevelType = 4,
                 MusicThemeID,
-                StartPoint = 8,
-                StartPointX = 8,
-                StartPointY = 0xC
+                LevelSize = 8,
+                LevelSizeX = 8,
+                LevelSizeY = 0xA,
+                StartPoint = 0xC,
+                StartPointX = 0xC,
+                StartPointY = 0xE
             }
 
             public ushort FileVersion
@@ -145,24 +191,43 @@ namespace KLOAPI
             /// Player's start position
             /// </summary>
             [Category("Information"), Description("Player's starting position")]
-            public Point StartPosition
+            public XYU16 StartPosition
             {
                 get
                 {
-                    return new Point((int)ByteAccess.MakeLong(ByteAccess.MakeWord(data[(int)Addresses.StartPointX], data[(int)Addresses.StartPointX + 1]), ByteAccess.MakeWord(data[(int)Addresses.StartPointX + 2], data[(int)Addresses.StartPointX + 3])),
-                        (int)ByteAccess.MakeLong(ByteAccess.MakeWord(data[(int)Addresses.StartPointY], data[(int)Addresses.StartPointY + 1]), ByteAccess.MakeWord(data[(int)Addresses.StartPointY + 2], data[(int)Addresses.StartPointY + 3])));
+                    return new XYU16(
+                        ByteAccess.MakeWord(data[(int)Addresses.StartPointX], data[(int)Addresses.StartPointX + 1]),
+                        ByteAccess.MakeWord(data[(int)Addresses.StartPointY], data[(int)Addresses.StartPointY + 1]));
                 }
                 set
                 {
                     ///TODO: FIX, AM I EVAX OR SOMETHING
-                    data[(int)Addresses.StartPoint] = ByteAccess.HiByte(ByteAccess.HiWord((uint)value.X));
-                    data[(int)Addresses.StartPoint + 1] = ByteAccess.LoByte(ByteAccess.HiWord((uint)value.X));
-                    data[(int)Addresses.StartPoint + 2] = ByteAccess.HiByte(ByteAccess.LoWord((uint)value.X));
-                    data[(int)Addresses.StartPoint + 3] = ByteAccess.LoByte(ByteAccess.LoWord((uint)value.X));
-                    data[(int)Addresses.StartPoint + 4] = ByteAccess.HiByte(ByteAccess.HiWord((uint)value.Y));
-                    data[(int)Addresses.StartPoint + 5] = ByteAccess.LoByte(ByteAccess.HiWord((uint)value.Y));
-                    data[(int)Addresses.StartPoint + 6] = ByteAccess.HiByte(ByteAccess.LoWord((uint)value.Y));
-                    data[(int)Addresses.StartPoint + 7] = ByteAccess.LoByte(ByteAccess.LoWord((uint)value.Y));
+                    data[(int)Addresses.StartPoint] = ByteAccess.HiByte(ByteAccess.HiWord(value.x));
+                    data[(int)Addresses.StartPoint + 1] = ByteAccess.LoByte(ByteAccess.HiWord(value.x));
+                    data[(int)Addresses.StartPoint + 2] = ByteAccess.HiByte(ByteAccess.HiWord(value.y));
+                    data[(int)Addresses.StartPoint + 3] = ByteAccess.LoByte(ByteAccess.HiWord(value.y));
+                }
+            }
+
+            /// <summary>
+            /// Level size
+            /// </summary>
+            [Category("Information"), Description("Level size (x16)")]
+            public XYU16 LevelSize
+            {
+                get
+                {
+                    return new XYU16(
+                        ByteAccess.MakeWord(data[(int)Addresses.StartPointX], data[(int)Addresses.StartPointX + 1]),
+                        ByteAccess.MakeWord(data[(int)Addresses.StartPointY], data[(int)Addresses.StartPointY + 1]));
+                }
+                set
+                {
+                    ///TODO: FIX, AM I EVAX OR SOMETHING
+                    data[(int)Addresses.LevelSize] = ByteAccess.HiByte(ByteAccess.HiWord(value.x));
+                    data[(int)Addresses.LevelSize + 1] = ByteAccess.LoByte(ByteAccess.HiWord(value.x));
+                    data[(int)Addresses.LevelSize + 2] = ByteAccess.HiByte(ByteAccess.HiWord(value.y));
+                    data[(int)Addresses.LevelSize + 3] = ByteAccess.LoByte(ByteAccess.HiWord(value.y));
                 }
             }
 

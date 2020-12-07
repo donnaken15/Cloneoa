@@ -54,7 +54,7 @@ X - breakable box
 X - explosion redirection box
 X - growing box
 background parts:
-X - fence
+X - fence <- make uncollidable tile instead
 ground properties:
 ? - can rotate by switch
 switch properties:
