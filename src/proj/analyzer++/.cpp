@@ -16,7 +16,7 @@
 using namespace std;
 
 ifstream lvdata;
-VISION level;
+static VISION level;
 const char* buildtime[2] = { __DATE__, __TIME__ };
 
 int main(int argc, char*argv[])
@@ -34,7 +34,6 @@ Music / Theme:       %02d / %02d\n\
 Level size (x16):    %5d x %5d\n\
 Player start (x16):  %5d x %5d\n\n\
 Existing objects (%d):\n\
-\
 ",
 			level.visver,
 				level.settings[0],
@@ -45,7 +44,42 @@ Existing objects (%d):\n\
 				level.objcount);
 			for (int i = 0; i < level.objcount; i++)
 			{
-				printf("%d\n",level.objects[i].POS.x);
+				printf("%02X%02X : %02X%02X : %5d,%5d\n",
+					level.objects[i].ID, level.objects[i].PROPS[0],
+					level.objects[i].PROPS[1], level.objects[i].PROPS[2],
+					level.objects[i].POS.x, level.objects[i].POS.y);
+			}
+			puts("\nLevel layout:");
+			/*for (int i = 0; i < (level.size.x * level.size.y) / 2 + 1; i++)
+			{
+				int j = 0;
+				printf("%X ", (HIBIT(level.tiles[i])), i);
+				if (i > 0 && i - 1 % level.size.x == 0 && !j)
+				{
+					putc('\n', stdout);
+					j = 1;
+				}
+				printf("%X ", (LOBIT(level.tiles[i])), i);
+				if (i > 0 && i - 1 % level.size.x == 0 && !j)
+				{
+					putc('\n', stdout);
+					j = 1;
+				}
+			}*/
+			{
+				int i = 0, j = 0;
+				while (1)
+				{
+					if (j >= (level.size.x * level.size.y))
+						break;
+					printf("%X", (HIBIT(level.tiles[i])), i);
+					j++;
+					if (j >= (level.size.x * level.size.y))
+						break;
+					printf("%X", (LOBIT(level.tiles[i])), i);
+					j++;
+					i++;
+				}
 			}
 		}
 	}
@@ -53,5 +87,6 @@ Existing objects (%d):\n\
 	{
 		puts("Please specify a file");
 	}
+	//scanf_s("test");
 	return 0;
 }

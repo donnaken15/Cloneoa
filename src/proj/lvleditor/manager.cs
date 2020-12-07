@@ -10,37 +10,38 @@ namespace enVisioner
 {
     public partial class manager : Form
     {
-        /*/// <summary>
-        /// https://www.codeproject.com/Articles/1966/An-INI-file-handling-class-using-C
-        /// </summary>
-
-        [DllImport("kernel32")]
-        private static extern long WritePrivateProfileString(string section,
-            string key, string val, string filePath);
-        [DllImport("kernel32")]
-        private static extern int GetPrivateProfileString(string section,
-            string key, string def, StringBuilder retVal, int size, string filePath);
-        //[DllImport("kernel32.dll")]
-        //static extern uint GetPrivateProfileInt(string lpAppName, string lpKeyName,
-            //int nDefault, string lpFileName);
-
-        public void IniWriteValue(string File, string Section, string Key, string Value)
-        {
-            WritePrivateProfileString(Section, Key, Value, File);
-        }
-
-        public string IniReadValue(string File, string Section, string Key)
-        {
-            StringBuilder temp = new StringBuilder(255);
-            int i = GetPrivateProfileString(Section, Key, "", temp,
-                                            255, File);
-            return temp.ToString();
-        }*/
 
         static int progresssize = 128;
 
         static IniFile settings = new IniFile();
-        //static IniFile.IniSection settings_editor;
+
+        static string lang = "EN";
+
+        string MultilangText(string param)
+        {
+            return Properties.Resources.ResourceManager.GetString(lang + '_' + param);
+        }
+
+        void Localize()
+        {
+            string prefix = "Root_";
+            Text = MultilangText(prefix + "Title");
+            {
+                prefix += "Menu_";
+                menuFile.Text = MultilangText(prefix + "File");
+                menuEdit.Text = MultilangText(prefix + "Edit");
+                menuView.Text = MultilangText(prefix + "View");
+                menuLevel.Text = MultilangText(prefix + "Level");
+                menuWindows.Text = MultilangText(prefix + "Windows");
+                menuHelp.Text = MultilangText(prefix + "Help");
+                menuNew.Text = MultilangText(prefix + "File_New");
+                menuOpen.Text = MultilangText(prefix + "File_Open");
+                menuOpenRecent.Text = MultilangText(prefix + "File_RF");
+                menuSave.Text = MultilangText(prefix + "File_Save");
+                menuSaveAs.Text = MultilangText(prefix + "File_SaveAs");
+                menuExit.Text = MultilangText(prefix + "File_Exit");
+            }
+        }
 
         public manager()
         {
@@ -68,8 +69,18 @@ namespace enVisioner
                         Convert.ToInt32(settings.GetKeyValue("Editor", "PosX")),
                         Convert.ToInt32(settings.GetKeyValue("Editor", "PosY")));
                 }
+                switch (settings.GetKeyValue("General","Language"))
+                {
+                    case "0":
+                        lang = "EN";
+                        break;
+                    case "1":
+                        lang = "JP";
+                        break;
+                }
             }
             //loadsign.Close();
+            Localize();
         }
 
         bool QuitProg()
@@ -206,6 +217,23 @@ namespace enVisioner
             for (int i = 0; i < 10; i++)
                 ((editing)ActiveMdiChild).vision.data.Add(0);
             //MdiChildren[0] = new editing() { vision = new Vision() { header = { MusicID = 5 } } };
+        }
+
+        private void locSwitchEn(object sender, EventArgs e)
+        {
+            lang = "EN";
+            Localize();
+        }
+
+        private void locSwitchJp(object sender, EventArgs e)
+        {
+            lang = "JP";
+            Localize();
+        }
+
+        private void showGuide(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "info.chm");
         }
     }
 }

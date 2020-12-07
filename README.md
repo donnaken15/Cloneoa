@@ -1,5 +1,5 @@
-<img src="gfx/logo.png" alt="Cloneoa logo" title="Badum tss"/>
-<!-- [](gfx/logo.png "Badum tss")-->
+<img src="gfx/misc/logo.png" alt="Cloneoa logo" title="Badum tss"/>
+<!-- [](gfx/misc/logo.png "Badum tss")-->
 
 ## the Klonoa custom level engine project
 

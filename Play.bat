@@ -1,0 +1,1 @@
+start "Cloneoa" bin\Cloneoa

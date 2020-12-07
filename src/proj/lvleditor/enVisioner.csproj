@@ -69,6 +69,12 @@
     <Compile Include="about.Designer.cs">
       <DependentUpon>about.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\editTest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="components\editTest.Designer.cs">
+      <DependentUpon>editTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ini.cs" />
     <Compile Include="manager.cs">
       <SubType>Form</SubType>
@@ -86,6 +92,9 @@
     </Compile>
     <EmbeddedResource Include="about.resx">
       <DependentUpon>about.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\editTest.resx">
+      <DependentUpon>editTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="manager.resx">
       <DependentUpon>manager.cs</DependentUpon>
@@ -292,6 +301,8 @@
   <ItemGroup>
     <Content Include="exe.ico" />
     <Content Include="icon.ico" />
+    <None Include="Resources\FLAGJP.bmp" />
+    <None Include="Resources\FLAGUS.bmp" />
     <None Include="Resources\spr_5g.png" />
     <None Include="Resources\spr_ply.gif" />
     <None Include="Resources\spr_star.png" />

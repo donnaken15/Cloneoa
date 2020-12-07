@@ -1,6 +1,6 @@
-draw_sprite_general(hudspr,0,153,0,1,16,view_xview[0],view_yview[0]+view_hview[0]-16,view_wview[0],1,0,c_white,c_white,c_white,c_white,1)
-draw_sprite_part(hudspr,0,0,0,153,16,view_xview[0],view_yview[0]+view_hview[0]-16)
-draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+view_hview[0]-16)
+//draw_sprite_general(hudspr,0,153,0,1,16,view_xview[0],view_yview[0]+view_hview[0]-16,view_wview[0],1,0,c_white,c_white,c_white,c_white,1)
+//draw_sprite_part(hudspr,0,0,0,153,16,view_xview[0],view_yview[0]+view_hview[0]-16)
+//draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+view_hview[0]-16)
 
 switch (floor(char_index))
 {
@@ -56,8 +56,21 @@ switch (floor(char_index))
 if floor(char_index) >= 0 && floor(char_index) < 10
     draw_sprite_part_ext(klospr,0,86,21,16,4,round(x)-5+(flip*18),round(y)-4,1+(flip*-2),1,c_white,1)
 
-draw_text(x,y,"grav: "+string(gravity)+"#vspe: "+string(vspeed)+"#pos: "+string(x)+"x"+string(y))
+//set px437 font
+//draw_set_font(confont)
+//draw_set_color(c_red)
+draw_set_font(confnt)
+draw_set_color(c_white)
+draw_set_valign(fa_bottom)
+//draw_text(view_xview[0],view_yview[0],
+draw_text(view_xview[0],view_yview[0]+view_hview[0],
+"pos: "+string_format(x,6,1)+" * "+string_format(y,6,1)+"
+grav: "+string(gravity)+"
+vspe: "+string(vspeed)+"
+scale: "+string(window_get_region_scale())+"
+res:"+string(view_wview[0])+"*"+string(view_hview[0]))
 
+draw_set_color(c_black)
 draw_line(0,128,100,128)
 draw_line(0,256,100,256)
 draw_line(0,384,100,384)

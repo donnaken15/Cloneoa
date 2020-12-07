@@ -66,6 +66,31 @@ namespace enVisioner
             
         }
 
+        /*private Point MouseDownLocation;
+
+        private void testDrag(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                MouseDownLocation = e.Location;
+            }
+        }
+
+        private void testDrag2(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                panel1.Cursor = Cursors.SizeAll;
+                panel1.Left = e.X + panel1.Left - MouseDownLocation.X;
+                panel1.Top = e.Y + panel1.Top - MouseDownLocation.Y;
+            }
+        }
+
+        private void testDrag3(object sender, MouseEventArgs e)
+        {
+            panel1.Cursor = Cursors.Hand;
+        }*/
+
         private void changeByPropEdit(object s, PropertyValueChangedEventArgs e)
         {
             switch (PropEdit_Selector)

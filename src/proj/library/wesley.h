@@ -3,7 +3,7 @@
 typedef unsigned char byte;
 typedef unsigned short ushort;
 typedef int number; // <-- lol
-typedef unsigned int plus;
+typedef unsigned int unsign;
 typedef long long max;
 typedef unsigned long long maxplus;
 typedef unsigned char*data;

@@ -61,282 +61,362 @@ namespace enVisioner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Ready.
         /// </summary>
-        internal static System.Drawing.Bitmap ARC {
+        internal static string EN_Root_Loading_Ready {
             get {
-                object obj = ResourceManager.GetObject("ARC", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Loading_Ready", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
-        internal static System.Drawing.Bitmap BACK {
+        internal static string EN_Root_Menu_Edit {
             get {
-                object obj = ResourceManager.GetObject("BACK", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Edit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Copy.
         /// </summary>
-        internal static System.Drawing.Bitmap BLD {
+        internal static string EN_Root_Menu_Edit_Copy {
             get {
-                object obj = ResourceManager.GetObject("BLD", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Edit_Copy", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Cut.
         /// </summary>
-        internal static System.Drawing.Bitmap BUTTON {
+        internal static string EN_Root_Menu_Edit_Cut {
             get {
-                object obj = ResourceManager.GetObject("BUTTON", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Edit_Cut", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Paste.
         /// </summary>
-        internal static System.Drawing.Bitmap CAMERA {
+        internal static string EN_Root_Menu_Edit_Paste {
             get {
-                object obj = ResourceManager.GetObject("CAMERA", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Edit_Paste", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Redo.
         /// </summary>
-        internal static System.Drawing.Bitmap CNT {
+        internal static string EN_Root_Menu_Edit_Redo {
             get {
-                object obj = ResourceManager.GetObject("CNT", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Edit_Redo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Undo.
         /// </summary>
-        internal static System.Drawing.Bitmap COPY {
+        internal static string EN_Root_Menu_Edit_Undo {
             get {
-                object obj = ResourceManager.GetObject("COPY", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Edit_Undo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to File.
         /// </summary>
-        internal static System.Drawing.Bitmap CTR {
+        internal static string EN_Root_Menu_File {
             get {
-                object obj = ResourceManager.GetObject("CTR", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_File", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Exit.
         /// </summary>
-        internal static System.Drawing.Bitmap CUT {
+        internal static string EN_Root_Menu_File_Exit {
             get {
-                object obj = ResourceManager.GetObject("CUT", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_File_Exit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to New.
         /// </summary>
-        internal static System.Drawing.Bitmap DBLUNDR {
+        internal static string EN_Root_Menu_File_New {
             get {
-                object obj = ResourceManager.GetObject("DBLUNDR", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_File_New", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Open.
         /// </summary>
-        internal static System.Drawing.Bitmap DELETE {
+        internal static string EN_Root_Menu_File_Open {
             get {
-                object obj = ResourceManager.GetObject("DELETE", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_File_Open", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Recent Files....
         /// </summary>
-        internal static System.Drawing.Bitmap DISCNET {
+        internal static string EN_Root_Menu_File_RF {
             get {
-                object obj = ResourceManager.GetObject("DISCNET", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_File_RF", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static System.Drawing.Bitmap DRAWING {
+        internal static string EN_Root_Menu_File_Save {
             get {
-                object obj = ResourceManager.GetObject("DRAWING", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_File_Save", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Save As....
         /// </summary>
-        internal static System.Drawing.Bitmap ELLIPSE {
+        internal static string EN_Root_Menu_File_SaveAs {
             get {
-                object obj = ResourceManager.GetObject("ELLIPSE", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_File_SaveAs", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Help.
         /// </summary>
-        internal static System.Drawing.Bitmap FIND {
+        internal static string EN_Root_Menu_Help {
             get {
-                object obj = ResourceManager.GetObject("FIND", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Help", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Level.
         /// </summary>
-        internal static System.Drawing.Bitmap FREEFORM {
+        internal static string EN_Root_Menu_Level {
             get {
-                object obj = ResourceManager.GetObject("FREEFORM", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Level", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Link Tool.
         /// </summary>
-        internal static System.Drawing.Bitmap FRONT {
+        internal static string EN_Root_Menu_Level_Link {
             get {
-                object obj = ResourceManager.GetObject("FRONT", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Level_Link", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Object.
         /// </summary>
-        internal static System.Drawing.Bitmap GROUP {
+        internal static string EN_Root_Menu_Level_Obj {
             get {
-                object obj = ResourceManager.GetObject("GROUP", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Level_Obj", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Windows.
         /// </summary>
-        internal static System.Drawing.Bitmap HELP {
+        internal static string EN_Root_Menu_Windows {
             get {
-                object obj = ResourceManager.GetObject("HELP", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Menu_Windows", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to enViSiONer_v0.04.
         /// </summary>
-        internal static System.Drawing.Bitmap HELP2 {
+        internal static string EN_Root_Title {
             get {
-                object obj = ResourceManager.GetObject("HELP2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EN_Root_Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to 準備完了.
         /// </summary>
-        internal static System.Drawing.Bitmap hh0 {
+        internal static string JP_Root_Loading_Ready {
             get {
-                object obj = ResourceManager.GetObject("hh0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("JP_Root_Loading_Ready", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to 編集.
         /// </summary>
-        internal static System.Drawing.Bitmap hh11 {
+        internal static string JP_Root_Menu_Edit {
             get {
-                object obj = ResourceManager.GetObject("hh11", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("JP_Root_Menu_Edit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to コピー.
         /// </summary>
-        internal static System.Drawing.Bitmap ITL {
+        internal static string JP_Root_Menu_Edit_Copy {
             get {
-                object obj = ResourceManager.GetObject("ITL", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("JP_Root_Menu_Edit_Copy", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to 切る.
         /// </summary>
-        internal static System.Drawing.Bitmap JST {
+        internal static string JP_Root_Menu_Edit_Cut {
             get {
-                object obj = ResourceManager.GetObject("JST", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("JP_Root_Menu_Edit_Cut", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to ペースト.
         /// </summary>
-        internal static System.Drawing.Bitmap LFT {
+        internal static string JP_Root_Menu_Edit_Paste {
             get {
-                object obj = ResourceManager.GetObject("LFT", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("JP_Root_Menu_Edit_Paste", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to やり直し.
         /// </summary>
-        internal static System.Drawing.Bitmap LINE {
+        internal static string JP_Root_Menu_Edit_Redo {
             get {
-                object obj = ResourceManager.GetObject("LINE", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("JP_Root_Menu_Edit_Redo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to 元に戻す.
         /// </summary>
-        internal static System.Drawing.Bitmap LINESTYL {
+        internal static string JP_Root_Menu_Edit_Undo {
             get {
-                object obj = ResourceManager.GetObject("LINESTYL", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("JP_Root_Menu_Edit_Undo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to ファイル.
         /// </summary>
-        internal static System.Drawing.Bitmap LINK {
+        internal static string JP_Root_Menu_File {
             get {
-                object obj = ResourceManager.GetObject("LINK", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("JP_Root_Menu_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 出口.
+        /// </summary>
+        internal static string JP_Root_Menu_File_Exit {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_File_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新着.
+        /// </summary>
+        internal static string JP_Root_Menu_File_New {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_File_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開いた.
+        /// </summary>
+        internal static string JP_Root_Menu_File_Open {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_File_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 最近使用したファイル．．．.
+        /// </summary>
+        internal static string JP_Root_Menu_File_RF {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_File_RF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to セーブ.
+        /// </summary>
+        internal static string JP_Root_Menu_File_Save {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_File_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 名前を付けて保存．．．.
+        /// </summary>
+        internal static string JP_Root_Menu_File_SaveAs {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_File_SaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 助けて.
+        /// </summary>
+        internal static string JP_Root_Menu_Help {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レベル.
+        /// </summary>
+        internal static string JP_Root_Menu_Level {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to リンクツール.
+        /// </summary>
+        internal static string JP_Root_Menu_Level_Link {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_Level_Link", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to オブジェクト.
+        /// </summary>
+        internal static string JP_Root_Menu_Level_Obj {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_Level_Obj", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ウィンドウズ.
+        /// </summary>
+        internal static string JP_Root_Menu_Windows {
+            get {
+                return ResourceManager.GetString("JP_Root_Menu_Windows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to クロノアレベルエディタ＿ｖ０．０４.
+        /// </summary>
+        internal static string JP_Root_Title {
+            get {
+                return ResourceManager.GetString("JP_Root_Title", resourceCulture);
             }
         }
         
@@ -353,9 +433,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MAPNET {
+        internal static System.Drawing.Bitmap MDI_ARC {
             get {
-                object obj = ResourceManager.GetObject("MAPNET", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_ARC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,9 +443,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MCR {
+        internal static System.Drawing.Bitmap MDI_BACK {
             get {
-                object obj = ResourceManager.GetObject("MCR", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_BACK", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -373,9 +453,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NEW {
+        internal static System.Drawing.Bitmap MDI_BLD {
             get {
-                object obj = ResourceManager.GetObject("NEW", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_BLD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -383,9 +463,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap newobj {
+        internal static System.Drawing.Bitmap MDI_BOOK {
             get {
-                object obj = ResourceManager.GetObject("newobj", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_BOOK", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,9 +473,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap OPEN {
+        internal static System.Drawing.Bitmap MDI_BUTTON {
             get {
-                object obj = ResourceManager.GetObject("OPEN", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_BUTTON", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -403,9 +483,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap PASTE {
+        internal static System.Drawing.Bitmap MDI_CAMERA {
             get {
-                object obj = ResourceManager.GetObject("PASTE", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_CAMERA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -413,9 +493,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap PRINT {
+        internal static System.Drawing.Bitmap MDI_CNT {
             get {
-                object obj = ResourceManager.GetObject("PRINT", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_CNT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -423,9 +503,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap PROP {
+        internal static System.Drawing.Bitmap MDI_COPY {
             get {
-                object obj = ResourceManager.GetObject("PROP", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_COPY", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -433,9 +513,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RECTANGL {
+        internal static System.Drawing.Bitmap MDI_CTR {
             get {
-                object obj = ResourceManager.GetObject("RECTANGL", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_CTR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -443,9 +523,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap REDO {
+        internal static System.Drawing.Bitmap MDI_CUT {
             get {
-                object obj = ResourceManager.GetObject("REDO", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_CUT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -453,9 +533,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RT {
+        internal static System.Drawing.Bitmap MDI_DBLUNDR {
             get {
-                object obj = ResourceManager.GetObject("RT", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_DBLUNDR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -463,9 +543,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SAVE {
+        internal static System.Drawing.Bitmap MDI_DELETE {
             get {
-                object obj = ResourceManager.GetObject("SAVE", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_DELETE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -473,9 +553,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SMALLCAP {
+        internal static System.Drawing.Bitmap MDI_DISCNET {
             get {
-                object obj = ResourceManager.GetObject("SMALLCAP", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_DISCNET", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -483,9 +563,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SORTASC {
+        internal static System.Drawing.Bitmap MDI_DRAWING {
             get {
-                object obj = ResourceManager.GetObject("SORTASC", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_DRAWING", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -493,9 +573,9 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SORTDES {
+        internal static System.Drawing.Bitmap MDI_ELLIPSE {
             get {
-                object obj = ResourceManager.GetObject("SORTDES", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_ELLIPSE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -503,9 +583,459 @@ namespace enVisioner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SPELLING {
+        internal static System.Drawing.Bitmap MDI_FIND {
             get {
-                object obj = ResourceManager.GetObject("SPELLING", resourceCulture);
+                object obj = ResourceManager.GetObject("MDI_FIND", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_FLAGJP {
+            get {
+                object obj = ResourceManager.GetObject("MDI_FLAGJP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_FLAGUS {
+            get {
+                object obj = ResourceManager.GetObject("MDI_FLAGUS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_FREEFORM {
+            get {
+                object obj = ResourceManager.GetObject("MDI_FREEFORM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_FRONT {
+            get {
+                object obj = ResourceManager.GetObject("MDI_FRONT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_GROUP {
+            get {
+                object obj = ResourceManager.GetObject("MDI_GROUP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_HELP {
+            get {
+                object obj = ResourceManager.GetObject("MDI_HELP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_HELP2 {
+            get {
+                object obj = ResourceManager.GetObject("MDI_HELP2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_INFOPAGE {
+            get {
+                object obj = ResourceManager.GetObject("MDI_INFOPAGE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_ITL {
+            get {
+                object obj = ResourceManager.GetObject("MDI_ITL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_JST {
+            get {
+                object obj = ResourceManager.GetObject("MDI_JST", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_LFT {
+            get {
+                object obj = ResourceManager.GetObject("MDI_LFT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_LINE {
+            get {
+                object obj = ResourceManager.GetObject("MDI_LINE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_LINESTYL {
+            get {
+                object obj = ResourceManager.GetObject("MDI_LINESTYL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_LINK {
+            get {
+                object obj = ResourceManager.GetObject("MDI_LINK", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_MAPNET {
+            get {
+                object obj = ResourceManager.GetObject("MDI_MAPNET", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_MCR {
+            get {
+                object obj = ResourceManager.GetObject("MDI_MCR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_NEW {
+            get {
+                object obj = ResourceManager.GetObject("MDI_NEW", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_newobj {
+            get {
+                object obj = ResourceManager.GetObject("MDI_newobj", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_OPEN {
+            get {
+                object obj = ResourceManager.GetObject("MDI_OPEN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_PASTE {
+            get {
+                object obj = ResourceManager.GetObject("MDI_PASTE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_PRINT {
+            get {
+                object obj = ResourceManager.GetObject("MDI_PRINT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_PROP {
+            get {
+                object obj = ResourceManager.GetObject("MDI_PROP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_RECTANGL {
+            get {
+                object obj = ResourceManager.GetObject("MDI_RECTANGL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_REDO {
+            get {
+                object obj = ResourceManager.GetObject("MDI_REDO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_RT {
+            get {
+                object obj = ResourceManager.GetObject("MDI_RT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_SAVE {
+            get {
+                object obj = ResourceManager.GetObject("MDI_SAVE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_SMALLCAP {
+            get {
+                object obj = ResourceManager.GetObject("MDI_SMALLCAP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_SORTASC {
+            get {
+                object obj = ResourceManager.GetObject("MDI_SORTASC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_SORTDES {
+            get {
+                object obj = ResourceManager.GetObject("MDI_SORTDES", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_SPELLING {
+            get {
+                object obj = ResourceManager.GetObject("MDI_SPELLING", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_STRIKTHR {
+            get {
+                object obj = ResourceManager.GetObject("MDI_STRIKTHR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_SUM {
+            get {
+                object obj = ResourceManager.GetObject("MDI_SUM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_TABCNTR {
+            get {
+                object obj = ResourceManager.GetObject("MDI_TABCNTR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_TABDEC {
+            get {
+                object obj = ResourceManager.GetObject("MDI_TABDEC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_TABLEFT {
+            get {
+                object obj = ResourceManager.GetObject("MDI_TABLEFT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_TABRHT {
+            get {
+                object obj = ResourceManager.GetObject("MDI_TABRHT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_UNDO {
+            get {
+                object obj = ResourceManager.GetObject("MDI_UNDO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_UNDRLN {
+            get {
+                object obj = ResourceManager.GetObject("MDI_UNDRLN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_UNGROUP {
+            get {
+                object obj = ResourceManager.GetObject("MDI_UNGROUP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_UP1LVL {
+            get {
+                object obj = ResourceManager.GetObject("MDI_UP1LVL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_VWDTLS {
+            get {
+                object obj = ResourceManager.GetObject("MDI_VWDTLS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_VWLIST {
+            get {
+                object obj = ResourceManager.GetObject("MDI_VWLIST", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_VWLRGIC {
+            get {
+                object obj = ResourceManager.GetObject("MDI_VWLRGIC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_VWSMLIC {
+            get {
+                object obj = ResourceManager.GetObject("MDI_VWSMLIC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MDI_WORDUNDR {
+            get {
+                object obj = ResourceManager.GetObject("MDI_WORDUNDR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -656,156 +1186,6 @@ namespace enVisioner.Properties {
         internal static System.Drawing.Bitmap spr_star {
             get {
                 object obj = ResourceManager.GetObject("spr_star", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap STRIKTHR {
-            get {
-                object obj = ResourceManager.GetObject("STRIKTHR", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SUM {
-            get {
-                object obj = ResourceManager.GetObject("SUM", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TABCNTR {
-            get {
-                object obj = ResourceManager.GetObject("TABCNTR", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TABDEC {
-            get {
-                object obj = ResourceManager.GetObject("TABDEC", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TABLEFT {
-            get {
-                object obj = ResourceManager.GetObject("TABLEFT", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TABRHT {
-            get {
-                object obj = ResourceManager.GetObject("TABRHT", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap UNDO {
-            get {
-                object obj = ResourceManager.GetObject("UNDO", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap UNDRLN {
-            get {
-                object obj = ResourceManager.GetObject("UNDRLN", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap UNGROUP {
-            get {
-                object obj = ResourceManager.GetObject("UNGROUP", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap UP1LVL {
-            get {
-                object obj = ResourceManager.GetObject("UP1LVL", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap VWDTLS {
-            get {
-                object obj = ResourceManager.GetObject("VWDTLS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap VWLIST {
-            get {
-                object obj = ResourceManager.GetObject("VWLIST", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap VWLRGIC {
-            get {
-                object obj = ResourceManager.GetObject("VWLRGIC", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap VWSMLIC {
-            get {
-                object obj = ResourceManager.GetObject("VWSMLIC", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap WORDUNDR {
-            get {
-                object obj = ResourceManager.GetObject("WORDUNDR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
