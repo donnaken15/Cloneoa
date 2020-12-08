@@ -11,9 +11,10 @@
 	<param name="CategoryDesc" value="Graphical interface help">
 	<param name="Category" value="API">
 	<param name="CategoryDesc" value="Direct level editing help">
+	<param name="Category" value="Information">
+	<param name="CategoryDesc" value="Details surrounding the project">
 	<param name="Foreground" value="0xc0c0c0">
 	<param name="Window Styles" value="0x800027">
-	<!--param name="Font" value="Tahoma,7,0"-->
 </OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
@@ -22,16 +23,33 @@
 		<param name="ImageNumber" value="17">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="enViSiONer">
+		<param name="Name" value="Beginner (enViSiONer)">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="File Structure">
+		<param name="Name" value="Advanced">
 		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="File Structure">
+			<param name="Local" value="d.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+	</UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Log of Dreamscape">
-		<param name="Local" value="c.html">
-		<param name="Comment" value="What happened as I was making this stuff">
-		<param name="ImageNumber" value="13">
+		<param name="Name" value="Progress">
 		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Version History">
+			<param name="Local" value="v.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Log of Dreamscape">
+			<param name="Local" value="c.html">
+			<param name="Comment" value="What happened as I was making this stuff">
+			<param name="ImageNumber" value="13">
+			</OBJECT>
+	</UL>
 </UL>
 </BODY></HTML>

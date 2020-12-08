@@ -61,6 +61,24 @@ namespace enVisioner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Level.
+        /// </summary>
+        internal static string EN_Hint_NewFile {
+            get {
+                return ResourceManager.GetString("EN_Hint_NewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string EN_Hint_Title {
+            get {
+                return ResourceManager.GetString("EN_Hint_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready.
         /// </summary>
         internal static string EN_Root_Loading_Ready {
@@ -237,6 +255,24 @@ namespace enVisioner.Properties {
         internal static string EN_Root_Title {
             get {
                 return ResourceManager.GetString("EN_Root_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新レベル.
+        /// </summary>
+        internal static string JP_Hint_NewFile {
+            get {
+                return ResourceManager.GetString("JP_Hint_NewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 情報.
+        /// </summary>
+        internal static string JP_Hint_Title {
+            get {
+                return ResourceManager.GetString("JP_Hint_Title", resourceCulture);
             }
         }
         

@@ -1,5 +1,5 @@
 [OPTIONS]
-Compatibility=1.1 or later
+Compatibility=1.0
 Compiled file=..\bin\info.chm
 Contents file=toc.hhc
 Default Font=Arial,14,0
@@ -11,8 +11,11 @@ Title=Cloneoa Help
 
 
 [INFOTYPES]
+TypeDesc: 
 Category:GUI
 CategoryDesc:Graphical interface help
 Category:API
 CategoryDesc:Direct level editing help
+Category:Information
+CategoryDesc:Details surrounding the project
 

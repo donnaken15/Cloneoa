@@ -1,17 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 
 namespace KLOAPI
 {
     public class Vision
     {
         /// <summary>
+        /// File signature/identifier, must always be 0xAC1E
+        /// </summary>
+        public static readonly byte[] MagicNumber = { 0xAC, 0x1E };
+
+        /// <summary>
         /// This value is assigned in the header file in case
         /// of patches that require changing of data structures.
         /// </summary>
         public static readonly ushort FileVersion = 0;
+        
+        public void ContestVersionNumber()
+        {
+            if (ByteAccess.MakeWord(data[2], data[3]) != FileVersion)
+                throw new NotSupportedException("Constructor input has mismatching vision version number.");
+        }
 
         /// <summary>
         /// Construct a new level class.
@@ -19,10 +29,16 @@ namespace KLOAPI
         public Vision()
         {
             data = new List<byte>(16);
+            data[0] = MagicNumber[0];
+            data[1] = MagicNumber[1];
+            header.LevelSize = new XYU16(16, 16);
+            header.StartPosition = new XYU16(4, 4);
+            header.FileVersion = FileVersion;
+            ContestVersionNumber();
         }
 
         /// <summary>
-        /// Create level class from file
+        /// Create level class from file.
         /// </summary>
         public Vision(byte[] input)
         {
@@ -31,7 +47,14 @@ namespace KLOAPI
             //header = new Header(temp);
             //temp = new byte[input.Length - 0x10];
             //Array.Copy(input, 0x10, temp, 0, input.Length - 0x10);
+            if (input.Length < 16)
+                throw new DataMisalignedException("Constructor input is too short.");
             data = new List<byte>(input);
+            ContestVersionNumber();
+            if (input[0] != MagicNumber[0] && input[1] != MagicNumber[1])
+            {
+                throw new Exception("Constructor input contains an invalid header signature.");
+            }
         }
 
         /*public Vision(byte[] input)
@@ -43,6 +66,8 @@ namespace KLOAPI
             Array.Copy(input, 0x10, temp, 0, input.Length - 0x10);
             data = new List<byte>();
         }*/
+
+        public List<byte> data;
 
         public Header header
         {
@@ -57,8 +82,6 @@ namespace KLOAPI
                 header = value;
             }
         }
-
-        public List<byte> data;
 
         public byte[] tiles
         {
@@ -76,9 +99,8 @@ namespace KLOAPI
 
         enum TileType
         {
-            Back,
-            Fore,
-            Overlay,
+            Block,
+            Noclip,
             Damage
         }
 
@@ -230,11 +252,6 @@ namespace KLOAPI
                     data[(int)Addresses.LevelSize + 3] = ByteAccess.LoByte(ByteAccess.HiWord(value.y));
                 }
             }
-
-            /// <summary>
-            /// File signature/identifier, must always be 0xAC1E
-            /// </summary>
-            public static readonly byte[] MagicNumber = { 0xAC, 0x1E };
 
             /*public static Header ParseHeader(byte[] input)
             {

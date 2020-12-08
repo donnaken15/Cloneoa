@@ -469,4 +469,16 @@
   <data name="JP_Root_Title" xml:space="preserve">
     <value>クロノアレベルエディタ＿ｖ０．０４</value>
   </data>
+  <data name="EN_Hint_NewFile" xml:space="preserve">
+    <value>New Level</value>
+  </data>
+  <data name="EN_Hint_Title" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="JP_Hint_NewFile" xml:space="preserve">
+    <value>新レベル</value>
+  </data>
+  <data name="JP_Hint_Title" xml:space="preserve">
+    <value>情報</value>
+  </data>
 </root>

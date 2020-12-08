@@ -12,7 +12,7 @@ namespace langswap
         {
             if (args.Length > 0)
             {
-                if (args[0] == "中国人")
+                if (args[0] == "日本人")
                 {
                     langToggle++;
                 }

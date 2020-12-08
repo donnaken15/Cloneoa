@@ -15,7 +15,7 @@
 				padding: 3px;
 			}
 			* {
-				font-family: arial, sans-serif, times new roman, times, serif, courier new, courier, monospace;
+				font-family: arial, tahoma, verdana, sans-serif, times new roman, times, serif, courier new, courier, monospace;
 				padding:0;
 				font-size:12px;
 			}
@@ -28,7 +28,7 @@
 			th {
 				font-weight:100;
 			}
-			td:nth-child(2) {
+			#hexDownwards td:nth-child(2) {
 				border: solid black 1px;
 				font-weight:600;
 				box-shadow: 4px 4px 0 1px #555;
@@ -52,11 +52,14 @@
 				transform:rotate(-90deg);
 				width:inital;
 			}
+			#bitstuff td:nth-child(1) {
+			text-align:center;
+			}
 		</style>
 	</head>
 	<body>
 		<h1>Visual Analysis of Level Files</h1>
-		<table class="center">
+		<table id="hexDownwards" class="center">
 			<tr>
 				<!--th>endian</th-->
 				<th style="width:30px;">file offset</th>
@@ -118,9 +121,34 @@
 				<td>the below table represents what this data is made of</td>
 			</tr>
 		</table><br/>
+		<h1>Tiles</h1>
+            <br/>A tile can have one of 63 textures. (6 bits wide)<br/>
+			<br/>The two highest bits are used to define the type of tile.<br/><br/>
+		<table id="bitstuff">
+			<tr>
+				<th>flags</th>
+				<th>tile type</th>
+			</tr>
+			<tr>
+				<td>00</td>
+				<td>solid block</td>
+			</tr>
+			<tr>
+				<td>01</td>
+				<td>non-clipping</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>hurt player</td>
+			</tr>
+			<tr>
+				<td>11</td>
+				<td>??</td>
+			</tr>
+		</table><br/>
 		<h1>Deconstruction of Objects</h1>
-                <br/>Objects are usually 8 bytes long and this sector of the level file aligns to such<br/><br/>
-		<table class="center">
+            <br/>Objects are usually 8 bytes long and this sector of the level file aligns to such<br/><br/>
+		<table id="hexDownwards" class="center">
 			<tr>
 				<th style="width:30px;">byte offset</th>
 				<th style="width:140px;">field name</th>
@@ -158,8 +186,5 @@
 				<td>optional; may be used for signs</td>
 			</tr>
 		</table><br/><br/>
-		<a href="https://validator.w3.org/check?uri=referer">
-			<img src="http://www.w3.org/Icons/valid-xhtml10" border="0"
-				style="border:0px" alt="Valid XHTML 1.0!" height="31" width="88"/></a>
 	</body>
 </html>

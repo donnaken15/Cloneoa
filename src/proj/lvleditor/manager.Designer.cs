@@ -103,6 +103,7 @@
             this.fileDiagOpen = new System.Windows.Forms.OpenFileDialog();
             this.fileDiagSave = new System.Windows.Forms.SaveFileDialog();
             this.commonUpdater = new System.Windows.Forms.Timer(this.components);
+            this.mainTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.mainMenu.SuspendLayout();
             this.mainToolbar.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -662,6 +663,10 @@
             this.commonUpdater.Interval = 13;
             this.commonUpdater.Tick += new System.EventHandler(this.commonTick);
             // 
+            // mainTooltip
+            // 
+            this.mainTooltip.ToolTipTitle = "Information";
+            // 
             // manager
             // 
             this.AllowDrop = true;
@@ -762,6 +767,7 @@
         private System.Windows.Forms.ToolStripMenuItem langSwapEng;
         private System.Windows.Forms.ToolStripMenuItem langSwapJpn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolTip mainTooltip;
     }
 }
 

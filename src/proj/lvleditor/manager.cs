@@ -222,12 +222,14 @@ namespace enVisioner
         private void locSwitchEn(object sender, EventArgs e)
         {
             lang = "EN";
+            settings.SetKeyValue("General","Language","0");
             Localize();
         }
 
         private void locSwitchJp(object sender, EventArgs e)
         {
             lang = "JP";
+            settings.SetKeyValue("General","Language","0");
             Localize();
         }
 

@@ -1,0 +1,87 @@
+﻿// dumb google translate thing by wesley
+// cant believe im doing this for weebspeak ppl
+// atleast ill attract some kaizo level makers or something
+
+[Main]
+Title= <appname> インストール
+
+[Gadgets]
+NextBtn = 次 >
+CancelBtn = 出口
+BackBtn = < 裏
+FinishBtn = 完了
+BrowseBtn = ブラウズ...
+AcceptOptn = 私は契約に同意します
+DoNotAcceptOptn = 私は契約に同意しません
+CreateDesktopIconCbx = デスクトップへのリンク
+CreateStartMenuFolderCbx = スタートメニューへのリンク
+LaunchProgramCbx = 開いた
+RebootCbx = コンピューターを再起動
+DestinationFolderFR3 = インストール先：
+SelAppFolder=アプリケーションフォルダを設定する：
+SelStartMenuFolder=スタートメニューフォルダを設定します：
+
+[Messages]
+ExitSetupH = 出口のセットアップ
+ExitSetup = インストールをキャンセルしますか？
+CouldNotExtractFileH = エラー
+CouldNotExtractFile = 抽出に失敗しました！
+
+[Start]
+Title = <appname>セットアップウィザードへようこそ
+Text = これにより、<appname>バージョン<appversion>がコンピューターにインストールされます。 [次へ]をクリックして続行します。
+
+[LicenceAgreement]
+HeadT = ライセンス契約
+HeadB = 続行する前に、次の重要な情報をお読みください
+Text1 = 以下のライセンス契約をお読みください。 インストールを続行する前に、この契約の条件に同意する必要があります
+
+[ApplicationFolder]
+HeadT = アプリケーションフォルダを設定する
+HeadB = インストール用のディレクトリを選択してください
+Text1 = セットアップにより、以下に示すフォルダーに<appname>がインストールされます。
+Text2 = [次へ]をクリックして続行します。 別のフォルダを選択する場合は、[参照]をクリックします。
+Text3 = 必要な空き容量：
+Text4 = 利用可能な空き容量：
+
+[StartMenuFolder]
+HeadT = スタートメニューフォルダを設定します：
+HeadB = セットアップはプログラムのショートカットをどこに配置する必要がありますか？
+Text1 = セットアップは、次のスタートメニューフォルダにプログラムのショートカットを作成します。
+Text2 = [次へ]をクリックして続行します。 別のフォルダを選択する場合は、[参照]をクリックします。
+
+[AdditionalTasks]
+HeadT = 追加のタスクを選択します
+HeadB = 他に何かする必要がありますか？
+Text1 = <appname>のインストール中にセットアップで実行する追加のタスクを選択し、[次へ]をクリックします。
+Text2 = 追加のアイコン：
+
+[Installing]
+HeadT = 処理
+HeadB = セットアップによって<appname>がコンピューターにインストールされるまでお待ちください。
+Text1 = インストールの準備をしています...
+Text2 = 処理...
+Text3 = 構成中...
+
+[Finish]
+Title = <appname>セットアップウィザードの完了
+Text1 = セットアップは、コンピューターへの<appname>のインストールを完了しました。 [完了]をクリックしてセットアップを終了します。
+
+[SerialCheck]
+HeadT = User Information
+HeadB = Please enter your information.
+Text1 = User Name:
+Text2 = Organization:
+Text3 = Serial Number:
+
+[Uninstall]
+Header = アンインストールステータス
+Header_b = <appname>がコンピューターから削除されるまでお待ちください。
+Uninstalling = 処理
+Btn_cancel = キャンセル
+ExitUninstall_T = アンインストール
+ExitUninstall = アンインストールをキャンセルしますか？
+Success_T = アンインストール
+Success = <appname>はコンピューターから正常に削除されました。
+BM_T = アンインストール
+BM = コンピューターから<appname>を削除しますか？

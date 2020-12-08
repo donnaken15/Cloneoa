@@ -1,4 +1,4 @@
-window_set_visible(false)
+//window_set_visible(false)
 globalvar fname,level,lvinfo,filecur,
 themeid,musicid,lvtype,startposraw,
 startpos,gems,stars,starmax,frame,
@@ -30,15 +30,12 @@ if parameter_count() = 0 {
 
 if fname != ""
 {
-	window_set_visible(true)
+	//window_set_visible(true)
 	
 	/// SETTINGS
 	ini_open(path_bin+"settings.ini")
 	{
 		realtimesrc = ini_read_real("Debug","RealtimeSrc",0)
-		window_set_region_scale(ini_read_real("Display","Scale",2),true)
-		freesize = ini_read_real("Display","FreeSize",0)
-		if !freesize window_set_sizeable(false)
 	}
 
 	if !realtimesrc {
@@ -150,7 +147,7 @@ if fname != ""
 					}
 				}
 				// }
-				show_message("everything:#fver: "+string(fvermatch)+
+				/*show_message("everything:#fver: "+string(fvermatch)+
 					"#type: "+string(lvtype)+"#music: "+string(musicid)+
 					"#theme: "+string(themeid)+"#level size: "+string(levelsize[0])+
 					"x"+string(levelsize[1])+"#start pos: "+string(startpos[0])+
@@ -208,6 +205,14 @@ if fname != ""
 	//view_yview[0] = (view_hview[0] / 2) * -1
 	
 	//why isnt this working with ini vars window_set_size(test0,test0)
+	
+	//decimals break code
+	//also looks ugly with non-AA anyway
+	window_set_region_scale(floor(ini_read_real("Display","Scale",2)),true)
+	//fix not being able to downsize window
+	//because it worked before
+	freesize = ini_read_real("Display","FreeSize",0)
+	if !freesize window_set_sizeable(false)
 
 	window_center()
 	posx = window_get_x()
