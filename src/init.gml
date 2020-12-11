@@ -6,7 +6,8 @@ levelsize,levelsizeraw,freesize
 realtimesrc,confnt,
 path_root,path_src,
 path_gfx,path_sfx,
-path_mus,path_bin
+path_mus,path_bin,
+levelbounds
 ;
 fname = ""
 path_root = program_directory+"/../"
@@ -60,11 +61,14 @@ if fname != ""
 		object_event_add(controller,ev_draw,0,get_code(path_src+"ctrl/draw.gml",0))
 		object_event_add(player,ev_step,0,get_code(path_src+"klo/step.gml",0))
 		object_event_add(player,ev_draw,0,get_code(path_src+"klo/draw.gml",0))
+		object_event_add(tile,ev_step,0,get_code(path_src+"tile/step.gml",0))
+		object_event_add(tile,ev_draw,0,get_code(path_src+"tile/draw.gml",0))
 	}
 	
 	globalvar log,logmax,logfull,posx,posy;
 	log = chr($D)
 	logmax = 2048
+	
 	//with console y = view_hview[0]
 
 	/// LEVEL STUFF
@@ -146,6 +150,18 @@ if fname != ""
 						levelsize[i] += levelsizeraw[j+(i*2)] * k
 					}
 				}
+				levelbounds[0] = 0					//top
+				levelbounds[1] = 0					//left
+				levelbounds[2] = levelsize[0]*16	//right
+				levelbounds[3] = levelsize[1]*16	//bottom
+				
+				//room_set_width(room_first,levelsize[0]*16)
+				//room_set_height(room_first,levelsize[1]*16)
+				//room_goto_next()
+				//room_set_width(room_first,2048)
+				//room_set_height(room_first,2048)
+				//room_goto_previous()
+				//room_restart()
 				// }
 				/*show_message("everything:#fver: "+string(fvermatch)+
 					"#type: "+string(lvtype)+"#music: "+string(musicid)+
@@ -181,10 +197,20 @@ if fname != ""
 		{
 			//var char_index, char_speed, player_speed;
 			//player_speed = 3
-			x = startpos[0]
-			y = startpos[1]
+			x = startpos[0] * 16
+			y = startpos[1] * 16
+			image_xoffset = 0
+			image_yoffset = 0
+			collision=0
+			collision[0] = -20
+			collision[1] = -7
+			collision[2] = 14
+			collision[3] = 0
+			depth = -1
 		}
 	}
+	
+	with instance_create(24,240,tile) { solid=1 }
 
 	frame = 0
 
@@ -195,14 +221,6 @@ if fname != ""
 
 	view_hborder[0] = view_wview[0]
 	view_vborder[0] = view_hview[0]
-
-	//view_xport[0] = player.x + (view_wview[0] / 2)
-	//view_yport[0] = player.y + (view_hview[0] / 2)
-
-	//view_xport[0] = (view_wview[0] / 2) * -1
-	//view_yport[0] = (view_hview[0] / 2) * -1
-	//view_xview[0] = (view_wview[0] / 2) * -1
-	//view_yview[0] = (view_hview[0] / 2) * -1
 	
 	//why isnt this working with ini vars window_set_size(test0,test0)
 	
@@ -210,7 +228,7 @@ if fname != ""
 	//also looks ugly with non-AA anyway
 	window_set_region_scale(floor(ini_read_real("Display","Scale",2)),true)
 	//fix not being able to downsize window
-	//because it worked before
+	//because it worked before on x1 scale
 	freesize = ini_read_real("Display","FreeSize",0)
 	if !freesize window_set_sizeable(false)
 
