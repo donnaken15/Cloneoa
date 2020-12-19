@@ -104,6 +104,7 @@
             this.fileDiagSave = new System.Windows.Forms.SaveFileDialog();
             this.commonUpdater = new System.Windows.Forms.Timer(this.components);
             this.mainTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.mainToolbar.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -127,6 +128,7 @@
             this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuNew,
             this.menuOpen,
+            this.closeToolStripMenuItem,
             this.menuOpenRecent,
             this.menuSave,
             this.menuSaveAs,
@@ -667,6 +669,11 @@
             // 
             this.mainTooltip.ToolTipTitle = "Information";
             // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            resources.ApplyResources(this.closeToolStripMenuItem, "closeToolStripMenuItem");
+            // 
             // manager
             // 
             this.AllowDrop = true;
@@ -768,6 +775,7 @@
         private System.Windows.Forms.ToolStripMenuItem langSwapJpn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolTip mainTooltip;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
     }
 }
 

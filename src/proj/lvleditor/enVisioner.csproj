@@ -75,6 +75,12 @@
     <Compile Include="components\editTest.Designer.cs">
       <DependentUpon>editTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\lvMain.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="components\lvMain.Designer.cs">
+      <DependentUpon>lvMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ini.cs" />
     <Compile Include="manager.cs">
       <SubType>Form</SubType>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="components\editTest.resx">
       <DependentUpon>editTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\lvMain.resx">
+      <DependentUpon>lvMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="manager.resx">
       <DependentUpon>manager.cs</DependentUpon>

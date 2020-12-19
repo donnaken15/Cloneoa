@@ -15,26 +15,40 @@ namespace KLOAPI
         /// This value is assigned in the header file in case
         /// of patches that require changing of data structures.
         /// </summary>
-        public static readonly ushort FileVersion = 0;
-        
+        public const ushort FileVersion = 0;
+
         public void ContestVersionNumber()
         {
             if (ByteAccess.MakeWord(data[2], data[3]) != FileVersion)
                 throw new NotSupportedException("Constructor input has mismatching vision version number.");
         }
 
+        static byte[] headerbase = {
+                MagicNumber[0],
+                MagicNumber[1],
+                ByteAccess.HiByte(Vision.FileVersion),
+                ByteAccess.LoByte(Vision.FileVersion),
+                0,0,
+                0,0,
+                0,16,
+                0,16,
+                0,4,
+                0,4
+            };
+
         /// <summary>
         /// Construct a new level class.
         /// </summary>
         public Vision()
         {
-            data = new List<byte>(16);
-            data[0] = MagicNumber[0];
-            data[1] = MagicNumber[1];
-            header.LevelSize = new XYU16(16, 16);
-            header.StartPosition = new XYU16(4, 4);
-            header.FileVersion = FileVersion;
-            ContestVersionNumber();
+            data = new List<byte>();
+            data.AddRange(headerbase);
+            //data[0] = MagicNumber[0];
+            //data[1] = MagicNumber[1];
+            //header.LevelSize = new XYU16(16, 16);
+            //header.StartPosition = new XYU16(4, 4);
+            //header.FileVersion = FileVersion;
+            //ContestVersionNumber();
         }
 
         /// <summary>
@@ -42,31 +56,14 @@ namespace KLOAPI
         /// </summary>
         public Vision(byte[] input)
         {
-            //byte[] temp = new byte[0x10];
-            //Array.Copy(input, 0, temp, 0, 0x10);
-            //header = new Header(temp);
-            //temp = new byte[input.Length - 0x10];
-            //Array.Copy(input, 0x10, temp, 0, input.Length - 0x10);
-            if (input.Length < 16)
-                throw new DataMisalignedException("Constructor input is too short.");
-            data = new List<byte>(input);
-            ContestVersionNumber();
-            if (input[0] != MagicNumber[0] && input[1] != MagicNumber[1])
-            {
-                throw new Exception("Constructor input contains an invalid header signature.");
-            }
-        }
-
-        /*public Vision(byte[] input)
-        {
             byte[] temp = new byte[0x10];
             Array.Copy(input, 0, temp, 0, 0x10);
             header = new Header(temp);
             temp = new byte[input.Length - 0x10];
             Array.Copy(input, 0x10, temp, 0, input.Length - 0x10);
             data = new List<byte>();
-        }*/
-
+        }
+        
         public List<byte> data;
 
         public Header header
@@ -79,7 +76,8 @@ namespace KLOAPI
             }
             set
             {
-                header = value;
+                for (int i = 0; i < 10; i++)
+                    data[i] = value.data[i];
             }
         }
 
@@ -87,13 +85,29 @@ namespace KLOAPI
         {
             get
             {
-                int sz = header.LevelSize.x* header.LevelSize.y;
+                int sz = header.LevelSize.x * header.LevelSize.y;
                 byte[] tile = new byte[sz];
                 for (int i = 0; i < sz; i++)
                 {
-                    tile[i] = data[0x10 + (int)Math.Floor((double)i/2)];
+                    tile[i] = data[0x10 + (int)Math.Floor((double)i / 2)];
                 }
                 return tile;
+            }
+        }
+
+        public Object[] objects
+        {
+            get
+            {
+                Object[] newvar = new Object[data.Count / 8];
+                for (int i = 0; i < data.Count; i += 8)
+                {
+                    byte[] a = new byte[8];
+                    for (int j = 0; j < 8; j++)
+                        a[j] = data[i + j];
+                    newvar[i] = new Object(a);
+                }
+                return newvar;
             }
         }
 
@@ -104,26 +118,10 @@ namespace KLOAPI
             Damage
         }
 
-        public Object[] objects
-        {
-            get
-            {
-                Object[] newvar = new Object[data.Count / 8];
-                for (int i = 0; i < data.Count; i += 8)
-                {
-                    byte[] a = new byte[10];
-                    for (int j = 0; j < 8; j++)
-                        a[j] = data[i + j];
-                    newvar[i] = new Object(a);
-                }
-                return newvar;
-            }
-        }
-
         //private List<byte> __objects;
 
         /// <summary>
-        /// The level file header
+        /// The level file header.
         /// </summary>
         public class Header
         {
@@ -161,7 +159,7 @@ namespace KLOAPI
             }
 
             /// <summary>
-            /// 0 - Standard, 1 - Autoscroll, 2 - 
+            /// 0 - Standard, 1 - Autoscroll, 2 - Board
             /// </summary>
             [Category("Information"), Description("0 - Normal, 1 - Autoscroll, 2 - Board")]
             public byte LevelType
@@ -179,7 +177,7 @@ namespace KLOAPI
             /// <summary>
             /// Choose music track based on world number, 0 means nothing will play
             /// </summary>
-            [Category("Information"), Description("0 - No music, 1 - Ghazzaland, 2 - Piramill, etc, rest of the unused can be replaced with custom music")]
+            [Category("Style"), Description("0 - No music, 1 - Ghazzaland, 2 - Piramill, etc, rest of the unused can be replaced with custom music")]
             public byte MusicID
             {
                 get
@@ -196,7 +194,7 @@ namespace KLOAPI
             /// <summary>
             /// Chooses scenery and graphics of the level based on world number, 0 means solid colors will be displayed
             /// </summary>
-            [Category("Information"), Description("0 - Solid color objects, 1 - Ghazzaland, 2 - Piramill, etc, rest of the unused can be replaced with custom assets")]
+            [Category("Style"), Description("0 - Solid color objects, 1 - Ghazzaland, 2 - Piramill, etc, rest of the unused can be replaced with custom assets")]
             public byte ThemeID
             {
                 get
@@ -217,22 +215,27 @@ namespace KLOAPI
             {
                 get
                 {
-                    return new XYU16(
-                        ByteAccess.MakeWord(data[(int)Addresses.StartPointX], data[(int)Addresses.StartPointX + 1]),
-                        ByteAccess.MakeWord(data[(int)Addresses.StartPointY], data[(int)Addresses.StartPointY + 1]));
+                    return new XYU16(12, 34);
+                    //return new XYU16(
+                        //ByteAccess.MakeWord(data[(int)Addresses.StartPointX], data[(int)Addresses.StartPointX + 1]),
+                        //ByteAccess.MakeWord(data[(int)Addresses.StartPointY], data[(int)Addresses.StartPointY + 1]));
                 }
                 set
                 {
                     ///TODO: FIX, AM I EVAX OR SOMETHING
-                    data[(int)Addresses.StartPoint] = ByteAccess.HiByte(ByteAccess.HiWord(value.x));
-                    data[(int)Addresses.StartPoint + 1] = ByteAccess.LoByte(ByteAccess.HiWord(value.x));
-                    data[(int)Addresses.StartPoint + 2] = ByteAccess.HiByte(ByteAccess.HiWord(value.y));
-                    data[(int)Addresses.StartPoint + 3] = ByteAccess.LoByte(ByteAccess.HiWord(value.y));
+                    data[(int)Addresses.StartPointX] = 0;//ByteAccess.HiByte(value.x);
+                    data[(int)Addresses.StartPointX + 1] = 2;//ByteAccess.LoByte(value.x);
+                    data[(int)Addresses.StartPointY] = 0;//ByteAccess.HiByte(value.y);
+                    data[(int)Addresses.StartPointY + 1] = 4;//ByteAccess.LoByte(value.y);
+                    for(int i = 2; i < 16; i++)
+                    {
+                        data[i] = 3;
+                    }
                 }
             }
 
             /// <summary>
-            /// Level size
+            /// Level size (x16)
             /// </summary>
             [Category("Information"), Description("Level size (x16)")]
             public XYU16 LevelSize
@@ -246,10 +249,10 @@ namespace KLOAPI
                 set
                 {
                     ///TODO: FIX, AM I EVAX OR SOMETHING
-                    data[(int)Addresses.LevelSize] = ByteAccess.HiByte(ByteAccess.HiWord(value.x));
-                    data[(int)Addresses.LevelSize + 1] = ByteAccess.LoByte(ByteAccess.HiWord(value.x));
-                    data[(int)Addresses.LevelSize + 2] = ByteAccess.HiByte(ByteAccess.HiWord(value.y));
-                    data[(int)Addresses.LevelSize + 3] = ByteAccess.LoByte(ByteAccess.HiWord(value.y));
+                    //data[(int)Addresses.LevelSize] = ByteAccess.HiByte(ByteAccess.HiWord(value.x));
+                    //data[(int)Addresses.LevelSize + 1] = ByteAccess.LoByte(ByteAccess.HiWord(value.x));
+                    //data[(int)Addresses.LevelSize + 2] = ByteAccess.HiByte(ByteAccess.HiWord(value.y));
+                    //data[(int)Addresses.LevelSize + 3] = ByteAccess.LoByte(ByteAccess.HiWord(value.y));
                 }
             }
 

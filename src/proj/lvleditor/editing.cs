@@ -10,23 +10,24 @@ namespace enVisioner
 {
     public partial class editing : Form
     {
-        PropEdit_NULL PropEdit_NULL_Subst = new PropEdit_NULL();
-        Vision.Header PropEdit_Level_Subst;
-        static int PropEdit_Selector = 0,
-            hextext_selstart, hextext_sellen, hextext_fix = 0;
-
-        static byte[] header = { 0xAC, 0x1E, 0, 0, 0, 0x11,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, shifter = new byte[10];
+        static byte[] shifter = new byte[8];
 
         //static List<byte> data = new List<byte>(header);
 
         public Vision vision;
+
+        PropEdit_NULL PropEdit_NULL_Subst = new PropEdit_NULL();
+        PropEdit_Header PropEdit_Level_Subst;
+        int PropEdit_Selector = 1,
+            hextext_selstart, hextext_sellen, hextext_fix = 0;
 
         public editing()
         {
             InitializeComponent();
             vision = new Vision();
             objlister.Nodes[0].Expand();
+            vision.data[4] = 30;
+            PropEdit_Level_Subst = new PropEdit_Header(vision.header);
         }
 
         public editing(byte[] input)
@@ -34,6 +35,7 @@ namespace enVisioner
             InitializeComponent();
             vision = new Vision(input);
             objlister.Nodes[0].Expand();
+            PropEdit_Level_Subst = new PropEdit_Header(vision.header);
         }
 
         private void selectObj(object sender, TreeViewEventArgs e)
@@ -41,7 +43,6 @@ namespace enVisioner
             switch (e.Node.Name)
             {
                 case "vision":
-                    PropEdit_Level_Subst = vision.header;
                     //PropEdit_Level_Subst.LevelType = vision.header.LevelType;
                     //PropEdit_Level_Subst.ThemeID = vision.header.ThemeID;//ByteAccess.HiBit(vision.header.data[5]);
                     //PropEdit_Level_Subst.MusicID = ;//ByteAccess.LoBit(vision.header.data[5]);
@@ -96,10 +97,12 @@ namespace enVisioner
             switch (PropEdit_Selector)
             {
                 case 1:
-                    vision.header.data[4] = PropEdit_Level_Subst.LevelType;
-                    ByteAccess.Is4Bits(PropEdit_Level_Subst.MusicID);
-                    ByteAccess.Is4Bits(PropEdit_Level_Subst.ThemeID);
-                    vision.header.data[5] = (byte)(PropEdit_Level_Subst.MusicID + (PropEdit_Level_Subst.ThemeID * 16));
+                    vision.header = PropEdit_Level_Subst.Exchange();
+                    vision.header.StartPosition = new XYU16(3,4);
+                    //vision.header.StartPosition.x = 100;
+                    //vision.header.LevelType = 100;
+                    //vision.header.LevelSize.y = 100;
+                    PropEdit_Level_Subst = new PropEdit_Header(vision.header);
                     break;
             }
         }
@@ -224,11 +227,142 @@ namespace enVisioner
 
         [Category("Information")]
         //[Description("")]
-        public Point Position { get; set; }
+        public XYU16 Position { get; set; }
     }
 
     public class PropEdit_NULL
     {
+    }
+
+    /// <summary>
+    /// The level file header.
+    /// </summary>
+    public class PropEdit_Header
+    {
+        private Vision.Header __header;
+
+        public Vision.Header Exchange()
+        {
+            return __header;
+        }
+
+        /// <summary>
+        /// List of addresses for each piece of data in this object
+        /// </summary>
+        public enum Addresses
+        {
+            MagicNumber = 0,
+            FileVersion = 2,
+            LevelType = 4,
+            MusicThemeID,
+            LevelSize = 8,
+            LevelSizeX = 8,
+            LevelSizeY = 0xA,
+            StartPoint = 0xC,
+            StartPointX = 0xC,
+            StartPointY = 0xE
+        }
+
+        public ushort FileVersion
+        {
+            get
+            {
+                return __header.FileVersion;
+            }
+            set
+            {
+                __header.FileVersion = value;
+            }
+        }
+
+        /// <summary>
+        /// 0 - Standard, 1 - Autoscroll, 2 - 
+        /// </summary>
+        [Category("Information"), Description("0 - Normal, 1 - Autoscroll, 2 - Board")]
+        public byte LevelType
+        {
+            get
+            {
+                return __header.LevelType;
+            }
+            set
+            {
+                __header.LevelType = value;
+            }
+        }
+
+        /// <summary>
+        /// Choose music track based on world number, 0 means nothing will play
+        /// </summary>
+        [Category("Style"), Description("0 - No music, 1 - Ghazzaland, 2 - Piramill, etc, rest of the unused can be replaced with custom music")]
+        public byte MusicID
+        {
+            get
+            {
+                return __header.MusicID;
+                //(byte)System.Math.Floor((double)(raw[(int)Addresses.MusicThemeID] / 16));
+            }
+            set
+            {
+                __header.MusicID = value;
+            }
+        }
+
+        /// <summary>
+        /// Chooses scenery and graphics of the level based on world number, 0 means solid colors will be displayed
+        /// </summary>
+        [Category("Style"), Description("0 - Solid color objects, 1 - Ghazzaland, 2 - Piramill, etc, rest of the unused can be replaced with custom assets")]
+        public byte ThemeID
+        {
+            get
+            {
+                return __header.ThemeID;
+            }
+            set
+            {
+                __header.ThemeID = value;
+            }
+        }
+
+        /// <summary>
+        /// Player's start position
+        /// </summary>
+        [Category("Information"), Description("Player's starting position")]
+        public Point StartPosition
+        {
+            get
+            {
+                return new Point(__header.StartPosition.x, __header.StartPosition.y);
+            }
+            set
+            {
+                //if (value.X < ushort.MaxValue && value.Y < ushort.MaxValue &&
+                //value.X >= 0 && value.Y >= 0)
+                //__header.StartPosition = new XYU16(value.X, value.Y);
+                //__header.StartPosition.x = 100;
+            }
+        }
+
+        /// <summary>
+        /// Level size (x16)
+        /// </summary>
+        [Category("Information"), Description("Level size (x16)")]
+        public Point LevelSize
+        {
+            get
+            {
+                return new Point(__header.LevelSize.x, __header.LevelSize.y);
+            }
+            set
+            {
+                __header.StartPosition = new XYU16(value.X, value.Y);
+            }
+        }
+
+        public PropEdit_Header(Vision.Header curheader)
+        {
+            __header = curheader;
+        }
     }
 
     /*[DefaultProperty("Type")]

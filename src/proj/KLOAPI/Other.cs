@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KLOAPI
+﻿namespace KLOAPI
 {
     /*public class Other
     {
@@ -14,11 +10,19 @@ namespace KLOAPI
     public class XYU16
     {
         public ushort x, y;
+
         public XYU16()
         {
             x = 0;
             y = 0;
         }
+
+        public XYU16(int x, int y)
+        {
+            this.x = ByteAccess.LoWord((uint)x);
+            this.y = ByteAccess.LoWord((uint)y);
+        }
+
         public XYU16(ushort x, ushort y)
         {
             this.x = x;

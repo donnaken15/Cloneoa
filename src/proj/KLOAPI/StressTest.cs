@@ -28,9 +28,9 @@ namespace KLOAPI
             Console.WriteLine(header.ThemeID);
             Console.WriteLine(header.MusicID);
 
-            Console.WriteLine(header.StartPosition.x + "," + header.StartPosition.y);
-            header.StartPosition = new XYU16(2,2);
-            Console.WriteLine(header.StartPosition.y + "," + header.StartPosition.y);
+            //Console.WriteLine(header.StartPosition.x + "," + header.StartPosition.y);
+            //header.StartPosition = new XYU16(2,2);
+            //Console.WriteLine(header.StartPosition.y + "," + header.StartPosition.y);
 
             PrintData();
         }
