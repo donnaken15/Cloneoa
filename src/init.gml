@@ -3,7 +3,7 @@ globalvar fname,level,lvinfo,filecur,
 themeid,musicid,lvtype,startposraw,
 startpos,gems,stars,starmax,frame,
 levelsize,levelsizeraw,freesize
-realtimesrc,confnt,
+realtimesrc,confnt,pause,
 path_root,path_src,
 path_gfx,path_sfx,
 path_mus,path_bin,
@@ -210,7 +210,7 @@ if fname != ""
 		}
 	}
 	
-	with instance_create(24,240,tile) { solid=1 }
+	with instance_create(24,160,tile) { solid=1 }
 
 	frame = 0
 

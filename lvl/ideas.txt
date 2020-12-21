@@ -82,6 +82,8 @@ or do
 width, height
 4/8 bits per level block or something
 bitmap style
+only allow 15 textures then
+balls
 
 0 - air
 1 - general ground (no texture)
@@ -102,6 +104,7 @@ or
 
 maybe put 2 or 4 bits to have ground or damage or
 whatever properties and 4 or 6 bits are textures or something
+then 63 textures allowed
 when hibits are 0 make it ground
 0b01 = damage
 0b10 = something else

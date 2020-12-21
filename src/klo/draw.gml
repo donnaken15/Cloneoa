@@ -4,14 +4,10 @@
 //if collision_rectangle(x+collision[1],y+collision[0],x+collision[2],y+collision[3],tile,true,true)
 //show_message("")
 
-if x + collision[1] < levelbounds[0] || x + collision[2] > levelbounds[2] x = xprevious //move_contact_solid(0,player_speed)
-
-if y + collision[3] > levelbounds[3] { y = levelbounds[3] gravity = 0 vspeed = 0 ground = 1 char_index = 0 }
-
 draw_line_color(x,y,x+8+(flip*-16),y,c_lime,c_lime)
 draw_line_color(x,y+1,x,y+8,c_blue,c_blue)
 
-draw_line_color(320,0,320,640,c_red,c_red)
+draw_line_color(levelbounds[2],0,levelbounds[2],640,c_red,c_red)
 
 draw_rectangle_color(x+collision[1],y+collision[0],x+collision[2],y+collision[3],c_red,c_red,c_red,c_red,1)
 
@@ -99,22 +95,30 @@ switch (floor(char_index))
 	case 30:
         draw_sprite_part_ext(klospr,0,212,183,21,32,round(x)-11+5+(flip*(31-12+1)),round(y)-31-3,1+(flip*-2),1,c_white,1)
 		break
+	case 40:
+		char_speed = 0.25
+        draw_sprite_part_ext(klospr,0,121,155,21,27,round(x)-15+11+(flip*(31-16+1)),round(y)-25-2,1+(flip*-2),1,c_white,1)
+		break
+	case 41:
+        draw_sprite_part_ext(klospr,0,143,158,21,24,round(x)-15+9+(flip*(31-12+1)),round(y)-24,1+(flip*-2),1,c_white,1)
+		break
+	case 42:
+        draw_sprite_part_ext(klospr,0,165,157,22,25,round(x)-15+6+(flip*(31-6+1)),round(y)-25,1+(flip*-2),1,c_white,1)
+		break
+	case 44:
+		char_index = 0
+	case 43:
+		// resolve position jump difference between this and the original game
+        draw_sprite_part_ext(klospr,0,188,157,21,25,round(x)-15+6+(flip*(31-7+1)),round(y)-25,1+(flip*-2),1,c_white,1)
+		break
 }
 
 if floor(char_index) >= 0 && floor(char_index) < 10
     draw_sprite_part_ext(klospr,0,86,21,16,4,round(x)-5+(flip*18),round(y)-4,1+(flip*-2),1,c_white,1)
 
-draw_set_color(c_black)
-draw_line(0,80,100,80)
-draw_line(0,128,100,128)
-draw_line(0,256,100,256)
-draw_line(0,384,100,384)
-draw_line(0,480,100,480)
-draw_line(0,512,100,512)
-
-draw_sprite_general(hudspr,0,153,0,1,16,view_xview[0],view_yview[0]+view_hview[0]-16,view_wview[0],1,0,c_white,c_white,c_white,c_white,1)
-draw_sprite_part(hudspr,0,0,0,153,16,view_xview[0],view_yview[0]+view_hview[0]-16)
-draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+view_hview[0]-16)
+//draw_sprite_general(hudspr,0,153,0,1,16,view_xview[0],view_yview[0]+view_hview[0]-16,view_wview[0],1,0,c_white,c_white,c_white,c_white,1)
+//draw_sprite_part(hudspr,0,0,0,153,16,view_xview[0],view_yview[0]+view_hview[0]-16)
+//draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+view_hview[0]-16)
 
 //set px437 font
 //draw_set_font(confont)

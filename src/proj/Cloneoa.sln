@@ -17,6 +17,52 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "analyzer++", "analyzer++\an
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "langswap", "langswap\langswap.csproj", "{D32D73DB-9DD6-4533-961B-807AFFF12C16}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentation", "{C7DB3303-50F1-44CC-92DA-53B8D3B971D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pages", "pages", "{9B9BB369-6E96-4868-AA39-B556E9B8956E}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\doc\c.html = ..\..\doc\c.html
+		..\..\doc\d.html = ..\..\doc\d.html
+		..\..\doc\i.html = ..\..\doc\i.html
+		..\..\doc\t.html = ..\..\doc\t.html
+		..\..\doc\v.html = ..\..\doc\v.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "help", "help", "{59747CF0-533C-4643-BDC6-54CDED003429}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\doc\idx.hhk = ..\..\doc\idx.hhk
+		..\..\doc\kdd.hhp = ..\..\doc\kdd.hhp
+		..\..\doc\toc.hhc = ..\..\doc\toc.hhc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "j", "j", "{0E6F152C-A441-4288-9068-D350726AA225}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "help", "help", "{059BB3FE-4837-4F90-9D95-2BF9E105A964}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\doc\j\idx.hhk = ..\..\doc\j\idx.hhk
+		..\..\doc\j\kdd.hhp = ..\..\doc\j\kdd.hhp
+		..\..\doc\j\toc.hhc = ..\..\doc\j\toc.hhc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pages", "pages", "{D61B551B-B79B-4EEA-A0F2-48BD5053631C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\doc\j\c.html = ..\..\doc\j\c.html
+		..\..\doc\j\d.html = ..\..\doc\j\d.html
+		..\..\doc\j\i.html = ..\..\doc\j\i.html
+		..\..\doc\j\t.html = ..\..\doc\j\t.html
+		..\..\doc\j\v.html = ..\..\doc\j\v.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "installer", "installer", "{E73303FB-53E8-4C42-93DA-87CFA873A14D}"
+	ProjectSection(SolutionItems) = preProject
+		installer\Cloneoa.ifp = installer\Cloneoa.ifp
+		installer\Japanese.ifl = installer\Japanese.ifl
+		installer\package.ico = installer\package.ico
+		installer\prepare.bat = installer\prepare.bat
+		installer\versioninfo_vsediting.rc = installer\versioninfo_vsediting.rc
+		installer\wizard_side.bmp = installer\wizard_side.bmp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +123,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9B9BB369-6E96-4868-AA39-B556E9B8956E} = {C7DB3303-50F1-44CC-92DA-53B8D3B971D2}
+		{59747CF0-533C-4643-BDC6-54CDED003429} = {C7DB3303-50F1-44CC-92DA-53B8D3B971D2}
+		{0E6F152C-A441-4288-9068-D350726AA225} = {C7DB3303-50F1-44CC-92DA-53B8D3B971D2}
+		{059BB3FE-4837-4F90-9D95-2BF9E105A964} = {0E6F152C-A441-4288-9068-D350726AA225}
+		{D61B551B-B79B-4EEA-A0F2-48BD5053631C} = {0E6F152C-A441-4288-9068-D350726AA225}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67D976C2-34AE-4EDA-B2AD-836889FD9105}

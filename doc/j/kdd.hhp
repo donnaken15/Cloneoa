@@ -1,0 +1,23 @@
+﻿
+
+[OPTIONS]
+Compatibility=1.0
+Compiled file=..\..\bin\infoj.chm
+Contents file=toc.hhc
+Default Font=MS Gothic,14,0
+Default topic=i.html
+Display compile progress=Yes
+Index file=idx.hhk
+Language=0x409 English (United States)
+Title=Cloneoa助けて
+
+
+[INFOTYPES]
+TypeDesc: 
+Category:グラフィカルインターフェイスヘルプ
+CategoryDesc: 
+Category:直接レベル編集ヘルプ
+CategoryDesc: 
+Category:プロジェクトを取り巻く詳細
+CategoryDesc: 
+

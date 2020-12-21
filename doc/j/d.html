@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Visual Analysis of Level Files</title>
+		<style>
+			table {
+				border-collapse: collapse;
+			}
+			table, tbody, tr, td, th {
+				padding: 4px;
+			}
+			h1, h2, h3, h4, h5 {
+				margin: 3px;
+				padding: 3px;
+			}
+			* {
+				font-family: arial, tahoma, verdana, sans-serif, times new roman, times, serif, courier new, courier, monospace;
+				padding:0;
+				font-size:12px;
+			}
+			.center {
+				text-align: center;
+			}
+			.ni {
+				display:none;
+			}
+			th {
+				font-weight:100;
+			}
+			#hexDownwards td:nth-child(2) {
+				border: solid black 1px;
+				font-weight:600;
+				box-shadow: 4px 4px 0 1px #555;
+			}
+			td:nth-child(4) {
+				text-align:left
+			}
+			#bg1 {
+				background-image:url(data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAAAXNSR0IArs4c6QAAAAZQTFRFuqn+y6n+vYK0tQAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAAxJREFUCNdjcGBgAAAAxABBbIeyqwAAAABJRU5ErkJggg==);
+			}
+			#bg2 {
+				background-image:url(data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAgMAAADUn3btAAAAAXNSR0IArs4c6QAAAAlQTFRFuv7Ly/7Ly/7czxUs6wAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABBJREFUCNdj6GBIZOhgCAMAB5MByLCW4pIAAAAASUVORK5CYII=);
+			}
+			#bg3 {
+				background-image:url(data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAgMAAADUn3btAAAAAXNSR0IArs4c6QAAAAxQTFRF/sup/su6/typ/ty6WPDh0QAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABBJREFUCNdjKGEQZEhnEAQABM8A/vJOkyYAAAAASUVORK5CYII=);
+			}
+			#bg4 {
+				background-image:url(data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACAgMAAAACxpXwAAAAAXNSR0IArs4c6QAAAAlQTFRFi4uLmJiYnp6ehGztTwAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAAxJREFUCNdj4GBwAAAAXABJPBcNIQAAAABJRU5ErkJggg==)
+			}
+			.side {
+				transform:rotate(-90deg);
+				width:inital;
+			}
+			#bitstuff td:nth-child(1) {
+			text-align:center;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Visual Analysis of Level Files</h1>
+		<table id="hexDownwards" class="center">
+			<tr>
+				<!--th>endian</th-->
+				<th style="width:30px;">file offset</th>
+				<th style="width:140px;">field name</th>
+				<th style="width:30px;">field size</th>
+				<th>description</th>
+			</tr>
+			<tr>
+				<td>0</td>
+				<td id="bg1">HeaderID</td>
+				<td>2</td>
+				<td>value should always be "AC 1E"</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td id="bg1">LevelVersion</td>
+				<td>1</td>
+				<td>must match game's level version or it will not play</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td id="bg1">LevelType</td>
+				<td>1</td>
+				<td>0 = normal, 1 = autoscroll, 2 = hoverboard</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td id="bg1">MusicThemeID</td>
+				<td>1</td>
+				<td>HIBIT: music, LOBIT: tile graphics</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td id="bg4">Unused</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td id="bg1">StartPosition</td>
+				<td>4</td>
+				<td>two 2-bit integers to indicate where the player starts</td>
+			</tr>
+			<tr>
+				<td>12</td>
+				<td id="bg1">LevelSize</td>
+				<td>4</td>
+				<td>two 2-bit integers to indicate size of the level</td>
+			</tr>
+			<tr>
+				<td>16</td>
+				<td id="bg2" height="60">LevelTiles</td>
+				<td class="side">LvSz</td>
+				<td>basically like a bitmap, each byte is one tile;<br/>has 16 byte alignment</td>
+			</tr>
+			<tr>
+				<td>any</td>
+				<td id="bg3" height="60">Objects</td>
+				<td class="side">any</td>
+				<td>the below table represents what this data is made of</td>
+			</tr>
+		</table><br/>
+		<h1>Tiles</h1>
+            <br/>A tile can have one of 63 textures. (6 bits wide)<br/>
+			<br/>The two highest bits are used to define the type of tile.<br/><br/>
+		<table id="bitstuff">
+			<tr>
+				<th>flags</th>
+				<th>tile type</th>
+			</tr>
+			<tr>
+				<td>00</td>
+				<td>solid block</td>
+			</tr>
+			<tr>
+				<td>01</td>
+				<td>non-clipping</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>hurt player</td>
+			</tr>
+			<tr>
+				<td>11</td>
+				<td>??</td>
+			</tr>
+		</table><br/>
+		<h1>Deconstruction of Objects</h1>
+            <br/>Objects are usually 8 bytes long and this sector of the level file aligns to such<br/><br/>
+		<table id="hexDownwards" class="center">
+			<tr>
+				<th style="width:30px;">byte offset</th>
+				<th style="width:140px;">field name</th>
+				<th style="width:30px;">field size</th>
+				<th>description</th>
+			</tr>
+			<tr>
+				<td>0</td>
+				<td id="bg3">ObjectType</td>
+				<td>1</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td id="bg3">SubObjectType</td>
+				<td>1</td>
+				<td>type of object type</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td id="bg3">Properties</td>
+				<td>2</td>
+				<td>various data belongs<br/>here specific to the<br/>object type</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td id="bg3">Position</td>
+				<td>4</td>
+				<td>two 2-bit integers to indicate where the object is created</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td id="bg4">ExtraData</td>
+				<td class="side">any</td>
+				<td>optional; may be used for signs</td>
+			</tr>
+		</table><br/><br/>
+		<table id="bitstuff">
+			<tr>
+				<th>value</th>
+				<th>object type</th>
+			</tr>
+			<tr>
+				<td><h2>items</h2></td>
+			</tr>
+			<tr>
+				<td>00 00</td>
+				<td>gem</td>
+			</tr>
+			<tr>
+				<td>00 01</td>
+				<td>diamonds (5 gems)</td>
+			</tr>
+			<tr>
+				<td>00 02</td>
+				<td>heart</td>
+			</tr>
+			<tr>
+				<td>00 03</td>
+				<td>star</td>
+			</tr>
+			<tr>
+				<td>00 04</td>
+				<td>life</td>
+			</tr>
+			<tr>
+				<td><h2>entities</h2></td>
+			</tr>
+			<tr>
+				<td>01 00</td>
+				<td>moo</td>
+			</tr>
+			<tr>
+				<td>01 01</td>
+				<td>flying moo</td>
+			</tr>
+			<tr>
+				<td>01 02</td>
+				<td>spike moo</td>
+			</tr>
+			<tr>
+				<td>01 03</td>
+				<td>bomb moo</td>
+			</tr>
+			<tr>
+				<td>01 04</td>
+				<td>spike throwing moo</td>
+			</tr>
+			<tr>
+				<td>01 05</td>
+				<td>copter moo</td>
+			</tr>
+			<tr>
+				<td>01 06</td>
+				<td>floating ball</td>
+			</tr>
+			<tr>
+				<td><h2>door</h2></td>
+			</tr>
+			<tr>
+				<td>02 00</td>
+				<td>finish door</td>
+			</tr>
+			<tr>
+				<td>02 01</td>
+				<td>locked door</td>
+			</tr>
+			<tr>
+				<td>02 02</td>
+				<td>linked warp</td>
+			</tr>
+			<tr>
+				<td>02 03</td>
+				<td>switch door</td>
+			</tr>
+			<tr>
+				<td>02 04</td>
+				<td>pinball door<sub>lol</sub></td>
+			</tr>
+		</table><br/><br/>
+	</body>
+</html>
