@@ -121,14 +121,16 @@ if floor(char_index) >= 0 && floor(char_index) < 10
 //draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+view_hview[0]-16)
 
 //set px437 font
-//draw_set_font(confont)
+/*
+draw_set_font(confont)
+draw_set_color(c_black)
 //draw_set_color(c_red)
-draw_set_font(confnt)
-draw_set_color(c_white)
+//draw_set_font(confnt)
+//draw_set_color(c_white)
 //draw_set_valign(fa_bottom)
 draw_set_valign(fa_top)
 //draw_text(view_xview[0],view_yview[0],
-draw_text(view_xview[0],view_yview[0]/* +view_hview[0] */,
+draw_text(view_xview[0],view_yview[0],
 "pos: "+string_format(x,6,1)+" * "+string_format(y,6,1)+"
 grav:  "+string_format(gravity,4,1)+
 " vsp: "+string_format(vspeed,3,1)+"
@@ -137,4 +139,5 @@ res:"+string(view_wview[0])+"*"+string(view_hview[0])/* +"
 lvsz:"+string(levelsize[0])+"*"+string(levelsize[1])+"
 bounds:"+string(levelbounds[2])+"*"+string(levelbounds[3])+"
 view:"+string(view_xview[0]+view_wview[0]) */
-)
+//)
+

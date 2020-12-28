@@ -17,7 +17,8 @@ path_sfx = path_root+"sfx/"
 path_mus = path_root+"mus/"
 path_bin = path_root+"bin/"
 if parameter_count() = 0 {
-	mus_file = sound_add(path_mus+"file.wav",1,1)
+	//mus_file = sound_add(path_mus+"file.wav",1,1)
+	mus_file = sound_add(path_mus+"file.wma",3,1)
 	snd_wahoo = sound_add(path_sfx+"wahoo.wav",0,1)
 	sound_play(mus_file)
 	fname = get_open_filename("Klonoa Level File|*.klo|All Files|*.*","")
@@ -210,7 +211,7 @@ if fname != ""
 		}
 	}
 	
-	with instance_create(24,160,tile) { solid=1 }
+	with instance_create(24,240,tile) { solid=1 }
 
 	frame = 0
 
