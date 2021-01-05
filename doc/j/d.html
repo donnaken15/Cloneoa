@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<title>Visual Analysis of Level Files</title>
+		<title>レベルファイルの視覚的分析</title>
 		<style>
 			table {
 				border-collapse: collapse;
@@ -15,7 +15,7 @@
 				padding: 3px;
 			}
 			* {
-				font-family: arial, tahoma, verdana, sans-serif, times new roman, times, serif, courier new, courier, monospace;
+				font-family: ms gothic, ms pgothic, arial, tahoma, verdana, sans-serif, times new roman, times, serif, courier new, courier, monospace;
 				padding:0;
 				font-size:12px;
 			}
@@ -58,215 +58,215 @@
 		</style>
 	</head>
 	<body>
-		<h1>Visual Analysis of Level Files</h1>
+		<h1>レベルファイルの視覚的分析</h1>
 		<table id="hexDownwards" class="center">
 			<tr>
 				<!--th>endian</th-->
-				<th style="width:30px;">file offset</th>
-				<th style="width:140px;">field name</th>
-				<th style="width:30px;">field size</th>
-				<th>description</th>
+				<th style="width:30px;">宛名</th>
+				<th style="width:140px;">データ名</th>
+				<th style="width:40px;">サイズ</th>
+				<th>説明</th>
 			</tr>
 			<tr>
 				<td>0</td>
-				<td id="bg1">HeaderID</td>
+				<td id="bg1">ヘッダーID</td>
 				<td>2</td>
-				<td>value should always be "AC 1E"</td>
+				<td>値は常に「AC1E」である必要があります</td>
 			</tr>
 			<tr>
 				<td>2</td>
-				<td id="bg1">LevelVersion</td>
+				<td id="bg1">レベルバージョン</td>
 				<td>1</td>
-				<td>must match game's level version or it will not play</td>
+				<td>これはゲームのレベルバージョンと一致する必要があります。一致しない場合は、ゲームはプレイされません</td>
 			</tr>
 			<tr>
 				<td>3</td>
-				<td id="bg1">LevelType</td>
+				<td id="bg1">レベルタイプ</td>
 				<td>1</td>
-				<td>0 = normal, 1 = autoscroll, 2 = hoverboard</td>
+				<td>0=通常、1=自動スクロール、2=ホーバーボード</td>
 			</tr>
 			<tr>
 				<td>4</td>
-				<td id="bg1">MusicThemeID</td>
+				<td id="bg1">音楽とテーマID</td>
 				<td>1</td>
-				<td>HIBIT: music, LOBIT: tile graphics</td>
+				<td>上位ビット：音楽、下位ビット：タイルグラフィックス</td>
 			</tr>
 			<tr>
 				<td>5</td>
-				<td id="bg4">Unused</td>
+				<td id="bg4">未使用の</td>
 				<td>3</td>
 			</tr>
 			<tr>
 				<td>8</td>
-				<td id="bg1">StartPosition</td>
+				<td id="bg1">開始位置</td>
 				<td>4</td>
-				<td>two 2-bit integers to indicate where the player starts</td>
+				<td>プレーヤーの開始位置を示す2ビット整数</td>
 			</tr>
 			<tr>
 				<td>12</td>
-				<td id="bg1">LevelSize</td>
+				<td id="bg1">レベルサイズ</td>
 				<td>4</td>
-				<td>two 2-bit integers to indicate size of the level</td>
+				<td>レベルのサイズを示す2ビット整数</td>
 			</tr>
 			<tr>
 				<td>16</td>
-				<td id="bg2" height="60">LevelTiles</td>
-				<td class="side">LvSz</td>
-				<td>basically like a bitmap, each byte is one tile;<br/>has 16 byte alignment</td>
+				<td id="bg2" height="60">レベルタイル</td>
+				<td class="side">サイズ</td>
+				<td>基本的にビットマップのように、各バイトは1つのタイルです。<br/>16バイトの整列</td>
 			</tr>
 			<tr>
-				<td>any</td>
-				<td id="bg3" height="60">Objects</td>
-				<td class="side">any</td>
-				<td>the below table represents what this data is made of</td>
+				<td>動的</td>
+				<td id="bg3" height="60">オブジェクト</td>
+				<td class="side">動的</td>
+				<td>以下の表は、このデータの構成要素を表しています。</td>
 			</tr>
 		</table><br/>
-		<h1>Tiles</h1>
-            <br/>A tile can have one of 63 textures. (6 bits wide)<br/>
-			<br/>The two highest bits are used to define the type of tile.<br/><br/>
+		<h1>タイル</h1>
+            <br/>タイルは63のテクスチャの1つを持つことができます。 （6ビット幅）<br/>
+			<br/>上位2ビットは、タイルのタイプを定義するために使用されます。<br/><br/>
 		<table id="bitstuff">
 			<tr>
-				<th>flags</th>
-				<th>tile type</th>
+				<th>国旗</th>
+				<th>タイルタイプ</th>
 			</tr>
 			<tr>
 				<td>00</td>
-				<td>solid block</td>
+				<td>固体ブロック</td>
 			</tr>
 			<tr>
 				<td>01</td>
-				<td>non-clipping</td>
+				<td>ノンクリッピング</td>
 			</tr>
 			<tr>
 				<td>10</td>
-				<td>hurt player</td>
+				<td>プレーヤーを傷つける</td>
 			</tr>
 			<tr>
 				<td>11</td>
 				<td>??</td>
 			</tr>
 		</table><br/>
-		<h1>Deconstruction of Objects</h1>
-            <br/>Objects are usually 8 bytes long and this sector of the level file aligns to such<br/><br/>
+		<h1>オブジェクトの脱構築</h1>
+            <br/>オブジェクトは通常8バイトの長さであり、レベルファイルのこのセクターはそのようなものに整列します<br/><br/>
 		<table id="hexDownwards" class="center">
 			<tr>
-				<th style="width:30px;">byte offset</th>
-				<th style="width:140px;">field name</th>
-				<th style="width:30px;">field size</th>
-				<th>description</th>
+				<th style="width:30px;">宛名</th>
+				<th style="width:140px;">データ名</th>
+				<th style="width:40px;">サイズ</th>
+				<th>説明</th>
 			</tr>
 			<tr>
 				<td>0</td>
-				<td id="bg3">ObjectType</td>
+				<td id="bg3">オブジェクトタイプ</td>
 				<td>1</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1</td>
-				<td id="bg3">SubObjectType</td>
+				<td id="bg3">サブオブジェクトタイプ</td>
 				<td>1</td>
-				<td>type of object type</td>
+				<td>オブジェクトタイプタイプ</td>
 			</tr>
 			<tr>
 				<td>2</td>
-				<td id="bg3">Properties</td>
+				<td id="bg3">プロパティ</td>
 				<td>2</td>
-				<td>various data belongs<br/>here specific to the<br/>object type</td>
+				<td>ここでは、オブジェクトタイプに固有のさまざまなデータが属します</td>
 			</tr>
 			<tr>
 				<td>4</td>
-				<td id="bg3">Position</td>
+				<td id="bg3">ポジション</td>
 				<td>4</td>
-				<td>two 2-bit integers to indicate where the object is created</td>
+				<td>オブジェクトが作成される場所を示す2つの2ビット整数</td>
 			</tr>
 			<tr>
 				<td>8</td>
-				<td id="bg4">ExtraData</td>
-				<td class="side">any</td>
-				<td>optional; may be used for signs</td>
+				<td id="bg4">追加データ</td>
+				<td class="side">動的</td>
+				<td>オプション。 標識に使用できます</td>
 			</tr>
 		</table><br/><br/>
 		<table id="bitstuff">
 			<tr>
-				<th>value</th>
-				<th>object type</th>
+				<th>値</th>
+				<th>オブジェクトタイプ</th>
 			</tr>
 			<tr>
-				<td><h2>items</h2></td>
+				<td><h2>アイテム</h2></td>
 			</tr>
 			<tr>
 				<td>00 00</td>
-				<td>gem</td>
+				<td>宝石</td>
 			</tr>
 			<tr>
 				<td>00 01</td>
-				<td>diamonds (5 gems)</td>
+				<td>ダイヤモンド（5宝石）</td>
 			</tr>
 			<tr>
 				<td>00 02</td>
-				<td>heart</td>
+				<td>ハート</td>
 			</tr>
 			<tr>
 				<td>00 03</td>
-				<td>star</td>
+				<td>星</td>
 			</tr>
 			<tr>
 				<td>00 04</td>
-				<td>life</td>
+				<td>生活</td>
 			</tr>
 			<tr>
-				<td><h2>entities</h2></td>
+				<td><h2>エンティティ</h2></td>
 			</tr>
 			<tr>
 				<td>01 00</td>
-				<td>moo</td>
+				<td>ムー</td>
 			</tr>
 			<tr>
 				<td>01 01</td>
-				<td>flying moo</td>
+				<td>フライングムー</td>
 			</tr>
 			<tr>
 				<td>01 02</td>
-				<td>spike moo</td>
+				<td>スパイクムー</td>
 			</tr>
 			<tr>
 				<td>01 03</td>
-				<td>bomb moo</td>
+				<td>爆弾ムー</td>
 			</tr>
 			<tr>
 				<td>01 04</td>
-				<td>spike throwing moo</td>
+				<td>スパイク投げムー</td>
 			</tr>
 			<tr>
 				<td>01 05</td>
-				<td>copter moo</td>
+				<td>ヘリコプタームー</td>
 			</tr>
 			<tr>
 				<td>01 06</td>
-				<td>floating ball</td>
+				<td>フローティングボール</td>
 			</tr>
 			<tr>
-				<td><h2>door</h2></td>
+				<td><h2>ドア</h2></td>
 			</tr>
 			<tr>
 				<td>02 00</td>
-				<td>finish door</td>
+				<td>仕上げドア</td>
 			</tr>
 			<tr>
 				<td>02 01</td>
-				<td>locked door</td>
+				<td>ロックされたドア</td>
 			</tr>
 			<tr>
 				<td>02 02</td>
-				<td>linked warp</td>
+				<td>リンクされたワープ</td>
 			</tr>
 			<tr>
 				<td>02 03</td>
-				<td>switch door</td>
+				<td>スイッチドア</td>
 			</tr>
 			<tr>
 				<td>02 04</td>
-				<td>pinball door<sub>lol</sub></td>
+				<td>ピンボールドア<sub>笑</sub></td>
 			</tr>
 		</table><br/><br/>
 	</body>

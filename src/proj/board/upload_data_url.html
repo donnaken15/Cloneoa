@@ -1,0 +1,42 @@
+<!-- custom page @ /page/ftou -->
+<form>
+	<input type="file" name="data" id="data"/>
+	<input type="button" accept="klo/lvl,.klo" id="upload" value="Upload"/>
+</form>
+<a id="myfile" href="...">...</a> |
+<a id="myfileb" href="...">...</a><br/><br/>
+phpBB Code: <a id="copyc" href="#">(copy)</a>
+<pre>
+</pre><pre id="myfilec">[a href="..."]&lt;FILE&gt; (0 bytes)[/a]</pre>
+<font color="#c60" style="display:none" id="fsw">Warning : file size is a bit much</font>
+<script>
+var lvr = new FileReader();
+document.getElementById("upload").onclick = function() {
+	lvr.readAsBinaryString(document.getElementById("data").files[0]);
+	lvr.onload = function() {
+		document.getElementById("myfile").href="data:klo/lvl,base64,"+btoa(lvr.result)
+		document.getElementById("myfile").innerText="Direct link"
+		document.getElementById("myfile").download=document.getElementById("data").files[0].name
+		document.getElementById("myfileb").href="https://klo.boards.net/page/lvdl?data="+btoa(lvr.result)+
+													"&name="+document.getElementById("data").files[0].name
+		document.getElementById("myfileb").innerText="Board link"
+		document.getElementById("myfilec").innerText="[a href=\""+document.getElementById("myfileb").href+
+					"\"]<FILE> ("+document.getElementById("data").files[0].size+" bytes)[/a]"
+		//document.getElementById("copyc").onclick = function() {
+		//	document.getElementById("myfilec").select()
+		//	document.execCommand("copy")
+		//}
+		document.getElementById("copyc").onclick = function() {
+			navigator.permissions.query({name: "clipboard-write"}).then(result => {
+				if (result.state == "granted" || result.state == "prompt") {
+						navigator.clipboard.writeText(document.getElementById("myfilec").innerText)
+					}
+				});
+		}
+		if (document.getElementById("data").files[0].size > 256)
+			document.getElementById("fsw").style = ""
+		else
+			document.getElementById("fsw").style = "display:none"
+	}
+};
+</script>

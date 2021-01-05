@@ -46,8 +46,8 @@ if (view_xview[0] + view_wview[0] > levelbounds[2])
 	view_xview[0] = levelbounds[2] - view_wview[0]
 if (view_xview[0] < levelbounds[0])
 	view_xview[0] = levelbounds[0]
-//if (view_yview[0] + view_hview[0] > levelbounds[3])
-	//view_yview[0] = levelbounds[3] - view_hview[0]
+if (view_yview[0] + view_hview[0] > levelbounds[3])
+	view_yview[0] = levelbounds[3] - view_hview[0]
 if (view_yview[0] < levelbounds[1])
 	view_yview[0] = levelbounds[1]
 

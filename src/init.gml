@@ -2,12 +2,17 @@
 globalvar fname,level,lvinfo,filecur,
 themeid,musicid,lvtype,startposraw,
 startpos,gems,stars,starmax,frame,
-levelsize,levelsizeraw,freesize
-realtimesrc,confnt,pause,
+levelsize,levelsizeraw,freesize,
+realtimesrc,confnt,pause,_tempvar0,
 path_root,path_src,
 path_gfx,path_sfx,
 path_mus,path_bin,
-levelbounds
+levelbounds,
+hud_enable_base,
+hud_enable_hearts,
+hud_enable_gems,
+hud_enable_stars,
+pause,pausescr
 ;
 fname = ""
 path_root = program_directory+"/../"
@@ -21,7 +26,7 @@ if parameter_count() = 0 {
 	mus_file = sound_add(path_mus+"file.wma",3,1)
 	snd_wahoo = sound_add(path_sfx+"wahoo.wav",0,1)
 	sound_play(mus_file)
-	fname = get_open_filename("Klonoa Level File|*.klo|All Files|*.*","")
+	fname = get_open_filename("Klonoa Level File|*.klo|All Files|*.*","..\lvl")
 	if fname != "" {
 		sound_play(snd_wahoo)
 		sleep(760)
@@ -29,6 +34,8 @@ if parameter_count() = 0 {
 	}
 } else
     fname = parameter_string(1)
+
+depth = 100
 
 if fname != ""
 {
@@ -155,6 +162,17 @@ if fname != ""
 				levelbounds[1] = 0					//left
 				levelbounds[2] = levelsize[0]*16	//right
 				levelbounds[3] = levelsize[1]*16	//bottom
+				for (j=0;j<levelsize[1];j+=1)
+					for (i=0;i<levelsize[0];i+=2)
+					{
+						filecur += 1
+						file_bin_seek(lvinfo,filecur)
+						_tempvar0 = file_bin_read_byte(lvinfo)
+						if HIBIT(_tempvar0)
+							with instance_create(i*16,j*16,tile) { solid=1 }
+						if LOBIT(_tempvar0)
+							with instance_create((i*16)+16,(j*16),tile) { solid=1 }
+					}
 				
 				//room_set_width(room_first,levelsize[0]*16)
 				//room_set_height(room_first,levelsize[1]*16)
@@ -211,7 +229,7 @@ if fname != ""
 		}
 	}
 	
-	with instance_create(24,240,tile) { solid=1 }
+	//with instance_create(24,240,tile) { solid=1 }
 
 	frame = 0
 

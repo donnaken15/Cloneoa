@@ -1,0 +1,18 @@
+<!-- custom page @ /page/lvdl -->
+<head>
+	<script>
+		var data = "data:klo/lvl;base64," + new URL(document.URL).searchParams.get("data")
+	</script>
+</head>
+
+Downloading...
+<br><br>
+If it doesn't start, click <a id="link2">this</a>
+<script>
+	document.getElementById("link2").href = data
+	if (new URL(document.URL).searchParams.get("name") !== "null") {
+		document.getElementById("link2").download = new URL(document.URL).searchParams.get("name")
+		document.title = "$[title]: "+new URL(document.URL).searchParams.get("name")+" | $[forum.name]"
+	}
+	document.getElementById("link2").click()
+</script>

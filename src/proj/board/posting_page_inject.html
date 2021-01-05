@@ -1,0 +1,19 @@
+<a onclick="document.getElementById('minifile_in').style=''" class="button" role="button">Add Minifile</a>
+<input onchange="var file = document.getElementById('minifile_in').files[0]; if (file.size < 1024) { var reader = new FileReader(); reader.onloadend = function () { var dat = reader.result.replace(/^data:.+;base64,/, 'https://klo.boards.net/page/lvdl?name='+file.name+'&data='); alert('Here is your link: '+dat); }; reader.readAsDataURL(file); document.getElementById('minifile_in').style='display:none' } else alert('This file is too big.'); document.getElementById('minifile_in').value=null" style="display:none" id="minifile_in" type="file">
+
+<!-- onchange in pretty print
+	var file = document.getElementById('minifile_in').files[0];
+	if (file.size < 1024) {
+		var reader = new FileReader();
+		reader.onloadend = function () {
+			var dat = reader.result.replace(/^data:.+;base64,/,
+				'https://klo.boards.net/page/lvdl?name='+file.name+'&data=');
+			alert('Here is your link: '+dat);
+		};
+		reader.readAsDataURL(file);
+		document.getElementById('minifile_in').style='display:none'
+	} else alert('This file is too big.');
+	document.getElementById('minifile_in').value=null"
+	
+	forgot i made this but also remembered using this type of thing :p
+-->

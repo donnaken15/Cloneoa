@@ -4,6 +4,7 @@
 //if collision_rectangle(x+collision[1],y+collision[0],x+collision[2],y+collision[3],tile,true,true)
 //show_message("")
 
+draw_set_alpha(1)
 draw_line_color(x,y,x+8+(flip*-16),y,c_lime,c_lime)
 draw_line_color(x,y+1,x,y+8,c_blue,c_blue)
 
