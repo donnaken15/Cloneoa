@@ -14,6 +14,7 @@ hud_enable_gems,
 hud_enable_stars,
 pause,pausescr
 ;
+globalvar snd_wahoo;
 fname = ""
 path_root = program_directory+"/../"
 path_src = path_root+"src/"
@@ -69,6 +70,7 @@ if fname != ""
 		object_event_add(controller,ev_draw,0,get_code(path_src+"ctrl/draw.gml",0))
 		object_event_add(player,ev_step,0,get_code(path_src+"klo/step.gml",0))
 		object_event_add(player,ev_draw,0,get_code(path_src+"klo/draw.gml",0))
+		object_event_add(tile,ev_create,0,get_code(path_src+"tile/create.gml",0))
 		object_event_add(tile,ev_step,0,get_code(path_src+"tile/step.gml",0))
 		object_event_add(tile,ev_draw,0,get_code(path_src+"tile/draw.gml",0))
 	}
@@ -160,19 +162,34 @@ if fname != ""
 				}
 				levelbounds[0] = 0					//top
 				levelbounds[1] = 0					//left
-				levelbounds[2] = levelsize[0]*16	//right
-				levelbounds[3] = levelsize[1]*16	//bottom
+				levelbounds[2] = levelsize[0]*4	//right
+				levelbounds[3] = levelsize[1]*8	//bottom
 				for (j=0;j<levelsize[1];j+=1)
+				{
 					for (i=0;i<levelsize[0];i+=2)
 					{
 						filecur += 1
-						file_bin_seek(lvinfo,filecur)
-						_tempvar0 = file_bin_read_byte(lvinfo)
-						if HIBIT(_tempvar0)
-							with instance_create(i*16,j*16,tile) { solid=1 }
-						if LOBIT(_tempvar0)
-							with instance_create((i*16)+16,(j*16),tile) { solid=1 }
+						filesz = file_bin_size(lvinfo)
+						//if (file_bin_position(lvinfo) < file_bin_size(lvinfo)) {
+						if (filecur < filesz) {
+							file_bin_seek(lvinfo,filecur)
+							_tempvar0 = file_bin_read_byte(lvinfo)
+							//if HIBIT(_tempvar0)
+							if (_tempvar0)
+								instance_create(i*4,j*8,tile)
+							//if LOBIT(_tempvar0)
+								//instance_create((i*8)+8,(j*8),tile)
+						} else {
+							abortload=1
+							show_error(
+								"File loading ended prematurely."+chr($D)+"Current level size: "+
+									string(levelsize[0])+"x"+string(levelsize[1])+chr($D)+"EOF position:       "+
+									string(i+1)+"x"+string(j+1),false)
+							break;
+						}
 					}
+					if abortload { break; abortload = 0 }
+				}
 				
 				//room_set_width(room_first,levelsize[0]*16)
 				//room_set_height(room_first,levelsize[1]*16)
@@ -195,6 +212,14 @@ if fname != ""
 				}*/
 				//show_message(string(startpos[0]))
 			}
+			else {
+				show_error("Invalid file signature.",false)
+				game_end()
+			}
+		}
+		else {
+			show_error("Invalid file signature.",false)
+			game_end()
 		}
 		
 		file_bin_close(lvinfo)
@@ -207,6 +232,15 @@ if fname != ""
 		sprite_replace(hudspr,path_gfx+"common/hud.png",0,1,0,0,0)
 		confnt = font_add_sprite(sprite_add(path_gfx+"misc/debug.png",94,0,0,0,0),ord('!'),0,0)
 	}
+	
+	/// SOUND STUFF
+	{
+		globalvar snd_jump, snd_land, snd_pause, snd_scroll;
+		snd_jump = sound_add(path_sfx+"jump.wav",0,1)
+		snd_land = sound_add(path_sfx+"land.wav",0,1)
+		snd_pause = sound_add(path_sfx+"pause.wav",0,1)
+		snd_scroll = sound_add(path_sfx+"scroll.wav",0,1)
+	}
 
 	/// PLAYER STUFF
 	{
@@ -216,11 +250,10 @@ if fname != ""
 		{
 			//var char_index, char_speed, player_speed;
 			//player_speed = 3
-			x = startpos[0] * 16
-			y = startpos[1] * 16
+			x = startpos[0] * 8
+			y = startpos[1] * 8
 			image_xoffset = 0
 			image_yoffset = 0
-			collision=0
 			collision[0] = -20
 			collision[1] = -7
 			collision[2] = 14

@@ -7,7 +7,7 @@ if pause {
 	draw_sprite(pausescr,0,view_xview[0],view_yview[0])
 	draw_set_alpha(.5)
 	draw_rectangle_color(view_xview[0],view_yview[0],
-						view_wview[0],view_hview[0],
+						view_xview[0]+view_wview[0],view_yview[0]+view_hview[0],
 			c_black,c_black,c_black,c_black,false)
 	draw_sprite_part(hudspr,0,40,43,60,22,
 		view_xview[0]+(view_wview[0]/4)+30,view_yview[0]+(view_hview[0]/10))

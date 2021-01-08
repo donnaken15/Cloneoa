@@ -19,9 +19,6 @@ Play.bat
 
 sfx/Sample*
 
-mus/*.ogg
-mus/*.wma
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

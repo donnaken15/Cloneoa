@@ -1,8 +1,10 @@
+
 header
 0x00 - magic number (0x2)
 ????
 0xXX - start pos (0x4)
 0xXX - level type (0x1)
+0x?? - setting to use 4bpp tiles
 X - standard
 1 - autoscroll
 2 - board

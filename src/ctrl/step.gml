@@ -21,6 +21,9 @@ if(view_wview[0] != winw ||
 	room_restart()
 }
 
+if keyboard_check_pressed(vk_tab) room_speed = 1000000
+else if keyboard_check_released(vk_tab) room_speed = 60
+
 if keyboard_check_pressed(vk_enter)
 	if pause
 	{
@@ -31,6 +34,7 @@ if keyboard_check_pressed(vk_enter)
 	}
 	else
 	{
+		pause_scroll = 0
 		// MAKE THIS BETTER SRSLY
 		//pausescr = sprite_create_from_screen(0,0,view_wview[0],view_hview[0],false,false,0,0)
 		//room_set_background_color(room,c_gray,false)
@@ -39,4 +43,16 @@ if keyboard_check_pressed(vk_enter)
 		file_delete(temp_directory+"/__TMPSURFACE__.PNG")
 		instance_deactivate_all(true)
 		pause = true
+		sound_play(snd_pause)
 	}
+
+if pause
+{
+	if keyboard_check_pressed(vk_up) || keyboard_check_pressed(vk_down)
+	{
+		
+	}
+}
+
+x = player.x
+y = player.y-10
