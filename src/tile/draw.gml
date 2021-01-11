@@ -1,5 +1,0 @@
-draw_set_alpha(1)
-draw_set_color(c_gray)
-draw_rectangle(x,y,x+7,y+7,false)
-//draw_set_color(c_red)
-//draw_rectangle(x,y,x+7,y+7,true)

@@ -2,6 +2,8 @@ src/proj/installer/InstallPath
 
 * - Copy*
 
+rel
+
 err.txt
 in.txt
 out.txt

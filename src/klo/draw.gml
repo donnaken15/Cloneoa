@@ -1,16 +1,11 @@
 
-//if !place_free(x,y+1) { vspeed = 0 move_contact_solid(0,player_speed) }
-
-//if collision_rectangle(x+collision[1],y+collision[0],x+collision[2],y+collision[3],tile,true,true)
-//show_message("")
-
 draw_set_alpha(1)
-draw_line_color(x,y,x+8+(flip*-16),y,c_lime,c_lime)
-draw_line_color(x,y+1,x,y+8,c_blue,c_blue)
+//draw_line_color(x,y,x+8+(flip*-16),y,c_lime,c_lime)
+//draw_line_color(x,y+1,x,y+8,c_blue,c_blue)
 
 //draw_line_color(levelbounds[2],0,levelbounds[2],640,c_red,c_red)
 
-draw_rectangle_color(x+collision[1],y+collision[0],x+collision[2],y+collision[3],c_red,c_red,c_red,c_red,1)
+//draw_rectangle_color(x+collision[1],y+collision[0],x+collision[2],y+collision[3],c_red,c_red,c_red,c_red,1)
 
 // figure out more optimized system for this
 switch (floor(char_index))
@@ -18,6 +13,7 @@ switch (floor(char_index))
     case -1:
         char_speed=1
         break
+	// IDLE
     case 0:
         char_speed=0.06
         draw_sprite_part_ext(klospr,0,00,0,25,19,round(x)-13+(flip*34),round(y)-23,1+(flip*-2),1,c_white,1)
@@ -33,6 +29,7 @@ switch (floor(char_index))
     case 3:
         draw_sprite_part_ext(klospr,0,77,1,25,19,round(x)-13+(flip*34),round(y)-23,1+(flip*-2),1,c_white,1)
         break
+	// MOVE
     case 10:
         char_speed=0.25
         draw_sprite_part_ext(klospr,0,0,20,27,25,round(x)-12+3+(flip*(33-7)),round(y)-23-2,1+(flip*-2),1,c_white,1)
@@ -60,8 +57,10 @@ switch (floor(char_index))
     case 17:
         draw_sprite_part_ext(klospr,0,28,72,26,26,round(x)-11+3+(flip*(31-7)),round(y)-24-2,1+(flip*-2),1,c_white,1)
         break
+	// GOING UP
 	case 20:
-		char_speed = 0.5
+		char_speed = 0.3
+		//when holding entity - char_speed = 0.5
         draw_sprite_part_ext(klospr,0,1,181,23,28,round(x)-11+5+(flip*(31-11+1)),round(y)-25-2,1+(flip*-2),1,c_white,1)
 		break
 	case 21:
@@ -75,8 +74,10 @@ switch (floor(char_index))
 	case 23:
         draw_sprite_part_ext(klospr,0,71,181,24,28,round(x)-13+5+(flip*(31-7+1)),round(y)-25-2,1+(flip*-2),1,c_white,1)
 		break
+	// FALLING
 	case 25:
-		char_speed = 0.5
+		char_speed = 0.4
+		//when holding entity - char_speed = 0.8
         draw_sprite_part_ext(klospr,0,96,181,24,27,round(x)-13+5+(flip*(31-8+1)),round(y)-25-2,1+(flip*-2),1,c_white,1)
 		break
 	case 26:
@@ -118,8 +119,8 @@ switch (floor(char_index))
 if floor(char_index) >= 0 && floor(char_index) < 10
     draw_sprite_part_ext(klospr,0,86,21,16,4,round(x)-5+(flip*18),round(y)-4,1+(flip*-2),1,c_white,1)
 
-draw_set_color(c_red)
-draw_rectangle(touching.x,touching.y,touching.x+7,touching.y+7,true)
+//draw_set_color(c_red)
+//draw_rectangle(touching.x,touching.y,touching.x+7,touching.y+7,true)
 
 //draw_sprite_general(hudspr,0,153,0,1,16,view_xview[0],view_yview[0]+view_hview[0]-16,view_wview[0],1,0,c_white,c_white,c_white,c_white,1)
 //draw_sprite_part(hudspr,0,0,0,153,16,view_xview[0],view_yview[0]+view_hview[0]-16)
@@ -134,8 +135,6 @@ draw_set_font(confnt)
 draw_set_color(c_white)
 //draw_set_valign(fa_bottom)
 draw_set_valign(fa_top)
-//draw_text(view_xview[0],view_yview[0],
-
 /*draw_text(view_xview[0],view_yview[0],
 "pos: "+string_format(x,6,1)+" * "+string_format(y,6,1)+"
 grav:  "+string_format(gravity,4,1)+
