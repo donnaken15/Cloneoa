@@ -6,22 +6,22 @@ if !ground && gravity = 0 { gravity = 0.21 }
 
 if vspeed >= 3 gravity = 0
 
-if keyboard_check(vk_right) && !keyboard_check(vk_left) { flip = 0 x += player_speed moving = 1 }
-if keyboard_check(vk_left) { flip = 1 if x > 0 x -= player_speed moving = 1 }
+if keyboard_check(ctrl_right) && !keyboard_check(ctrl_left) { flip = 0 x += player_speed moving = 1 }
+if keyboard_check(ctrl_left) { flip = 1 if x > 0 x -= player_speed moving = 1 }
 
-if !keyboard_check(vk_right) && !keyboard_check(vk_left) moving = 0
+if !keyboard_check(ctrl_right) && !keyboard_check(ctrl_left) moving = 0
 
 char_index += char_speed
 
-if (keyboard_check_pressed(vk_left) ||
-    keyboard_check_pressed(vk_right)) && ground char_index = 10
-if ((keyboard_check_released(vk_left) ||
-    keyboard_check_released(vk_right)) && ground && !moving) char_index = 0
+if (keyboard_check_pressed(ctrl_left) ||
+    keyboard_check_pressed(ctrl_right)) && ground char_index = 10
+if ((keyboard_check_released(ctrl_left) ||
+    keyboard_check_released(ctrl_right)) && ground && !moving) char_index = 0
 
 if vspeed != 0 { ground = 0 }
 
-if vspeed = 0 && gravity = 0 && ground && keyboard_check_pressed(vk_space)
-{ jump = 1 ground = 0 sound_play(snd_jump) last_char_index = char_index char_index = 20 vspeed = -4.36 }
+if vspeed = 0 && gravity = 0 && ground && keyboard_check_pressed(ctrl_jump)
+{ jump = 1 ground = 0 sound_play(snd_jump) last_char_index = char_index char_index = 20 vspeed = -4.28 }
 
 if vspeed >= 0 && jump { char_index = 25 jump = 0 }
 
@@ -29,10 +29,10 @@ if moving { if slide < 6 slide += 0.5 }
 else { if slide > 0 { slide -= 1 if !flip x += 1 else x -= 1 } }
 
 {
-	touching_left  = collision_rectangle(x+collision[1]-1,y+collision[0],x,y+collision[3]-1,tile,false,true)
-	touching_right = collision_rectangle(x,y+collision[0],x+collision[2]+1,y+collision[3]-1,tile,false,true)
-	touching_up    = collision_rectangle(x+collision[1]+1,y+collision[0]-2,x+collision[2]-1,y-1,tile,false,true)
-	touching_down  = collision_rectangle(x+collision[1]+1,y+(collision[0]/2),x+collision[2]-1,y+collision[3]+1,tile,false,true)
+	touching_left  = collision_rectangle(x+tilecol[1]-1,y+tilecol[0],x,y+tilecol[3]-1,tile,false,true)
+	touching_right = collision_rectangle(x,y+tilecol[0],x+tilecol[2]+1,y+tilecol[3]-1,tile,false,true)
+	touching_up    = collision_rectangle(x+tilecol[1]+1,y+tilecol[0]-2,x+tilecol[2]-1,y-1,tile,false,true)
+	touching_down  = collision_rectangle(x+tilecol[1]+1,y+(tilecol[0]/2),x+tilecol[2]-1,y+tilecol[3]+1,tile,false,true)
 	if touching_right != noone || touching_left != noone
 	{
 		x = xprevious
@@ -53,14 +53,21 @@ else { if slide > 0 { slide -= 1 if !flip x += 1 else x -= 1 } }
 		}
 	}
 	else {
-		if ground
+		if ground {
 			char_index = 25
+			y += 0.21
+		}
 		ground = 0
 		falling = 1
-		y += 0.105
 	}
-	touching = collision_rectangle(x+collision[1],y+collision[0],x+collision[2],y+collision[3],all,false,true)
-	if touching != tile && touching != noone
+	touching_item = collision_rectangle(x+itemcol[1],y+itemcol[0],x+itemcol[2],y+itemcol[3],item,false,true)
+	if touching_item != noone
+	{
+		sound_play(snd_gem)
+		with touching_item { instance_destroy() }
+	}
+	touching_ent = collision_rectangle(x+entcol[1],y+entcol[0],x+entcol[2],y+entcol[3],enemy,false,true)
+	if touching_ent != noone
 	{
 		
 	}

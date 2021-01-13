@@ -1,11 +1,11 @@
 
 draw_set_alpha(1)
-//draw_line_color(x,y,x+8+(flip*-16),y,c_lime,c_lime)
-//draw_line_color(x,y+1,x,y+8,c_blue,c_blue)
 
-//draw_line_color(levelbounds[2],0,levelbounds[2],640,c_red,c_red)
-
-//draw_rectangle_color(x+collision[1],y+collision[0],x+collision[2],y+collision[3],c_red,c_red,c_red,c_red,1)
+if debug_draw {
+	draw_rectangle_color(x+tilecol[1],y+tilecol[0],x+tilecol[2],y+tilecol[3],c_lime,c_lime,c_lime,c_lime,1)
+	draw_rectangle_color(x+itemcol[1],y+itemcol[0],x+itemcol[2],y+itemcol[3],c_blue,c_blue,c_blue,c_blue,1)
+	draw_rectangle_color(x+entcol[1],y+entcol[0],x+entcol[2],y+entcol[3],c_red,c_red,c_red,c_red,1)
+}
 
 // figure out more optimized system for this
 switch (floor(char_index))
@@ -117,34 +117,30 @@ switch (floor(char_index))
 }
 
 if floor(char_index) >= 0 && floor(char_index) < 10
-    draw_sprite_part_ext(klospr,0,86,21,16,4,round(x)-5+(flip*18),round(y)-4,1+(flip*-2),1,c_white,1)
+{
+    draw_sprite_part_ext(klospr,0,86,21,7,4,round(x)-7+(flip*(22)),round(y)-4,1+(flip*-2),1,c_white,1)
+    draw_sprite_part_ext(klospr,0,94,21,8,4,round(x)+3+(flip*(2)),round(y)-4,1+(flip*-2),1,c_white,1)
+}
 
-//draw_set_color(c_red)
-//draw_rectangle(touching.x,touching.y,touching.x+7,touching.y+7,true)
+draw_sprite_general(hudspr,0,153,0,1,16,view_xview[0],view_yview[0]+view_hview[0]-16,view_wview[0],1,0,c_white,c_white,c_white,c_white,1)
+draw_sprite_part(hudspr,0,0,0,153,16,view_xview[0],view_yview[0]+view_hview[0]-16)
+draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+view_hview[0]-16)
 
-//draw_sprite_general(hudspr,0,153,0,1,16,view_xview[0],view_yview[0]+view_hview[0]-16,view_wview[0],1,0,c_white,c_white,c_white,c_white,1)
-//draw_sprite_part(hudspr,0,0,0,153,16,view_xview[0],view_yview[0]+view_hview[0]-16)
-//draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+view_hview[0]-16)
+if debug_draw
+{
+	//set px437 font
 
-//set px437 font
-
-//draw_set_font(confont)
-//draw_set_color(c_black)
-//draw_set_color(c_red)
-draw_set_font(confnt)
-draw_set_color(c_white)
-//draw_set_valign(fa_bottom)
-draw_set_valign(fa_top)
-/*draw_text(view_xview[0],view_yview[0],
-"pos: "+string_format(x,6,1)+" * "+string_format(y,6,1)+"
-grav:  "+string_format(gravity,4,1)+
-" vsp: "+string_format(vspeed,3,1)+"
-scale: "+string(window_get_region_scale())+"    fps: "+string(fps)+"
-res:  "+string(view_wview[0])+"*"+string(view_hview[0])+"
-touching: "+string(
-	collision_rectangle(x+collision[1],
-						y+collision[0],
-						x+collision[2],
-						y+collision[3],tile,false,true))+"
-char idx: "+string(char_index))*/
-
+	//draw_set_font(confont)
+	//draw_set_color(c_black)
+	//draw_set_color(c_red)
+	draw_set_font(confnt)
+	draw_set_color(c_white)
+	//draw_set_valign(fa_bottom)
+	draw_set_valign(fa_top)
+	draw_set_halign(fa_left)
+	draw_text(view_xview[0],view_yview[0],
+	"pos: "+string_format(x,6,1)+" * "+string_format(y,6,1)+chr($D)+
+	"grav:  "+string_format(gravity,4,1)+" vs: "+string_format(vspeed,4,1)+chr($D)+
+	"char idx: "+string_format(char_index,5,2)+chr($D)+
+	"char spd: "+string_format(char_speed,5,2))
+}

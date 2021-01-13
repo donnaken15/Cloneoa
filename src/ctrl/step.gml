@@ -28,18 +28,17 @@ if !sound_isplaying(mus_int) && !sound_isplaying(mus_lp) {
 if keyboard_check_pressed(vk_tab) room_speed = 1000000
 else if keyboard_check_released(vk_tab) room_speed = 60
 
-if keyboard_check_pressed(vk_enter)
+if keyboard_check_pressed(ctrl_start)
 	if pause
 	{
-		//room_set_background_color(room,c_white,true)
+		depth = 100
 		instance_activate_all()
 		sprite_delete(pausescr)
 		pause = false
-		sound_volume(mus_int,1)
-		sound_volume(mus_lp,1)
 	}
 	else
 	{
+		depth = -100
 		pause_scroll = 0
 		// MAKE THIS BETTER SRSLY
 		//pausescr = sprite_create_from_screen(0,0,view_wview[0],view_hview[0],false,false,0,0)
@@ -50,16 +49,34 @@ if keyboard_check_pressed(vk_enter)
 		instance_deactivate_all(true)
 		sound_play(snd_pause)
 		pause = true
-		sound_volume(mus_int,0.3)
-		sound_volume(mus_lp,0.3)
 	}
 
 if pause
 {
-			 if keyboard_check_pressed(vk_up) 	pause_scroll -= 1
-		else if keyboard_check_pressed(vk_down) pause_scroll += 1
-		if pause_scroll = -1 pause_scroll = 4
-		if pause_scroll =  5 pause_scroll = 0
+		 if keyboard_check_pressed(ctrl_up)   { pause_scroll -= 1 sound_play(snd_scroll) }
+	else if keyboard_check_pressed(ctrl_down) { pause_scroll += 1 sound_play(snd_scroll) }
+	if pause_scroll = -1 pause_scroll = 4
+	if pause_scroll =  5 pause_scroll = 0
+	if keyboard_check_pressed(ctrl_jump)
+	{
+		switch pause_scroll
+		{
+			case 0:
+				depth = 100
+				instance_activate_all()
+				sprite_delete(pausescr)
+				pause = false
+				break
+			case 1:
+				break
+			case 2:
+				break
+			case 3:
+				break
+			case 4:
+				break
+		}
+	}
 }
 
 x = player.x

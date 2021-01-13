@@ -1,6 +1,7 @@
 src/proj/installer/InstallPath
 
 * - Copy*
+*.bak
 
 rel
 
