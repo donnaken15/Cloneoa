@@ -1,13 +1,12 @@
 window_set_visible(false)
 globalvar fname,level,lvinfo,filecur,filesz,
-themeid,musicid,lvtype,startposraw,
-startpos,gems,stars,starmax,frame,
-levelsize,levelsizeraw,freesize,
-realtimesrc,confnt,pause,_tempvar0,
+themeid,musicid,lvtype,startposraw,debug_draw,
+startpos,gems,stars,starmax,frame,handytitle,
+levelsize,levelsizeraw,freesize,_tempvar0,
+realtimesrc,confnt,pause,levelbounds,
 path_root,path_src,
 path_gfx,path_sfx,
 path_mus,path_bin,
-levelbounds,
 hud_enable_base,
 hud_enable_hearts,
 hud_enable_gems,
@@ -23,7 +22,7 @@ ctrl_fire,
 ctrl_start,
 pause_btns,
 _tempvar_obj_type,_tempvar_obj_subtype,
-_tempvar_obj_props,debug_draw
+_tempvar_obj_props,
 ;
 globalvar snd_wahoo;
 fname = ""
@@ -66,6 +65,8 @@ if fname != ""
 		ctrl_jump  = ini_read_real("Controls","Jump" ,vk_space)
 		ctrl_fire  = ini_read_real("Controls","Fire" ,vk_lshift)
 		ctrl_start = ini_read_real("Controls","Start",vk_return)
+		
+		handytitle = ini_read_real("General","HandyTitle",0)
 	}
 	
 	debug_draw |= debug_mode

@@ -84,4 +84,9 @@ if (view_yview[0] + view_hview[0] > levelbounds[3])
 if (view_yview[0] < levelbounds[1])
 	view_yview[0] = levelbounds[1]
 
+if handytitle
+	if !(frame mod 30)
+		room_caption = "Cloneoa - "+string(fps)+" FPS - "+fname
+
+
 
