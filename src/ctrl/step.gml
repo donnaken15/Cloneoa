@@ -23,8 +23,10 @@ if freesize
 	}
 }
 
-if !sound_isplaying(mus_int) && !sound_isplaying(mus_lp) {
-	sound_play(mus_lp)
+if !sound_isplaying(mus_int) && !sound_isplaying(mus_lp)
+		&& frame > 8 && !music_part {
+	sound_loop(mus_lp)
+	music_part = 1
 }
 
 if keyboard_check_pressed(vk_tab) room_speed = 1000000
@@ -36,6 +38,8 @@ if keyboard_check_pressed(ctrl_start)
 		depth = 100
 		instance_activate_all()
 		sprite_delete(pausescr)
+		sound_volume(mus_int,0.87)
+		sound_volume(mus_lp,0.87)
 		pause = false
 	}
 	else
@@ -50,6 +54,8 @@ if keyboard_check_pressed(ctrl_start)
 		file_delete(temp_directory+"/__TMPSURFACE__.PNG")
 		instance_deactivate_all(true)
 		sound_play(snd_pause)
+		sound_volume(mus_int,0.78)
+		sound_volume(mus_lp,0.78)
 		pause = true
 	}
 
@@ -67,6 +73,8 @@ if pause
 				depth = 100
 				instance_activate_all()
 				sprite_delete(pausescr)
+				sound_volume(mus_int,0.78)
+				sound_volume(mus_lp,0.78)
 				pause = false
 				break
 			case 1:

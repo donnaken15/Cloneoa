@@ -1,3 +1,4 @@
 build IFP
 replace icon with ancient package.ico
 add versioninfo files
+zip for VUE

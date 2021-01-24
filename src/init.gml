@@ -3,7 +3,7 @@ globalvar fname,level,lvinfo,filecur,filesz,
 themeid,musicid,lvtype,startposraw,debug_draw,
 startpos,gems,stars,starmax,frame,handytitle,
 levelsize,levelsizeraw,freesize,_tempvar0,
-realtimesrc,confnt,pause,levelbounds,
+realtimesrc,confnt,pause,levelbounds,frame,
 path_root,path_src,
 path_gfx,path_sfx,
 path_mus,path_bin,
@@ -34,9 +34,9 @@ path_mus = path_root+"mus/"
 path_bin = path_root+"bin/"
 if parameter_count() = 0 {
 	//mus_file = sound_add(path_mus+"file.wav",1,1)
-	mus_file = sound_add(path_mus+"file.mp3",3,1)
+	mus_file = sound_add(path_mus+"file.wav",1,1)
 	snd_wahoo = sound_add(path_sfx+"wahoo.wav",0,1)
-	sound_play(mus_file)
+	sound_loop(mus_file)
 	fname = get_open_filename("Klonoa Level File|*.klo|All Files|*.*","")
 	if fname != "" {
 		sound_play(snd_wahoo)
@@ -146,8 +146,8 @@ if fname != ""
 				background_replace(tiles,path_gfx+"world/"+worldstr+"/tiles.png",true,false)
 				worldstr="w"+string_replace(string_format(musicid,2,0),' ','0')
 				if musicid {
-					sound_replace(mus_int,path_mus+worldstr+"_int.mp3",3,1)
-					sound_replace(mus_lp ,path_mus+worldstr+"_lp.mp3" ,3,1)
+					sound_replace(mus_int,path_mus+worldstr+"_int.wav",1,1)
+					sound_replace(mus_lp ,path_mus+worldstr+"_lp.wav" ,1,1)
 				}
 				/* }
 				   0x08 - level size and start position {
@@ -355,7 +355,7 @@ if fname != ""
 	/// SOUND STUFF
 	{
 		globalvar snd_jump, snd_land, snd_pause, snd_scroll,
-				snd_gem;
+				snd_gem, music_part;
 		snd_jump = sound_add(path_sfx+"jump.wav",0,1)
 		snd_land = sound_add(path_sfx+"land.wav",0,1)
 		snd_pause = sound_add(path_sfx+"pause.wav",0,1)
@@ -363,6 +363,9 @@ if fname != ""
 		snd_gem = sound_add(path_sfx+"gem.wav",0,1)
 		
 		sound_play(mus_int)
+		sound_volume(mus_int,0.87)
+		sound_volume(mus_lp,0.87)
+		music_part = 0
 	}
 
 	/// PLAYER STUFF
