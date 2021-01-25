@@ -73,8 +73,8 @@ if pause
 				depth = 100
 				instance_activate_all()
 				sprite_delete(pausescr)
-				sound_volume(mus_int,0.78)
-				sound_volume(mus_lp,0.78)
+				sound_volume(mus_int,0.87)
+				sound_volume(mus_lp,0.87)
 				pause = false
 				break
 			case 1:
@@ -91,3 +91,7 @@ if pause
 
 x = player.x
 y = player.y-10
+
+if frame mod 30 = 1
+	instance_deactivate_object(tile)
+instance_activate_region(player.x-36,player.y-28,player.x+36,player.y+16,true)

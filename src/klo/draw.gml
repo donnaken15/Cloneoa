@@ -114,6 +114,22 @@ switch (floor(char_index))
 		// resolve position jump difference between this and the original game
         draw_sprite_part_ext(klospr,0,188,157,21,25,round(x)-15+6+(flip*(31-7+1)),round(y)-25,1+(flip*-2),1,c_white,1)
 		break
+	// FLOATING
+	case 45:
+		char_speed = 0.13
+        draw_sprite_part_ext(klospr,0,1,210,27,31,round(x)-15+6+(flip*(31-4)),round(y)-28,1+(flip*-2),1,c_white,1)
+		break
+	case 46:
+        draw_sprite_part_ext(klospr,0,29,210,26,23,round(x)-15+7+(flip*(31-6)),round(y)-25,1+(flip*-2),1,c_white,1)
+		break
+	case 47:
+        draw_sprite_part_ext(klospr,0,56,210,26,29,round(x)-15+7+(flip*(31-6)),round(y)-25,1+(flip*-2),1,c_white,1)
+		break
+	case 49:
+		char_index = 45
+	case 48:
+        draw_sprite_part_ext(klospr,0,83,210,24,25,round(x)-15+8+(flip*(31-8)),round(y)-25,1+(flip*-2),1,c_white,1)
+		break
 }
 
 if floor(char_index) >= 0 && floor(char_index) < 10
@@ -122,9 +138,32 @@ if floor(char_index) >= 0 && floor(char_index) < 10
     draw_sprite_part_ext(klospr,0,94,21,8,4,round(x)+3+(flip*(2)),round(y)-4,1+(flip*-2),1,c_white,1)
 }
 
+if max_gems || max_stars || can_get_hurt {
 draw_sprite_general(hudspr,0,153,0,1,16,view_xview[0],view_yview[0]+view_hview[0]-16,view_wview[0],1,0,c_white,c_white,c_white,c_white,1)
 draw_sprite_part(hudspr,0,0,0,153,16,view_xview[0],view_yview[0]+view_hview[0]-16)
 draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+view_hview[0]-16)
+	if can_get_hurt
+	{
+		for (i = 0; i < 3; i += 1)
+		{
+			draw_sprite_part(hudspr,0,i*11,17,11,11,view_xview[0]+10+(16*i),view_yview[0]+view_hview[0]-13)
+		}
+		for (i = 0; i < health; i += 1)
+		{
+			draw_sprite_part(hudspr,0,0,28,15,15,view_xview[0]+8+(i*16),view_yview[0]+view_hview[0]-15)
+		}
+		draw_sprite_part(hudspr,0,108,16,16,12,view_xview[0]+200,view_yview[0]+view_hview[0]-14)
+		// make script to draw numbers, big and small
+		// also make compatible with freesize by changing right leaning sprites to be relative to end of screen
+		// position for reference:
+		draw_sprite_part(hudspr,0,127,40,7,10,view_xview[0]+224,view_yview[0]+view_hview[0]-12)
+	}
+	if max_gems
+	{
+		draw_sprite_part(hudspr,0,100,16,8,12,view_xview[0]+152,view_yview[0]+view_hview[0]-14)
+		draw_sprite_part(hudspr,0,122,57,5,7,view_xview[0]+176,view_yview[0]+view_hview[0]-8)
+	}
+}
 
 if debug_draw
 {
@@ -140,7 +179,6 @@ if debug_draw
 	draw_set_halign(fa_left)
 	draw_text(view_xview[0],view_yview[0],
 	"pos: "+string_format(x,6,1)+" * "+string_format(y,6,1)+chr($D)+
-	"grav:  "+string_format(gravity,4,1)+" vs: "+string_format(vspeed,4,1)+chr($D)+
-	"char idx: "+string_format(char_index,5,2)+chr($D)+
-	"char spd: "+string_format(char_speed,5,2))
+	"grav:  "+string_format(gravity,4,1)+" vs: "+string_format(vspeed,4,1)+" flt: "+string(float)+chr($D)+
+	"char idx: "+string_format(char_index,5,2)+" spd: "+string_format(char_speed,5,2))
 }

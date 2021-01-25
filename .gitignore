@@ -1,4 +1,5 @@
 src/proj/installer/InstallPath
+src/proj/installer/Update.exe
 
 * - Copy*
 *.bak

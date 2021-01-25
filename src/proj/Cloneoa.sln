@@ -67,6 +67,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rpc-host", "rpc-host\rpc-ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VUEx", "installer\extractor\VUEx.csproj", "{EF421584-5015-49A9-97AA-16D77838CA82}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{E8BF9E9F-7494-405D-8910-93D7143CF8B4}"
+	ProjectSection(SolutionItems) = preProject
+		level_file.ico = level_file.ico
+		new_icon.ico = new_icon.ico
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

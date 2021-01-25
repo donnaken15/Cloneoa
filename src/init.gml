@@ -2,8 +2,8 @@ window_set_visible(false)
 globalvar fname,level,lvinfo,filecur,filesz,
 themeid,musicid,lvtype,startposraw,debug_draw,
 startpos,gems,stars,starmax,frame,handytitle,
-levelsize,levelsizeraw,freesize,_tempvar0,
-realtimesrc,confnt,pause,levelbounds,frame,
+levelsize,levelsizeraw,freesize,_tempvar0,base_gravity
+realtimesrc,confnt,pause,levelbounds,gems,stars,
 path_root,path_src,
 path_gfx,path_sfx,
 path_mus,path_bin,
@@ -23,6 +23,9 @@ ctrl_start,
 pause_btns,
 _tempvar_obj_type,_tempvar_obj_subtype,
 _tempvar_obj_props,
+can_get_hurt,
+max_gems,
+max_stars,
 ;
 globalvar snd_wahoo;
 fname = ""
@@ -47,6 +50,7 @@ if parameter_count() = 0 {
     fname = parameter_string(1)
 
 depth = 100
+base_gravity = 0.21
 
 if fname != ""
 {
@@ -88,15 +92,20 @@ if fname != ""
 	hibit_scr = get_code(path_src+"scr/hibit.gml")
 	hibyte_scr = get_code(path_src+"scr/hibyte.gml")
 	create_obj_scr = get_code(path_src+"obj/scr/cctor.gml")
+	create_part_scr = get_code(path_src+"part/scr/cctor.gml")
+	draw_digit_scr = get_code(path_src+"scr/draw_digit.gml")
 
 	{
-		object_event_add(controller,ev_step,0,get_code(path_src+"ctrl/step.gml",0))
-		object_event_add(controller,ev_draw,0,get_code(path_src+"ctrl/draw.gml",0))
-		object_event_add(player,ev_step,0,get_code(path_src+"klo/step.gml",0))
-		object_event_add(player,ev_draw,0,get_code(path_src+"klo/draw.gml",0))
-		object_event_add(tile,ev_create,0,get_code(path_src+"tile/create.gml",0))
-		object_event_add(item,ev_draw,0,get_code(path_src+"obj/item/draw.gml",0))
-		//object_event_add(particle,ev_draw,0,get_code(path_src+"part/draw.gml",0))
+		object_event_add(controller,ev_step,	0,get_code(path_src+"ctrl/step.gml",		0))
+		object_event_add(controller,ev_draw,	0,get_code(path_src+"ctrl/draw.gml",		0))
+		object_event_add(player,	ev_step,	0,get_code(path_src+"klo/step.gml",			0))
+		object_event_add(player,	ev_draw,	0,get_code(path_src+"klo/draw.gml",			0))
+		object_event_add(tile,		ev_create,	0,get_code(path_src+"tile/create.gml",		0))
+		object_event_add(item,		ev_draw,	0,get_code(path_src+"obj/item/draw.gml",	0))
+		object_event_add(item,		ev_destroy,	0,get_code(path_src+"obj/item/destroy.gml",	0))
+		object_event_add(enemy,		ev_step,	0,get_code(path_src+"obj/ent/step.gml",		0))
+		object_event_add(enemy,		ev_draw,	0,get_code(path_src+"obj/ent/draw.gml",		0))
+		object_event_add(particle,	ev_draw,	0,get_code(path_src+"part/draw.gml",		0))
 	}
 	
 	globalvar log,logmax,logfull,posx,posy;
@@ -235,50 +244,6 @@ if fname != ""
 					_tempvar_obj_props[1] = file_bin_read_byte(lvinfo)
 					_tempvar_obj_pos[0] = 0
 					_tempvar_obj_pos[1] = 0
-					{
-						switch (_tempvar_obj_type)
-						{
-							// ITEM
-							case 0:
-								switch (_tempvar_obj_subtype)
-								{
-									// GEM
-									case 0:
-										
-										break
-									// DIAMOND
-									case 1:
-									
-										break
-									// HEART
-									case 2:
-									
-										break
-									// STAR
-									case 3:
-									
-										break
-									// LIFE
-									case 4:
-										break
-									default:
-										show_error("@ "+string_format(filecur,6,0)+" bytes: Invalid object subtype.",false)
-										_tempvar_obj_confirmcreate = 0
-										break
-								}
-								break
-							// ENEMY
-							case 1:
-								break
-							// DOOR
-							case 2:
-								break
-							default:
-								show_error("@ "+string_format(filecur-1,6,0)+" bytes: Invalid object type.",false)
-								_tempvar_obj_confirmcreate = 0
-								break
-						}
-					}
 					// x4 - position
 					for (i=0;i<4;i+=1)
 					{
@@ -312,20 +277,9 @@ if fname != ""
 						show_error("@ "+string_format(filesz,6,0)+" bytes: Invalid object length, reached EOF.",false)						
 						_tempvar_obj_confirmcreate = 0
 					}
-					if _tempvar_obj_confirmcreate
-					{
-						// TODO: CREATE SCRIPT FOR THIS TYPE OF THING
-						with instance_create(_tempvar_obj_pos[0],_tempvar_obj_pos[1],item)
-						{
-							sprite_index=collision_8x8c
-							char_index = 0
-							char_speed = 0.13333
-							type = _tempvar_obj_type
-							subtype = _tempvar_obj_subtype
-							settings[0] = _tempvar_obj_props[0]
-							settings[1] = _tempvar_obj_props[1]
-						}
-					}
+					create_object(_tempvar_obj_type,_tempvar_obj_subtype,
+							_tempvar_obj_props[0],	_tempvar_obj_props[1],
+							_tempvar_obj_pos[0],	_tempvar_obj_pos[1])
 					filecur += 1
 				}
 				/* } 0xXX - EOF */
@@ -349,18 +303,22 @@ if fname != ""
 		sprite_replace(hudspr,path_gfx+"common/hud.png",0,1,0,0,0)
 		sprite_replace(itemspr,path_gfx+"common/item.png",0,1,0,0,0)
 		sprite_replace(partspr,path_gfx+"common/particle.png",0,1,0,0,0)
+		sprite_replace(enemyspr,path_gfx+"common/enemy.png",0,1,0,0,0)
+		sprite_replace(objspr,path_gfx+"common/obj.png",0,1,0,0,0)
 		confnt = font_add_sprite(sprite_add(path_gfx+"misc/debug.png",94,0,0,0,0),ord('!'),0,0)
 	}
 	
 	/// SOUND STUFF
 	{
 		globalvar snd_jump, snd_land, snd_pause, snd_scroll,
-				snd_gem, music_part;
+				snd_gem, snd_float, music_part, snd_hurt;
 		snd_jump = sound_add(path_sfx+"jump.wav",0,1)
 		snd_land = sound_add(path_sfx+"land.wav",0,1)
 		snd_pause = sound_add(path_sfx+"pause.wav",0,1)
 		snd_scroll = sound_add(path_sfx+"scroll.wav",0,1)
 		snd_gem = sound_add(path_sfx+"gem.wav",0,1)
+		snd_float = sound_add(path_sfx+"float.wav",0,1)
+		snd_hurt = sound_add(path_sfx+"hurt.wav",0,1)
 		
 		sound_play(mus_int)
 		sound_volume(mus_int,0.87)
@@ -388,9 +346,10 @@ if fname != ""
 			itemcol[3] = 0
 			entcol[0] = -17
 			entcol[1] = 0
-			entcol[2] = 2
+			entcol[2] = 7
 			entcol[3] = 0
-			depth = -1
+			depth = -3
+			invnc_frames = 0//180
 		}
 	}
 	
