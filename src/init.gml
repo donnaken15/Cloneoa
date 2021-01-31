@@ -27,6 +27,12 @@ can_get_hurt,
 max_gems,
 max_stars,
 ;
+
+/* try implementing constants
+types and subtypes for objects
+char_index ids
+*/
+
 globalvar snd_wahoo;
 fname = ""
 path_root = program_directory+"/../"
@@ -54,14 +60,14 @@ base_gravity = 0.21
 
 if fname != ""
 {
-	
+
 	/// SETTINGS
 	ini_open(path_bin+"settings.ini")
 	{
 		realtimesrc = ini_read_real("Debug","RealtimeSrc",0)
 		debug_draw = ini_read_real("Debug","DebugDraw",0)
 		lang = ini_read_real("General","Language",0)
-		
+
 		ctrl_left  = ini_read_real("Controls","Left" ,vk_left)
 		ctrl_up    = ini_read_real("Controls","Up"   ,vk_up)
 		ctrl_right = ini_read_real("Controls","Right",vk_right)
@@ -69,10 +75,10 @@ if fname != ""
 		ctrl_jump  = ini_read_real("Controls","Jump" ,vk_space)
 		ctrl_fire  = ini_read_real("Controls","Fire" ,vk_lshift)
 		ctrl_start = ini_read_real("Controls","Start",vk_return)
-		
+
 		handytitle = ini_read_real("General","HandyTitle",0)
 	}
-	
+
 	debug_draw |= debug_mode
 
 	if !realtimesrc {
@@ -107,7 +113,7 @@ if fname != ""
 		object_event_add(enemy,		ev_draw,	0,get_code(path_src+"obj/ent/draw.gml",		0))
 		object_event_add(particle,	ev_draw,	0,get_code(path_src+"part/draw.gml",		0))
 	}
-	
+
 	globalvar log,logmax,logfull,posx,posy;
 	log = chr($D)
 	logmax = 2048
@@ -115,11 +121,11 @@ if fname != ""
 	/// LEVEL STUFF
 	{
 		lvinfo = file_bin_open(fname,0)
-		
+
 		// START OF FILE
 		filecur = 0
 		file_bin_seek(lvinfo,filecur)
-		
+
 		if file_bin_read_byte(lvinfo) = $AC
 		{
 			filecur += 1
@@ -267,19 +273,14 @@ if fname != ""
 							_tempvar_obj_pos[i] += _tempvar_obj_rawpos[j+(i*2)] * k
 						}
 					}
-					/*show_message(string(_tempvar_obj_type)+","+string(_tempvar_obj_subtype)+","+
-								string(_tempvar_obj_props[0])+","+string(_tempvar_obj_props[1])+","+
-								string(_tempvar_obj_rawpos[0])+","+string(_tempvar_obj_rawpos[1])+","+
-								string(_tempvar_obj_rawpos[2])+","+string(_tempvar_obj_rawpos[3]))
-					show_message(string(_tempvar_obj_pos[0])+","+string(_tempvar_obj_pos[1]))*/
 					if filecur > filesz
 					{
-						show_error("@ "+string_format(filesz,6,0)+" bytes: Invalid object length, reached EOF.",false)						
+						show_error("@ "+string_format(filesz,6,0)+" bytes: Invalid object length, reached EOF.",false)
 						_tempvar_obj_confirmcreate = 0
 					}
 					create_object(_tempvar_obj_type,_tempvar_obj_subtype,
-							_tempvar_obj_props[0],	_tempvar_obj_props[1],
-							_tempvar_obj_pos[0],	_tempvar_obj_pos[1])
+						_tempvar_obj_props[0],	_tempvar_obj_props[1],
+						_tempvar_obj_pos[0],	_tempvar_obj_pos[1])
 					filecur += 1
 				}
 				/* } 0xXX - EOF */
@@ -293,7 +294,7 @@ if fname != ""
 			show_error("Invalid file signature.",false)
 			game_end()
 		}
-		
+
 		file_bin_close(lvinfo)
 	}
 
@@ -307,7 +308,7 @@ if fname != ""
 		sprite_replace(objspr,path_gfx+"common/obj.png",0,1,0,0,0)
 		confnt = font_add_sprite(sprite_add(path_gfx+"misc/debug.png",94,0,0,0,0),ord('!'),0,0)
 	}
-	
+
 	/// SOUND STUFF
 	{
 		globalvar snd_jump, snd_land, snd_pause, snd_scroll,
@@ -319,7 +320,7 @@ if fname != ""
 		snd_gem = sound_add(path_sfx+"gem.wav",0,1)
 		snd_float = sound_add(path_sfx+"float.wav",0,1)
 		snd_hurt = sound_add(path_sfx+"hurt.wav",0,1)
-		
+
 		sound_play(mus_int)
 		sound_volume(mus_int,0.87)
 		sound_volume(mus_lp,0.87)
@@ -350,9 +351,10 @@ if fname != ""
 			entcol[3] = 0
 			depth = -3
 			invnc_frames = 0//180
+			draw = true
 		}
 	}
-	
+
 	//if lang (implement switch)
 	{
 		keystr[vk_left     ] =  "Left Arrow"
@@ -415,25 +417,25 @@ if fname != ""
 			keystr[ord(string(i))] = string(i)
 		for (i=0;i<26;i+=1)
 			keystr[ord('A')+i] = chr(i+ord('A'))
-		
+
 		pause_btns[0] = "Continue Game"
-		pause_btns[1] = "Last Checkpoint"
-		pause_btns[2] = "Restart Vision"
-		pause_btns[3] = "Select Vision"
-		pause_btns[4] = "Configuration"
+		pause_btns[1] = "unavailable"//"Last Checkpoint"
+		pause_btns[2] = "unavailable"//"Restart Vision"
+		pause_btns[3] = "unavailable"
+		pause_btns[4] = "unavailable"//"Configuration"
 	}
 
 	frame = 0
 
 	view_hborder[0] = view_wview[0]
 	view_vborder[0] = view_hview[0]
-	
+
 	window_set_region_scale(floor(ini_read_real("Display","Scale",2)),true)
 	//fix not being able to downsize window
 	//because it worked before on x1 scale
 	freesize = ini_read_real("Display","FreeSize",0)
 	if !freesize window_set_sizeable(false)
-	
+
 	window_set_visible(true)
 
 	window_center()

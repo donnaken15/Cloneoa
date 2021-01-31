@@ -92,6 +92,19 @@ if pause
 x = player.x
 y = player.y-10
 
-if frame mod 30 = 1
-	instance_deactivate_object(tile)
-instance_activate_region(player.x-36,player.y-28,player.x+36,player.y+16,true)
+// figure this out to reduce CPU usage
+if !pause
+{
+	if frame mod 30 = 1
+		instance_deactivate_object(tile)
+	instance_activate_region(player.x-36,player.y-28,player.x+36,player.y+16,true)
+	for(i=0;i<instance_number(enemy);i+=1)
+	{
+		with instance_find(enemy,i)
+		{
+			instance_activate_region(x-36,y-28,x+36,y+16,true)
+		}
+	}
+}
+/*or scrap when you figure out ACTUAL TILE BASED COLLISION YOU STUPID KID
+*/

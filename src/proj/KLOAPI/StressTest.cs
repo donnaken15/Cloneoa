@@ -13,15 +13,15 @@ namespace KLOAPI
         {
             Vision vis = new Vision();
             header = new Vision.Header();
-            PrintData();
+            PrintData(header.data);
             header.FileVersion = 1;
-            PrintData();
+            PrintData(header.data);
             header.LevelType = 1;
-            PrintData();
+            PrintData(header.data);
             header.MusicID = 14;
-            PrintData();
+            PrintData(header.data);
             header.ThemeID = 15;
-            PrintData();
+            PrintData(header.data);
 
             Console.WriteLine(header.FileVersion);
             Console.WriteLine(header.LevelType);
@@ -32,12 +32,20 @@ namespace KLOAPI
             //header.StartPosition = new XYU16(2,2);
             //Console.WriteLine(header.StartPosition.y + "," + header.StartPosition.y);
 
-            PrintData();
+            PrintData(header.data);
+
+            vis = new Vision(System.IO.File.ReadAllBytes("E:\\Cloneoa\\lvl\\TEST_LEVEL_00A.klo"));
+
+            PrintData(vis.data.ToArray());
+
+            Console.WriteLine(header.LevelSize.x);
+            Console.WriteLine((header.LevelSize.x * header.LevelSize.y) + 0x10);
+            //Console.WriteLine(vis.objects.Length);
         }
         
-        static void PrintData()
+        static void PrintData(byte[] array)
         {
-            Console.WriteLine(BitConverter.ToString(header.data));
+            Console.WriteLine(BitConverter.ToString(array));
         }
     }
 }

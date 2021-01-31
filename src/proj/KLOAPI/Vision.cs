@@ -17,17 +17,17 @@ namespace KLOAPI
         /// </summary>
         public const ushort FileVersion = 0;
 
-        public void ContestVersionNumber()
+        static public void ContestVersionNumber(Vision vis)
         {
-            if (ByteAccess.MakeWord(data[2], data[3]) != FileVersion)
+            if (ByteAccess.MakeWord(vis.data[2], vis.data[3]) != FileVersion)
                 throw new NotSupportedException("Constructor input has mismatching vision version number.");
         }
 
-        static byte[] headerbase = {
+        static byte[] HeaderBase = {
                 MagicNumber[0],
                 MagicNumber[1],
-                ByteAccess.HiByte(Vision.FileVersion),
-                ByteAccess.LoByte(Vision.FileVersion),
+                ByteAccess.HiByte(FileVersion),
+                ByteAccess.LoByte(FileVersion),
                 0,0,
                 0,0,
                 0,16,
@@ -42,7 +42,7 @@ namespace KLOAPI
         public Vision()
         {
             data = new List<byte>();
-            data.AddRange(headerbase);
+            data.AddRange(HeaderBase);
             //data[0] = MagicNumber[0];
             //data[1] = MagicNumber[1];
             //header.LevelSize = new XYU16(16, 16);
@@ -56,12 +56,9 @@ namespace KLOAPI
         /// </summary>
         public Vision(byte[] input)
         {
-            byte[] temp = new byte[0x10];
-            Array.Copy(input, 0, temp, 0, 0x10);
-            header = new Header(temp);
-            temp = new byte[input.Length - 0x10];
-            Array.Copy(input, 0x10, temp, 0, input.Length - 0x10);
             data = new List<byte>();
+            // TODO: implement validator
+            data.AddRange(input);
         }
         
         public List<byte> data;
@@ -85,12 +82,17 @@ namespace KLOAPI
         {
             get
             {
-                int sz = header.LevelSize.x * header.LevelSize.y;
+                // 4bpp loading
+                /*int sz = header.LevelSize.x * header.LevelSize.y;
                 byte[] tile = new byte[sz];
                 for (int i = 0; i < sz; i++)
                 {
                     tile[i] = data[0x10 + (int)Math.Floor((double)i / 2)];
-                }
+                }*/
+                int sz = header.LevelSize.x * header.LevelSize.y;
+                byte[] tile = new byte[sz];
+                Array.Copy(data.ToArray(), 0x10, tile, 0, sz);
+
                 return tile;
             }
         }
@@ -100,7 +102,7 @@ namespace KLOAPI
             get
             {
                 Object[] newvar = new Object[data.Count / 8];
-                for (int i = 0; i < data.Count; i += 8)
+                for (int i = (header.LevelSize.x * header.LevelSize.y) + 0x10; i < data.Count; i += 8)
                 {
                     byte[] a = new byte[8];
                     for (int j = 0; j < 8; j++)

@@ -16,7 +16,7 @@ if pause {
 	draw_set_alpha(1)
 	draw_sprite_part(hudspr,0,40,42,60,22,
 		view_xview[0]+(view_wview[0]/4)+30,view_yview[0]+(view_hview[0]/10))
-	for (i = 0; i < 5; i += 1) {
+	for (i = 0; i < 3; i += 1) {
 		draw_sprite_part(hudspr,0,0,43,12,14,
 			view_xview[0]+(view_wview[0]/4)+10,view_yview[0]+(view_hview[0]/3)-10+(i*20))
 		draw_sprite_part_ext(hudspr,0,11,43,1,14,
