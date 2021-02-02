@@ -12,6 +12,11 @@ myobj=0
 myinst=noone
 _tempvar_obj_confirmcreate = 1
 
+/*show_message(
+	string(argument0)+","+string(argument1)+","+
+	string(argument2)+","+string(argument3)+","+
+	string(argument4)+","+string(argument5)+",")*/
+
 {
 	// TYPE
 	switch (argument0)
@@ -32,7 +37,7 @@ _tempvar_obj_confirmcreate = 1
 					break
 				// HEART
 				case 2:
-					
+
 					break
 				// STAR
 				case 3:
@@ -48,11 +53,14 @@ _tempvar_obj_confirmcreate = 1
 					return 0
 					break
 			}
+			myobj.sprite_index = collision_8x8c
 			break
 		// ENEMY
 		case 1:
 			myobj=enemy
 			can_get_hurt=1
+			myobj.sprite_index=collision_enemy
+			myobj.grabby=noone
 			break
 		// DOOR
 		case 2:
@@ -74,9 +82,8 @@ with myinst
 {
 	depth = -1
 	sprite_index = collision_8x8c
-	char_index = 0
 	char_speed = 0.13333
-	type = argument0
+	//type = argument0
 	subtype = argument1
 	settings[0] = argument2
 	settings[1] = argument3
@@ -84,10 +91,20 @@ with myinst
 	tilecol[1] = -10
 	tilecol[2] = 9
 	tilecol[3] = 0
+	grabby=noone
 
-	if type = 1 && subtype = 0
+	if argument0 = 1 && argument1 = 0
 	while collision_rectangle(x+tilecol[1]+8,y+(tilecol[0]/2),x+tilecol[2]-8,y+tilecol[3],tile,false,true) = noone
 	{ y += 1 }
+
+	switch (subtype)
+	{
+		case 0:
+			//move_time = argument3*2
+			break
+	}
+
+	char_index = subtype*1000
 }
 
 return myinst

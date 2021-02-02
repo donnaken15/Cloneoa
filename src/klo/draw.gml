@@ -8,6 +8,7 @@ if debug_draw {
 }
 
 // figure out more optimized system for this
+// use gfx/maps for this or whatever
 if draw
 {
 	switch (floor(char_index))
@@ -133,6 +134,19 @@ if draw
 			break
 		// WIND BULLET
 		case 50:
+			char_speed = 0.27
+			draw_sprite_part_ext(klospr,0,108,179,26,24,round(x)-14+(flip*(36)),round(y)-24,1+(flip*-2),1,c_white,1)
+			break
+		case 51:
+			draw_sprite_part_ext(klospr,0,135,180,23,25,round(x)-11+(flip*(30)),round(y)-25,1+(flip*-2),1,c_white,1)
+			break
+		case 52:
+			draw_sprite_part_ext(klospr,0,159,184,22,24,round(x)-10+(flip*(28)),round(y)-25,1+(flip*-2),1,c_white,1)
+			break
+		case 54:
+			char_index = last_char_index
+		case 53:
+			draw_sprite_part_ext(klospr,0,182,186,25,24,round(x)-11+(flip*(30)),round(y)-24,1+(flip*-2),1,c_white,1)
 			break
 		// HURT
 		case 99:

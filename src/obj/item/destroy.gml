@@ -8,9 +8,11 @@ switch (type)
 				gems += 4
 			case 0:
 				gems += 1
+				create_particle(x,y,0)
+				break
+			case 2:
+				create_particle(x,y,1)
 				break
 		}
 		break
 }
-
-create_particle(x,y,0)

@@ -11,4 +11,7 @@ switch (subtype)
 	case 1:
 		draw_sprite_part(itemspr,0,floor(char_index)*14,62,14,16,x-7,y-8)
 		break
+	case 2:
+		draw_sprite_part(itemspr,0,floor(char_index)*16,15,16,15,x-7,y-8)
+		break
 }

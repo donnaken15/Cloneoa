@@ -29,47 +29,67 @@ if !cantmove
 
   if vspeed >= 0 && jump { char_index = 25 jump = 0 float = 1 }
 
-  if float && keyboard_check(ctrl_jump)
-  {
-  	float = 0
-  	floattime = 71
-  	gravity = 0
-  	vspeed = 0
-  	char_index = 45
-  	float_ylast = y
-  }
-
-  if keyboard_check(ctrl_jump)
-  {
-  	if floattime = 1
-  	{
-  		char_index = 25
-  		cantfloat = 1
-  		y = float_ylast
-  	}
-  	if floattime
-  		floattime -= 1
-  }
-
-  if (floattime mod 15) = 1 && !sound_isplaying(snd_float)
-  	sound_play(snd_float)
-
-  if floattime && keyboard_check_released(ctrl_jump)
-  {
-  	floattime = 0
-  	float = 0
-  	char_index = 25
-  	cantfloat = 1
-  }
-
-  if floattime > 55 && floattime < 70
-  	y += 1
-
-  if floattime > 1 && floattime < 16
-  	y -= 1
-
   if moving { if slide < 6 slide += 0.5 }
   else { if slide > 0 { slide -= 1 if !flip x += 1 else x -= 1 } }
+
+  if grab = noone
+  {
+    if float && keyboard_check(ctrl_jump)
+    {
+    	float = 0
+    	floattime = 71
+    	gravity = 0
+    	vspeed = 0
+    	char_index = 45
+    	float_ylast = y
+    }
+
+    if keyboard_check(ctrl_jump)
+    {
+    	if floattime = 1
+    	{
+    		char_index = 25
+    		cantfloat = 1
+    		y = float_ylast
+    	}
+    	if floattime
+    		floattime -= 1
+    }
+
+    if (floattime mod 15) = 1 && !sound_isplaying(snd_float)
+    	sound_play(snd_float)
+
+    if floattime && keyboard_check_released(ctrl_jump)
+    {
+    	floattime = 0
+    	float = 0
+    	char_index = 25
+    	cantfloat = 1
+    }
+
+    if floattime > 55 && floattime < 70
+    	y += 1
+
+    if floattime > 1 && floattime < 16
+    	y -= 1
+
+    if keyboard_check_pressed(ctrl_fire) && fired = 0
+    {
+      last_char_index = char_index
+      char_index = 50
+      float = 0
+      floattime = 0
+      fired = 1
+      with instance_create(player.x,player.y-15,windbullet)
+      { timemax = 16 depth = -2 flip = player.flip }
+      with controller {
+        with create_particle(
+          floor(player.x)+19-(player.flip*6),
+          floor(player.y)-15,3)
+        { flip = player.flip }
+      }
+    }
+  }
 }
 
 if invnc_frames > 0
@@ -88,6 +108,7 @@ if hurt_time > 0
   hurt_time -= 1
   x -= 0.8-(flip*2)
   y -= 0.8
+  vspeed=0
   if hurt_time = 0
   {
     cantmove = 0
@@ -144,7 +165,7 @@ if invnc_frames = 0 && !draw
     with touching_item { instance_destroy() }
 	}
 	touching_ent = collision_rectangle(x+entcol[1],y+entcol[0],x+entcol[2],y+entcol[3],enemy,false,true)
-	if touching_ent != noone && !invnc_frames
+	if touching_ent != noone && !invnc_frames && touching_ent.grabby = noone
 	{
 		sound_play(snd_hurt)
 		invnc_frames = 180

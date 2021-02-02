@@ -68,12 +68,13 @@ if fname != ""
 		debug_draw = ini_read_real("Debug","DebugDraw",0)
 		lang = ini_read_real("General","Language",0)
 
+		// INDIVIDUAL SHIFT ISNT WORKING WTF
 		ctrl_left  = ini_read_real("Controls","Left" ,vk_left)
 		ctrl_up    = ini_read_real("Controls","Up"   ,vk_up)
 		ctrl_right = ini_read_real("Controls","Right",vk_right)
 		ctrl_down  = ini_read_real("Controls","Down" ,vk_down)
 		ctrl_jump  = ini_read_real("Controls","Jump" ,vk_space)
-		ctrl_fire  = ini_read_real("Controls","Fire" ,vk_lshift)
+		ctrl_fire  = ini_read_real("Controls","Fire" ,vk_shift)
 		ctrl_start = ini_read_real("Controls","Start",vk_return)
 
 		handytitle = ini_read_real("General","HandyTitle",0)
@@ -112,6 +113,8 @@ if fname != ""
 		object_event_add(enemy,		ev_step,	0,get_code(path_src+"obj/ent/step.gml",		0))
 		object_event_add(enemy,		ev_draw,	0,get_code(path_src+"obj/ent/draw.gml",		0))
 		object_event_add(particle,	ev_draw,	0,get_code(path_src+"part/draw.gml",		0))
+		object_event_add(windbullet,ev_step,	0,get_code(path_src+"klo/wndb/step.gml",		0))
+		object_event_add(windbullet,ev_draw,	0,get_code(path_src+"klo/wndb/draw.gml",		0))
 	}
 
 	globalvar log,logmax,logfull,posx,posy;
@@ -352,6 +355,7 @@ if fname != ""
 			depth = -3
 			invnc_frames = 0//180
 			draw = true
+			grab = noone
 		}
 	}
 
