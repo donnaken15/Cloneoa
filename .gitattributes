@@ -6,3 +6,4 @@
 *.png binary
 *.gif binary
 *.wav binary
+*.Designer.cs linguist-detectable=false

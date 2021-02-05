@@ -2,3 +2,5 @@ build IFP
 replace icon with ancient package.ico
 add versioninfo files
 zip for VUE
+gamemaker runner data pointer is at 226CFB
+value is usually C4FB39 or little endian 39FBC4

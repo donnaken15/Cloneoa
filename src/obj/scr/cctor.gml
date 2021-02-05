@@ -92,10 +92,14 @@ with myinst
 	tilecol[2] = 9
 	tilecol[3] = 0
 	grabby=noone
+	
+	if argument0 = 1
+	respawn_cooldown = -80
 
 	if argument0 = 1 && argument1 = 0
 	while collision_rectangle(x+tilecol[1]+8,y+(tilecol[0]/2),x+tilecol[2]-8,y+tilecol[3],tile,false,true) = noone
 	{ y += 1 }
+	ystart = y
 
 	switch (subtype)
 	{
