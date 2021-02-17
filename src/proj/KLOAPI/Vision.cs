@@ -19,36 +19,21 @@ namespace KLOAPI
 
         static public void ContestVersionNumber(Vision vis)
         {
-            if (ByteAccess.MakeWord(vis.data[2], vis.data[3]) != FileVersion)
-                throw new NotSupportedException("Constructor input has mismatching vision version number.");
+            if (vis.header.FileVersion != FileVersion)
+                throw new NotSupportedException("Vision has mismatching vision version number.");
         }
-
-        static byte[] HeaderBase = {
-                MagicNumber[0],
-                MagicNumber[1],
-                ByteAccess.HiByte(FileVersion),
-                ByteAccess.LoByte(FileVersion),
-                0,0,
-                0,0,
-                0,16,
-                0,16,
-                0,4,
-                0,4
-            };
 
         /// <summary>
         /// Construct a new level class.
         /// </summary>
         public Vision()
         {
-            data = new List<byte>();
-            data.AddRange(HeaderBase);
-            //data[0] = MagicNumber[0];
-            //data[1] = MagicNumber[1];
-            //header.LevelSize = new XYU16(16, 16);
-            //header.StartPosition = new XYU16(4, 4);
-            //header.FileVersion = FileVersion;
-            //ContestVersionNumber();
+            header = new Header();
+            header.LevelSize = new XYU16(16, 16);
+            header.StartPosition = new XYU16(4, 4);
+            header.FileVersion = FileVersion;
+            tiles = new byte[256];
+            objects = new List<Object>();
         }
 
         /// <summary>
@@ -56,62 +41,18 @@ namespace KLOAPI
         /// </summary>
         public Vision(byte[] input)
         {
-            data = new List<byte>();
+            File = input;
+            //data = new List<byte>();
             // TODO: implement validator
-            data.AddRange(input);
-        }
-        
-        public List<byte> data;
+            //data.AddRange(input);
 
-        public Header header
-        {
-            get
-            {
-                byte[] temp = new byte[0x10];
-                Array.Copy(data.ToArray(), 0, temp, 0, 0x10);
-                return new Header(temp);
-            }
-            set
-            {
-                for (int i = 0; i < 10; i++)
-                    data[i] = value.data[i];
-            }
         }
 
-        public byte[] tiles
-        {
-            get
-            {
-                // 4bpp loading
-                /*int sz = header.LevelSize.x * header.LevelSize.y;
-                byte[] tile = new byte[sz];
-                for (int i = 0; i < sz; i++)
-                {
-                    tile[i] = data[0x10 + (int)Math.Floor((double)i / 2)];
-                }*/
-                int sz = header.LevelSize.x * header.LevelSize.y;
-                byte[] tile = new byte[sz];
-                Array.Copy(data.ToArray(), 0x10, tile, 0, sz);
+        public Header header;
 
-                return tile;
-            }
-        }
+        public byte[] tiles;
 
-        public Object[] objects
-        {
-            get
-            {
-                Object[] newvar = new Object[data.Count / 8];
-                for (int i = (header.LevelSize.x * header.LevelSize.y) + 0x10; i < data.Count; i += 8)
-                {
-                    byte[] a = new byte[8];
-                    for (int j = 0; j < 8; j++)
-                        a[j] = data[i + j];
-                    newvar[i] = new Object(a);
-                }
-                return newvar;
-            }
-        }
+        public List<Object> objects;
 
         enum TileType
         {
@@ -120,14 +61,108 @@ namespace KLOAPI
             Damage
         }
 
-        //private List<byte> __objects;
+        /// <summary>
+        /// Use when saving or loading a file's data.
+        /// </summary>
+        public byte[] File
+        {
+            get
+            {
+                int TileSZ = header.LevelSize.x * header.LevelSize.y;
+                byte[] myFile = new byte[
+                    16 + TileSZ + (objects.Count * 8)
+                ];
+
+                myFile[0] = 0xAC;
+                myFile[1] = 0x1E;
+                myFile[2] = ByteAccess.HiByte(header.FileVersion);
+                myFile[3] = ByteAccess.LoByte(header.FileVersion);
+                myFile[4] = header.LevelType;
+                myFile[5] = (byte)((header.MusicID << 8) + header.ThemeID);
+                myFile[8] = ByteAccess.HiByte(header.LevelSize.x);
+                myFile[9] = ByteAccess.LoByte(header.LevelSize.x);
+                myFile[10] = ByteAccess.HiByte(header.LevelSize.y);
+                myFile[11] = ByteAccess.LoByte(header.LevelSize.y);
+                myFile[12] = ByteAccess.HiByte(header.StartPosition.x);
+                myFile[13] = ByteAccess.LoByte(header.StartPosition.x);
+                myFile[14] = ByteAccess.HiByte(header.StartPosition.y);
+                myFile[15] = ByteAccess.LoByte(header.StartPosition.y);
+                int afterTileCursor = 0;
+                /*for (int i = 0; i < TileSZ; i++)
+                {
+                    if (i < tiles.Length)
+                        myFile[i + 16] = tiles[i];
+                    else
+                        myFile[i + 16] = 0;
+                    afterTileCursor = i;
+                }*/
+                Array.Copy(tiles, 0, myFile, 0x10, TileSZ);
+                afterTileCursor += TileSZ;
+                while (afterTileCursor % 8 != 0)
+                    afterTileCursor++;
+                afterTileCursor += 16;
+                for (int i = 0; i < objects.Count; i++)
+                {
+                    myFile[afterTileCursor + (i * 8)] = objects[0].type;
+                    myFile[afterTileCursor + (i * 8) + 1] = objects[0].subtype;
+                    myFile[afterTileCursor + (i * 8) + 2] = objects[0].props[0];
+                    myFile[afterTileCursor + (i * 8) + 3] = objects[0].props[1];
+                    myFile[afterTileCursor + (i * 8) + 4] = ByteAccess.HiByte(objects[0].pos.x);
+                    myFile[afterTileCursor + (i * 8) + 5] = ByteAccess.LoByte(objects[0].pos.x);
+                    myFile[afterTileCursor + (i * 8) + 6] = ByteAccess.HiByte(objects[0].pos.y);
+                    myFile[afterTileCursor + (i * 8) + 7] = ByteAccess.LoByte(objects[0].pos.y);
+                }
+
+                return myFile;
+            }
+            set
+            {
+                if (value[0] == 0xAC && value[1] == 0x1E)
+                {
+                    header = new Header();
+                    header.FileVersion = ByteAccess.MakeWord(value[2], value[3]);
+                    ContestVersionNumber(this);
+                    header.LevelType = value[4];
+                    header.MusicID = ByteAccess.HiBit(value[5]);
+                    header.ThemeID = ByteAccess.LoBit(value[6]);
+                    header.LevelSize = new XYU16(
+                        ByteAccess.MakeWord(value[8], value[9]),
+                        ByteAccess.MakeWord(value[10], value[11])
+                        );
+                    header.StartPosition = new XYU16(
+                        ByteAccess.MakeWord(value[12], value[13]),
+                        ByteAccess.MakeWord(value[14], value[15])
+                        );
+                    int lvSz = header.LevelSize.x * header.LevelSize.y;
+                    tiles = new byte[lvSz];
+                    Array.Copy(value, 0, tiles, 0, lvSz);
+                    objects = new List<Object>();
+                    byte[] __obj = new byte[8];
+                    for (int i = lvSz + 0x10; i < value.Length; i += 8)
+                    {
+                        //Array.Copy(value, i, __obj, 0, 8);
+                        //objects.Add(new Object(__obj));
+                        objects.Add(new Object());
+                    }
+                        /*new Object(value[i], value[i + 2],
+                            new byte[] { value[i + 3], value[i + 4], value[1 + 5] },
+                            new XYU16(
+                        ByteAccess.MakeWord(value[12], value[13]),
+                        ByteAccess.MakeWord(value[14], value[15])
+                        )
+                            );*/
+                }
+            }
+        }
 
         /// <summary>
         /// The level file header.
         /// </summary>
         public class Header
         {
-            public byte[] data;
+            // figure out tile resizing
+            //public Vision __parent;
+            //private XYU16 lvSzRaw;
 
             /// <summary>
             /// List of addresses for each piece of data in this object
@@ -146,133 +181,52 @@ namespace KLOAPI
                 StartPointY = 0xE
             }
 
-            public ushort FileVersion
-            {
-                get
-                {
-                    return (ushort)((data[(int)Addresses.FileVersion] * 256) + data[(int)Addresses.FileVersion + 1]);
-                }
-                set
-                {
-                    data[(int)Addresses.FileVersion] = ByteAccess.HiByte(value);
-                    data[(int)Addresses.FileVersion + 1] = ByteAccess.LoByte(value);
-                    //(byte)System.Math.Floor((double)value / 256);
-                }
-            }
+            public ushort FileVersion;
 
             /// <summary>
             /// 0 - Standard, 1 - Autoscroll, 2 - Board
             /// </summary>
             [Category("Information"), Description("0 - Normal, 1 - Autoscroll, 2 - Board")]
-            public byte LevelType
-            {
-                get
-                {
-                    return data[(int)Addresses.LevelType];
-                }
-                set
-                {
-                    data[(int)Addresses.LevelType] = value;
-                }
-            }
+            public byte LevelType;
 
             /// <summary>
             /// Choose music track based on world number, 0 means nothing will play
             /// </summary>
             [Category("Style"), Description("0 - No music, 1 - Ghazzaland, 2 - Piramill, etc, rest of the unused can be replaced with custom music")]
-            public byte MusicID
-            {
-                get
-                {
-                    return ByteAccess.LoBit(data[(int)Addresses.MusicThemeID]);
-                    //(byte)System.Math.Floor((double)(raw[(int)Addresses.MusicThemeID] / 16));
-                }
-                set
-                {
-                    data[(int)Addresses.MusicThemeID] = (byte)(ByteAccess.HiBit(data[(int)Addresses.MusicThemeID]) + (value));//(byte)(System.Math.Floor((double)(raw[(int)Addresses.MusicThemeID] / 16)) + value);
-                }
-            }
+            public byte MusicID;
 
             /// <summary>
             /// Chooses scenery and graphics of the level based on world number, 0 means solid colors will be displayed
             /// </summary>
             [Category("Style"), Description("0 - Solid color objects, 1 - Ghazzaland, 2 - Piramill, etc, rest of the unused can be replaced with custom assets")]
-            public byte ThemeID
-            {
-                get
-                {
-                    return ByteAccess.HiBit(data[(int)Addresses.MusicThemeID]);
-                }
-                set
-                {
-                    data[(int)Addresses.MusicThemeID] = (byte)(ByteAccess.LoBit(data[(int)Addresses.MusicThemeID]) + (value * 16));//(byte)(System.Math.Floor((double)(raw[(int)Addresses.MusicThemeID] / 16)) + value);
-                }
-            }
+            public byte ThemeID;
 
             /// <summary>
             /// Player's start position
             /// </summary>
             [Category("Information"), Description("Player's starting position")]
-            public XYU16 StartPosition
-            {
-                get
-                {
-                    return new XYU16(12, 34);
-                    //return new XYU16(
-                        //ByteAccess.MakeWord(data[(int)Addresses.StartPointX], data[(int)Addresses.StartPointX + 1]),
-                        //ByteAccess.MakeWord(data[(int)Addresses.StartPointY], data[(int)Addresses.StartPointY + 1]));
-                }
-                set
-                {
-                    ///TODO: FIX, AM I EVAX OR SOMETHING
-                    data[(int)Addresses.StartPointX] = 0;//ByteAccess.HiByte(value.x);
-                    data[(int)Addresses.StartPointX + 1] = 2;//ByteAccess.LoByte(value.x);
-                    data[(int)Addresses.StartPointY] = 0;//ByteAccess.HiByte(value.y);
-                    data[(int)Addresses.StartPointY + 1] = 4;//ByteAccess.LoByte(value.y);
-                    for(int i = 2; i < 16; i++)
-                    {
-                        data[i] = 3;
-                    }
-                }
-            }
+            public XYU16 StartPosition;
 
             /// <summary>
             /// Level size (x16)
             /// </summary>
             [Category("Information"), Description("Level size (x16)")]
-            public XYU16 LevelSize
-            {
+            public XYU16 LevelSize;
+            /*{
                 get
                 {
-                    return new XYU16(
-                        ByteAccess.MakeWord(data[(int)Addresses.StartPointX], data[(int)Addresses.StartPointX + 1]),
-                        ByteAccess.MakeWord(data[(int)Addresses.StartPointY], data[(int)Addresses.StartPointY + 1]));
+                    return lvSzRaw;
                 }
                 set
                 {
-                    ///TODO: FIX, AM I EVAX OR SOMETHING
-                    //data[(int)Addresses.LevelSize] = ByteAccess.HiByte(ByteAccess.HiWord(value.x));
-                    //data[(int)Addresses.LevelSize + 1] = ByteAccess.LoByte(ByteAccess.HiWord(value.x));
-                    //data[(int)Addresses.LevelSize + 2] = ByteAccess.HiByte(ByteAccess.HiWord(value.y));
-                    //data[(int)Addresses.LevelSize + 3] = ByteAccess.LoByte(ByteAccess.HiWord(value.y));
+                    LevelSize = value;
+                    __parent.tiles = new byte[lvSzRaw.x * lvSzRaw.y];
                 }
-            }
-
-            /*public static Header ParseHeader(byte[] input)
-            {
-                Header myvar = new Header();
-                if (input[0] != MagicNumber[0] && input[1] != MagicNumber[1])
-                {
-                    throw new System.Exception("Invalid header signature.");
-                }
-                return myvar;
             }*/
 
             public Header()
             {
-                data = new byte[0x10];
-                data[0] = MagicNumber[0];
-                data[1] = MagicNumber[1];
+                
             }
 
             public Header(byte[] input)
@@ -281,7 +235,6 @@ namespace KLOAPI
                 {
                     throw new Exception("Invalid header signature.");
                 }
-                data = input;
             }
         }
     }

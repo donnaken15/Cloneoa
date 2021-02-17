@@ -294,135 +294,6 @@
   <data name="menuView.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuObjNewGem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="menuObjNewGem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 24</value>
-  </data>
-  <data name="menuObjNewGem.Text" xml:space="preserve">
-    <value>Gem</value>
-  </data>
-  <data name="menuObjNewStar.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="menuObjNewStar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 24</value>
-  </data>
-  <data name="menuObjNewStar.Text" xml:space="preserve">
-    <value>Star</value>
-  </data>
-  <data name="menuObjNew5G.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="menuObjNew5G.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 24</value>
-  </data>
-  <data name="menuObjNew5G.Text" xml:space="preserve">
-    <value>Diamond</value>
-  </data>
-  <data name="menuNewObjHeal.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="menuNewObjHeal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 24</value>
-  </data>
-  <data name="menuNewObjHeal.Text" xml:space="preserve">
-    <value>Health</value>
-  </data>
-  <data name="menuObjNewKey.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="menuObjNewKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 24</value>
-  </data>
-  <data name="menuObjNewKey.Text" xml:space="preserve">
-    <value>Key</value>
-  </data>
-  <data name="menuObjNewLife.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="menuObjNewLife.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 24</value>
-  </data>
-  <data name="menuObjNewLife.Text" xml:space="preserve">
-    <value>1-UP</value>
-  </data>
-  <data name="menuObjNewItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 24</value>
-  </data>
-  <data name="menuObjNewItem.Text" xml:space="preserve">
-    <value>&amp;Item</value>
-  </data>
-  <data name="mooToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="mooToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 32</value>
-  </data>
-  <data name="mooToolStripMenuItem.Text" xml:space="preserve">
-    <value>Moo</value>
-  </data>
-  <data name="flyingMooToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="flyingMooToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 32</value>
-  </data>
-  <data name="flyingMooToolStripMenuItem.Text" xml:space="preserve">
-    <value>Flying Moo</value>
-  </data>
-  <data name="mooToolStripMenuItem1.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="mooToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 32</value>
-  </data>
-  <data name="mooToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Spike Moo</value>
-  </data>
-  <data name="propellerToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="propellerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 32</value>
-  </data>
-  <data name="propellerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Propeller</value>
-  </data>
-  <data name="mineMooToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="mineMooToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 32</value>
-  </data>
-  <data name="mineMooToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mine Moo</value>
-  </data>
-  <data name="spikeCannonToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="spikeCannonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 32</value>
-  </data>
-  <data name="spikeCannonToolStripMenuItem.Text" xml:space="preserve">
-    <value>Spike Cannon</value>
-  </data>
-  <data name="floatingBallToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="floatingBallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 32</value>
-  </data>
-  <data name="floatingBallToolStripMenuItem.Text" xml:space="preserve">
-    <value>Floating Ball</value>
-  </data>
-  <data name="enemyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 24</value>
-  </data>
-  <data name="enemyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Enemy</value>
-  </data>
   <data name="menuObjNewSub.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Silver</value>
   </data>
@@ -460,7 +331,7 @@
     <value>&amp;Delete Object</value>
   </data>
   <data name="menuObjSub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 24</value>
+    <value>152, 24</value>
   </data>
   <data name="menuObjSub.Text" xml:space="preserve">
     <value>&amp;Object</value>
@@ -469,7 +340,7 @@
     <value>Silver</value>
   </data>
   <data name="menuLink.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 24</value>
+    <value>152, 24</value>
   </data>
   <data name="menuLink.Text" xml:space="preserve">
     <value>&amp;Link Tool</value>
@@ -1021,6 +892,12 @@
   <data name="&gt;&gt;menuOpen.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;closeToolStripMenuItem.Name" xml:space="preserve">
+    <value>closeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;closeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;menuOpenRecent.Name" xml:space="preserve">
     <value>menuOpenRecent</value>
   </data>
@@ -1115,96 +992,6 @@
     <value>menuObjNewSub</value>
   </data>
   <data name="&gt;&gt;menuObjNewSub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewItem.Name" xml:space="preserve">
-    <value>menuObjNewItem</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewGem.Name" xml:space="preserve">
-    <value>menuObjNewGem</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewGem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewStar.Name" xml:space="preserve">
-    <value>menuObjNewStar</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewStar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuObjNew5G.Name" xml:space="preserve">
-    <value>menuObjNew5G</value>
-  </data>
-  <data name="&gt;&gt;menuObjNew5G.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuNewObjHeal.Name" xml:space="preserve">
-    <value>menuNewObjHeal</value>
-  </data>
-  <data name="&gt;&gt;menuNewObjHeal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewKey.Name" xml:space="preserve">
-    <value>menuObjNewKey</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewKey.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewLife.Name" xml:space="preserve">
-    <value>menuObjNewLife</value>
-  </data>
-  <data name="&gt;&gt;menuObjNewLife.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;enemyToolStripMenuItem.Name" xml:space="preserve">
-    <value>enemyToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;enemyToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mooToolStripMenuItem.Name" xml:space="preserve">
-    <value>mooToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mooToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flyingMooToolStripMenuItem.Name" xml:space="preserve">
-    <value>flyingMooToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;flyingMooToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mooToolStripMenuItem1.Name" xml:space="preserve">
-    <value>mooToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;mooToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;propellerToolStripMenuItem.Name" xml:space="preserve">
-    <value>propellerToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;propellerToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mineMooToolStripMenuItem.Name" xml:space="preserve">
-    <value>mineMooToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mineMooToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;spikeCannonToolStripMenuItem.Name" xml:space="preserve">
-    <value>spikeCannonToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;spikeCannonToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;floatingBallToolStripMenuItem.Name" xml:space="preserve">
-    <value>floatingBallToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;floatingBallToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;menuObjProps.Name" xml:space="preserve">
@@ -1428,12 +1215,6 @@
   </data>
   <data name="&gt;&gt;mainTooltip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;closeToolStripMenuItem.Name" xml:space="preserve">
-    <value>closeToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;closeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>manager</value>

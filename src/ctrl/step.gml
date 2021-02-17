@@ -41,6 +41,7 @@ if keyboard_check_pressed(ctrl_start)
 		sound_volume(mus_int,0.87)
 		sound_volume(mus_lp,0.87)
 		pause = false
+		pause_menu = 0
 	}
 	else
 	{
@@ -61,31 +62,98 @@ if keyboard_check_pressed(ctrl_start)
 
 if pause
 {
-		 if keyboard_check_pressed(ctrl_up)   { pause_scroll -= 1 sound_play(snd_scroll) }
-	else if keyboard_check_pressed(ctrl_down) { pause_scroll += 1 sound_play(snd_scroll) }
-	if pause_scroll = -1 pause_scroll = 4
-	if pause_scroll =  5 pause_scroll = 0
-	if keyboard_check_pressed(ctrl_jump)
+	switch pause_menu
 	{
-		switch pause_scroll
-		{
-			case 0:
-				depth = 100
-				instance_activate_all()
-				sprite_delete(pausescr)
-				sound_volume(mus_int,0.87)
-				sound_volume(mus_lp,0.87)
-				pause = false
-				break
-			case 1:
-				break
-			case 2:
-				break
-			case 3:
-				break
-			case 4:
-				break
-		}
+		case 0:
+			if pause_jp_fix < 100 && lang // HATE THIS DUSHFGJBRUWFOI ENGINE
+			{
+				pause_jp_fix += 1
+				pause_btns[0] = ktkn("YUNTEiNIyu-:KE`MU")
+				pause_btns[1] = string_replace(ktkn("RA-SUTO:TIeKUHO'ITO"),"2A","")
+				pause_btns[2] = ktkn("RI-SUTA-TO:KU`-MU") // why are extra chars appearing
+				pause_btns[3] = ktkn("SETEINKU`SU`")
+				pause_btns[4] = ktkn("KUITUTO") //itu
+					//chr($DA)+chr($CC)+chr($C4)+chr($A5)+
+					//chr($B1)+chr($DB)+chr($B0)
+			}
+				 if keyboard_check_pressed(ctrl_up)   { pause_scroll -= 1 sound_play(snd_scroll) }
+			else if keyboard_check_pressed(ctrl_down) { pause_scroll += 1 sound_play(snd_scroll) }
+			if pause_scroll = -1 pause_scroll = 4
+			if pause_scroll =  5 pause_scroll = 0
+			if keyboard_check_pressed(ctrl_jump)
+			{
+				switch pause_scroll
+				{
+					case 0:
+						depth = 100
+						instance_activate_all()
+						sprite_delete(pausescr)
+						sound_volume(mus_int,0.87)
+						sound_volume(mus_lp,0.87)
+						pause = false
+						pause_menu = 0
+						break
+					case 4:
+						game_end()
+						break
+					case 3:
+						change_key = 0
+						config_scroll = 0
+						config_str[0] = "Jump"
+						config_str[1] = "Fire"
+						config_str[2] = "Move Left"
+						config_str[3] = "Move Right"
+						config_str[4] = "Move In"
+						config_str[5] = "Move Out"
+						sound_play(snd_confirm)
+					default:
+						pause_menu = pause_scroll
+						pause_scroll = 0
+						break
+				}
+			}
+			break
+		case 3:
+				 if keyboard_check_pressed(ctrl_up)   { config_scroll -= 1 sound_play(snd_scroll) }
+			else if keyboard_check_pressed(ctrl_down) { config_scroll += 1 sound_play(snd_scroll) }
+			if config_scroll = -1 config_scroll = 3
+			if config_scroll =  4 config_scroll = 0
+			if change_key
+			{
+				change_key = 2
+			}
+			if keyboard_check_pressed(ctrl_jump) && !change_key
+			{
+				if config_scroll < 5
+					change_key = 1
+				sound_play(snd_confirm)
+			}
+			if change_key = 2
+			{
+				keyboard_wait()
+				switch config_scroll
+				{
+					case 0:
+						ctrl_jump = keyboard_lastkey
+						ini_write_real("Controls","Jump" ,ctrl_jump )
+						break
+					case 1:
+						ctrl_fire = keyboard_lastkey
+						ini_write_real("Controls","Fire" ,ctrl_fire )
+						break
+					case 2:
+						ctrl_left = keyboard_lastkey
+						ini_write_real("Controls","Left" ,ctrl_left )
+						break
+					case 3:
+						ctrl_right = keyboard_lastkey
+						ini_write_real("Controls","Right",ctrl_right)
+						break
+				}
+				keyboard_lastkey = 0
+				change_key = 0
+			}
+			break
 	}
 }
 
@@ -97,12 +165,13 @@ if !pause
 {
 	if frame mod 30 = 1
 		instance_deactivate_object(tile)
-	instance_activate_region(player.x-36,player.y-28,player.x+36,player.y+16,true)
+	instance_activate_region(player.x-12,player.y-28,28,28,true)
 	for(i=0;i<instance_number(enemy);i+=1)
 	{
 		with instance_find(enemy,i)
 		{
-			instance_activate_region(x-36,y-28,x+36,y+16,true)
+			if (subtype = 0) || grabby = noone
+				instance_activate_region(x-12,y-28,28,32,true)
 		}
 	}
 }

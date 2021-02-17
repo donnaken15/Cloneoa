@@ -136,3 +136,6 @@ if respawn_cooldown <= 0
 			break
 	}
 }
+
+//if (subtype = 0) && grabby = noone
+	//draw_rectangle_color(x-12,y-28,x+16,y+4,c_yellow,c_yellow,c_yellow,c_yellow,1)

@@ -1,0 +1,7 @@
+
+do like
+upx Cloneoa.exe --best --ultra-brute --compress-export=1 -oTEST.exe
+get minimum address for game data
+set address in uncompressed at 226CFB to that address
+upx Cloneoa.exe --best --ultra-brute --compress-export=1
+

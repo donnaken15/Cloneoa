@@ -481,4 +481,16 @@
   <data name="JP_Hint_Title" xml:space="preserve">
     <value>情報</value>
   </data>
+  <data name="EN_Editor_NewFile" xml:space="preserve">
+    <value>&lt;new file&gt;</value>
+  </data>
+  <data name="EN_Editor_Tree_Root" xml:space="preserve">
+    <value>Level (0x00)</value>
+  </data>
+  <data name="JP_Editor_NewFile" xml:space="preserve">
+    <value>＜新しいファイル＞</value>
+  </data>
+  <data name="JP_Editor_Tree_Root" xml:space="preserve">
+    <value>レベル（０ｘ００）</value>
+  </data>
 </root>

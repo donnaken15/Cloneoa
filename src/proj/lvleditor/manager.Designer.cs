@@ -34,6 +34,7 @@
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuNew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpenRecent = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,21 +51,6 @@
             this.menuLevel = new System.Windows.Forms.ToolStripMenuItem();
             this.menuObjSub = new System.Windows.Forms.ToolStripMenuItem();
             this.menuObjNewSub = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuObjNewItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuObjNewGem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuObjNewStar = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuObjNew5G = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuNewObjHeal = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuObjNewKey = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuObjNewLife = new System.Windows.Forms.ToolStripMenuItem();
-            this.enemyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mooToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flyingMooToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mooToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.propellerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mineMooToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.spikeCannonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.floatingBallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuObjProps = new System.Windows.Forms.ToolStripMenuItem();
             this.menuObjFind = new System.Windows.Forms.ToolStripMenuItem();
             this.menuObjDel = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,7 +90,6 @@
             this.fileDiagSave = new System.Windows.Forms.SaveFileDialog();
             this.commonUpdater = new System.Windows.Forms.Timer(this.components);
             this.mainTooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.mainToolbar.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -155,6 +140,11 @@
             this.menuOpen.Name = "menuOpen";
             this.menuOpen.Click += new System.EventHandler(this.fileLoad);
             // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            resources.ApplyResources(this.closeToolStripMenuItem, "closeToolStripMenuItem");
+            // 
             // menuOpenRecent
             // 
             this.menuOpenRecent.Name = "menuOpenRecent";
@@ -165,6 +155,7 @@
             this.menuSave.Image = global::enVisioner.Properties.Resources.MDI_SAVE;
             resources.ApplyResources(this.menuSave, "menuSave");
             this.menuSave.Name = "menuSave";
+            this.menuSave.Click += new System.EventHandler(this.visSave);
             // 
             // menuSaveAs
             // 
@@ -260,115 +251,9 @@
             // 
             // menuObjNewSub
             // 
-            this.menuObjNewSub.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuObjNewItem,
-            this.enemyToolStripMenuItem});
             this.menuObjNewSub.Image = global::enVisioner.Properties.Resources.MDI_newobj;
             resources.ApplyResources(this.menuObjNewSub, "menuObjNewSub");
             this.menuObjNewSub.Name = "menuObjNewSub";
-            // 
-            // menuObjNewItem
-            // 
-            this.menuObjNewItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuObjNewGem,
-            this.menuObjNewStar,
-            this.menuObjNew5G,
-            this.menuNewObjHeal,
-            this.menuObjNewKey,
-            this.menuObjNewLife});
-            this.menuObjNewItem.Name = "menuObjNewItem";
-            resources.ApplyResources(this.menuObjNewItem, "menuObjNewItem");
-            // 
-            // menuObjNewGem
-            // 
-            this.menuObjNewGem.Image = global::enVisioner.Properties.Resources.spr_gem;
-            resources.ApplyResources(this.menuObjNewGem, "menuObjNewGem");
-            this.menuObjNewGem.Name = "menuObjNewGem";
-            // 
-            // menuObjNewStar
-            // 
-            this.menuObjNewStar.Image = global::enVisioner.Properties.Resources.spr_star;
-            resources.ApplyResources(this.menuObjNewStar, "menuObjNewStar");
-            this.menuObjNewStar.Name = "menuObjNewStar";
-            // 
-            // menuObjNew5G
-            // 
-            this.menuObjNew5G.Image = global::enVisioner.Properties.Resources.spr_5g;
-            resources.ApplyResources(this.menuObjNew5G, "menuObjNew5G");
-            this.menuObjNew5G.Name = "menuObjNew5G";
-            // 
-            // menuNewObjHeal
-            // 
-            this.menuNewObjHeal.Image = global::enVisioner.Properties.Resources.spr_heal;
-            resources.ApplyResources(this.menuNewObjHeal, "menuNewObjHeal");
-            this.menuNewObjHeal.Name = "menuNewObjHeal";
-            // 
-            // menuObjNewKey
-            // 
-            this.menuObjNewKey.Image = global::enVisioner.Properties.Resources.spr_key;
-            resources.ApplyResources(this.menuObjNewKey, "menuObjNewKey");
-            this.menuObjNewKey.Name = "menuObjNewKey";
-            // 
-            // menuObjNewLife
-            // 
-            this.menuObjNewLife.Image = global::enVisioner.Properties.Resources.spr_life;
-            resources.ApplyResources(this.menuObjNewLife, "menuObjNewLife");
-            this.menuObjNewLife.Name = "menuObjNewLife";
-            // 
-            // enemyToolStripMenuItem
-            // 
-            this.enemyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mooToolStripMenuItem,
-            this.flyingMooToolStripMenuItem,
-            this.mooToolStripMenuItem1,
-            this.propellerToolStripMenuItem,
-            this.mineMooToolStripMenuItem,
-            this.spikeCannonToolStripMenuItem,
-            this.floatingBallToolStripMenuItem});
-            this.enemyToolStripMenuItem.Name = "enemyToolStripMenuItem";
-            resources.ApplyResources(this.enemyToolStripMenuItem, "enemyToolStripMenuItem");
-            // 
-            // mooToolStripMenuItem
-            // 
-            this.mooToolStripMenuItem.Image = global::enVisioner.Properties.Resources.spr_enemy;
-            resources.ApplyResources(this.mooToolStripMenuItem, "mooToolStripMenuItem");
-            this.mooToolStripMenuItem.Name = "mooToolStripMenuItem";
-            // 
-            // flyingMooToolStripMenuItem
-            // 
-            this.flyingMooToolStripMenuItem.Image = global::enVisioner.Properties.Resources.spr_enemy2;
-            resources.ApplyResources(this.flyingMooToolStripMenuItem, "flyingMooToolStripMenuItem");
-            this.flyingMooToolStripMenuItem.Name = "flyingMooToolStripMenuItem";
-            // 
-            // mooToolStripMenuItem1
-            // 
-            this.mooToolStripMenuItem1.Image = global::enVisioner.Properties.Resources.spr_enemy3;
-            resources.ApplyResources(this.mooToolStripMenuItem1, "mooToolStripMenuItem1");
-            this.mooToolStripMenuItem1.Name = "mooToolStripMenuItem1";
-            // 
-            // propellerToolStripMenuItem
-            // 
-            this.propellerToolStripMenuItem.Image = global::enVisioner.Properties.Resources.spr_enemy4;
-            resources.ApplyResources(this.propellerToolStripMenuItem, "propellerToolStripMenuItem");
-            this.propellerToolStripMenuItem.Name = "propellerToolStripMenuItem";
-            // 
-            // mineMooToolStripMenuItem
-            // 
-            this.mineMooToolStripMenuItem.Image = global::enVisioner.Properties.Resources.spr_enemy5;
-            resources.ApplyResources(this.mineMooToolStripMenuItem, "mineMooToolStripMenuItem");
-            this.mineMooToolStripMenuItem.Name = "mineMooToolStripMenuItem";
-            // 
-            // spikeCannonToolStripMenuItem
-            // 
-            this.spikeCannonToolStripMenuItem.Image = global::enVisioner.Properties.Resources.spr_enemy7;
-            resources.ApplyResources(this.spikeCannonToolStripMenuItem, "spikeCannonToolStripMenuItem");
-            this.spikeCannonToolStripMenuItem.Name = "spikeCannonToolStripMenuItem";
-            // 
-            // floatingBallToolStripMenuItem
-            // 
-            this.floatingBallToolStripMenuItem.Image = global::enVisioner.Properties.Resources.spr_enemy8;
-            resources.ApplyResources(this.floatingBallToolStripMenuItem, "floatingBallToolStripMenuItem");
-            this.floatingBallToolStripMenuItem.Name = "floatingBallToolStripMenuItem";
             // 
             // menuObjProps
             // 
@@ -669,11 +554,6 @@
             // 
             this.mainTooltip.ToolTipTitle = "Information";
             // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            resources.ApplyResources(this.closeToolStripMenuItem, "closeToolStripMenuItem");
-            // 
             // manager
             // 
             this.AllowDrop = true;
@@ -755,21 +635,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuObjFind;
         private System.Windows.Forms.ToolStripMenuItem menuObjDel;
         private System.Windows.Forms.ToolStripMenuItem menuLink;
-        private System.Windows.Forms.ToolStripMenuItem menuObjNewItem;
-        private System.Windows.Forms.ToolStripMenuItem menuObjNewGem;
-        private System.Windows.Forms.ToolStripMenuItem menuObjNewStar;
-        private System.Windows.Forms.ToolStripMenuItem menuObjNew5G;
-        private System.Windows.Forms.ToolStripMenuItem menuNewObjHeal;
-        private System.Windows.Forms.ToolStripMenuItem menuObjNewKey;
-        private System.Windows.Forms.ToolStripMenuItem menuObjNewLife;
-        private System.Windows.Forms.ToolStripMenuItem enemyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mooToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem flyingMooToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mooToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem propellerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mineMooToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem spikeCannonToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem floatingBallToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem langSwapTooltree;
         private System.Windows.Forms.ToolStripMenuItem langSwapEng;
         private System.Windows.Forms.ToolStripMenuItem langSwapJpn;

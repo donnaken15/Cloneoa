@@ -11,6 +11,8 @@ switch (type)
 				create_particle(x,y,0)
 				break
 			case 2:
+				if health < 3
+					health += 1
 				create_particle(x,y,1)
 				break
 		}

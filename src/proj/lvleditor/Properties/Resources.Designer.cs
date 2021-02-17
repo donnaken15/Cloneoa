@@ -61,6 +61,24 @@ namespace enVisioner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;new file&gt;.
+        /// </summary>
+        internal static string EN_Editor_NewFile {
+            get {
+                return ResourceManager.GetString("EN_Editor_NewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level (0x00).
+        /// </summary>
+        internal static string EN_Editor_Tree_Root {
+            get {
+                return ResourceManager.GetString("EN_Editor_Tree_Root", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Level.
         /// </summary>
         internal static string EN_Hint_NewFile {
@@ -255,6 +273,24 @@ namespace enVisioner.Properties {
         internal static string EN_Root_Title {
             get {
                 return ResourceManager.GetString("EN_Root_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ＜新しいファイル＞.
+        /// </summary>
+        internal static string JP_Editor_NewFile {
+            get {
+                return ResourceManager.GetString("JP_Editor_NewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レベル（０ｘ００）.
+        /// </summary>
+        internal static string JP_Editor_Tree_Root {
+            get {
+                return ResourceManager.GetString("JP_Editor_Tree_Root", resourceCulture);
             }
         }
         

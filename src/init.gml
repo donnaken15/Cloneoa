@@ -73,8 +73,8 @@ if fname != ""
 		ctrl_up    = ini_read_real("Controls","Up"   ,vk_up)
 		ctrl_right = ini_read_real("Controls","Right",vk_right)
 		ctrl_down  = ini_read_real("Controls","Down" ,vk_down)
-		ctrl_jump  = ini_read_real("Controls","Jump" ,vk_space)
-		ctrl_fire  = ini_read_real("Controls","Fire" ,vk_shift)
+		ctrl_jump  = ini_read_real("Controls","Jump" ,ord('Z'))
+		ctrl_fire  = ini_read_real("Controls","Fire" ,ord('X'))
 		ctrl_start = ini_read_real("Controls","Start",vk_return)
 
 		handytitle = ini_read_real("General","HandyTitle",0)
@@ -101,6 +101,7 @@ if fname != ""
 	create_obj_scr = get_code(path_src+"obj/scr/cctor.gml")
 	create_part_scr = get_code(path_src+"part/scr/cctor.gml")
 	draw_digit_scr = get_code(path_src+"scr/draw_digit.gml")
+	ktkn_scr = get_code(path_src+"scr/ktkn.gml")
 
 	{
 		object_event_clear(controller,	ev_step,0)
@@ -108,6 +109,7 @@ if fname != ""
 		object_event_clear(player,		ev_step,0)
 		object_event_clear(player,		ev_draw,0)
 		object_event_clear(tile,		ev_create,0)
+		//object_event_clear(tile,		ev_draw,0)
 		object_event_clear(item,		ev_draw,0)
 		object_event_clear(item,		ev_destroy,0)
 		object_event_clear(enemy,		ev_step,0)
@@ -127,6 +129,7 @@ if fname != ""
 		object_event_add(particle,	ev_draw,	0,get_code(path_src+"part/draw.gml",		0))
 		object_event_add(windbullet,ev_step,	0,get_code(path_src+"klo/wndb/step.gml",	0))
 		object_event_add(windbullet,ev_draw,	0,get_code(path_src+"klo/wndb/draw.gml",	0))
+		//object_event_add(tile,ev_draw,0,"depth=-1;draw_rectangle_color(x,y,x+8,y+8,c_yellow,c_yellow,c_yellow,c_yellow,1)")
 	}
 
 	globalvar log,logmax,logfull,posx,posy;
@@ -328,7 +331,8 @@ if fname != ""
 	{
 		globalvar snd_jump, snd_land, snd_pause, snd_scroll, snd_heal,
 				snd_gem, snd_float, music_part, snd_hurt, snd_fire,
-				snd_grab, snd_kill, snd_death, snd_death2, snd_throw;
+				snd_grab, snd_kill, snd_death, snd_death2, snd_throw,
+				snd_confirm;
 		snd_jump = sound_add(path_sfx+"jump.wav",0,1)
 		snd_land = sound_add(path_sfx+"land.wav",0,1)
 		snd_pause = sound_add(path_sfx+"pause.wav",0,1)
@@ -344,6 +348,7 @@ if fname != ""
 		snd_death2 = sound_add(path_sfx+"death2.wav",0,1)
 		snd_throw = sound_add(path_sfx+"throw.wav",0,1)
 		snd_wahoo = sound_add(path_sfx+"wahoo.wav",0,1)
+		snd_confirm = sound_add(path_sfx+"confirm.wav",0,1)
 
 		sound_play(mus_int)
 		sound_volume(mus_int,0.87)
@@ -382,7 +387,7 @@ if fname != ""
 		}
 	}
 
-	//if lang (implement switch)
+	if !lang //(implement switch)
 	{
 		keystr[vk_left     ] =  "Left Arrow"
 		keystr[vk_up       ] =    "Up Arrow"
@@ -435,7 +440,7 @@ if fname != ""
 		keystr[vk_numpad7  ] = "Numpad 7"
 		keystr[vk_numpad8  ] = "Numpad 8"
 		keystr[vk_numpad9  ] = "Numpad 9"
-		keystr[vk_multiply ] = "Multiplay"
+		keystr[vk_multiply ] = "Multiply"
 		keystr[vk_divide   ] = "Divide"
 		keystr[vk_add      ] = "Add"
 		keystr[vk_subtract ] = "Subtract"
@@ -444,13 +449,102 @@ if fname != ""
 			keystr[ord(string(i))] = string(i)
 		for (i=0;i<26;i+=1)
 			keystr[ord('A')+i] = chr(i+ord('A'))
+		keystr[ord('[')] = 'Start'
+		keystr[ord(']')] = 'Menu'
+		keystr[192] = 'Grave'
+		keystr[189] = 'Minus'
+		keystr[187] = 'Equal'
+		keystr[219] = '['
+		keystr[221] = ']'
+		keystr[220] = 'Backslash'
+		keystr[186] = 'Semicolon'
+		keystr[222] = 'Apostraphe'
+		keystr[188] = 'Comma'
+		keystr[190] = 'Period'
+		keystr[191] = 'Slash'
+		keystr[20 ] = 'Caps Lock' // whyx d
+		keystr[144] = 'Num Lock'
+		keystr[145] = 'Scroll Lock'
+		keystr[19 ] = 'Pause'
+		keystr[12 ] = "Numpad 5 Unlocked"
 
 		pause_btns[0] = "Continue Game"
-		pause_btns[1] = "unavailable"//"Last Checkpoint"
-		pause_btns[2] = "unavailable"//"Restart Vision"
-		pause_btns[3] = "unavailable"
-		pause_btns[4] = "unavailable"//"Configuration"
+		pause_btns[1] = "Last Checkpoint"
+		pause_btns[2] = "Restart Vision"
+		pause_btns[3] = "Configuration"
+		pause_btns[4] = "Exit"
 	}
+	else
+	{
+		globalvar __kana_rpms;
+		// wtf is this V
+		// $A1 to $DD
+		// reverse these lines
+		__kana_rpms[62]="'"
+		__kana_rpms[61]="`"
+		__kana_rpms[60]="N"
+		__kana_rpms[59]="WA"
+		__kana_rpms[58]="RO"
+		__kana_rpms[57]="RE"
+		__kana_rpms[56]="RU"
+		__kana_rpms[55]="RI"
+		__kana_rpms[54]="RA"
+		__kana_rpms[53]="YO"
+		__kana_rpms[52]="YU"
+		__kana_rpms[51]="YA"
+		__kana_rpms[50]="MO"
+		__kana_rpms[49]="ME"
+		__kana_rpms[48]="MU"
+		__kana_rpms[47]="MI"
+		__kana_rpms[46]="MA"
+		__kana_rpms[45]="HO"
+		__kana_rpms[44]="HE"
+		__kana_rpms[43]="HU"
+		__kana_rpms[42]="HI"
+		__kana_rpms[41]="HA"
+		__kana_rpms[40]="NO"
+		__kana_rpms[39]="NE"
+		__kana_rpms[38]="NU"
+		__kana_rpms[37]="NI"
+		__kana_rpms[36]="NA"
+		__kana_rpms[35]="TO"
+		__kana_rpms[34]="TE"
+		__kana_rpms[33]="TU"
+		__kana_rpms[32]="TI"
+		__kana_rpms[31]="TA"
+		__kana_rpms[30]="SO"
+		__kana_rpms[29]="SE"
+		__kana_rpms[28]="SU"
+		__kana_rpms[27]="SI"
+		__kana_rpms[26]="SA"
+		__kana_rpms[25]="KO"
+		__kana_rpms[24]="KE"
+		__kana_rpms[23]="KU"
+		__kana_rpms[22]="KI"
+		__kana_rpms[21]="KA"
+		__kana_rpms[20]="O"
+		__kana_rpms[19]="E"
+		__kana_rpms[18]="U"
+		__kana_rpms[17]="I"
+		__kana_rpms[16]="A"
+		__kana_rpms[15]="-"
+		__kana_rpms[14]="tu"
+		__kana_rpms[13]="yo"
+		__kana_rpms[12]="yu"
+		__kana_rpms[11]="ya"
+		__kana_rpms[10]="o"
+		__kana_rpms[9]="e"
+		__kana_rpms[8]="u"
+		__kana_rpms[7]="i"
+		__kana_rpms[6]="a"
+		__kana_rpms[5]="wo"
+		__kana_rpms[4]=":"
+		__kana_rpms[3]=","
+		__kana_rpms[2]="]"
+		__kana_rpms[1]="["
+		__kana_rpms[0]="."
+	}
+	// DO CHARSET OR SPRITE FONT
 
 	frame = 0
 
@@ -462,6 +556,12 @@ if fname != ""
 	//because it worked before on x1 scale
 	freesize = ini_read_real("Display","FreeSize",0)
 	if !freesize window_set_sizeable(false)
+	
+	if ini_read_real("Display","FullScreen",0)
+	{
+		window_set_fullscreen(1)
+		window_set_region_scale(-1,true)
+	}
 
 	window_set_visible(true)
 

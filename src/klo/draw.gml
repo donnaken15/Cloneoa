@@ -57,6 +57,7 @@ if debug_draw {
 	draw_rectangle_color(x+tilecol[1],y+tilecol[0],x+tilecol[2],y+tilecol[3],c_lime,c_lime,c_lime,c_lime,1)
 	draw_rectangle_color(x+itemcol[1],y+itemcol[0],x+itemcol[2],y+itemcol[3],c_blue,c_blue,c_blue,c_blue,1)
 	draw_rectangle_color(x+entcol[1],y+entcol[0],x+entcol[2],y+entcol[3],c_red,c_red,c_red,c_red,1)
+	draw_rectangle_color(x-12,y-28,x+16,y,c_yellow,c_yellow,c_yellow,c_yellow,1)
 }
 
 // figure out more optimized system for this

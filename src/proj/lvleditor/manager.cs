@@ -15,9 +15,9 @@ namespace enVisioner
 
         static IniFile settings = new IniFile();
 
-        static string lang = "EN";
+        public static string lang = "EN";
 
-        string MultilangText(string param)
+        public static string MultilangText(string param)
         {
             return Properties.Resources.ResourceManager.GetString(lang + '_' + param);
         }
@@ -40,6 +40,14 @@ namespace enVisioner
                 menuSave.Text = MultilangText(prefix + "File_Save");
                 menuSaveAs.Text = MultilangText(prefix + "File_SaveAs");
                 menuExit.Text = MultilangText(prefix + "File_Exit");
+            }
+            prefix = "Editor_";
+            {
+                foreach(editing form in MdiChildren)
+                {
+                    if (form.fname == "")
+                        form.Text = MultilangText(prefix + "NewFile");
+                }
             }
         }
 
@@ -174,7 +182,7 @@ namespace enVisioner
         {
             if (fileDiagOpen.ShowDialog() == DialogResult.OK)
             {
-                editing newlvl = new editing(File.ReadAllBytes(fileDiagOpen.FileName));
+                editing newlvl = new editing(File.ReadAllBytes(fileDiagOpen.FileName), fileDiagOpen.SafeFileName);
                 newlvl.MdiParent = this;
                 newlvl.Show();
             }
@@ -213,9 +221,8 @@ namespace enVisioner
 
         private void newObjBtn(object sender, EventArgs e)
         {
-            KLOAPI.Object test = new KLOAPI.Object();
-            for (int i = 0; i < 10; i++)
-                ((editing)ActiveMdiChild).vision.data.Add(0);
+            ((editing)ActiveMdiChild).vision.objects.Add(new KLOAPI.Object());
+            ((editing)ActiveMdiChild).updateTree();
             //MdiChildren[0] = new editing() { vision = new Vision() { header = { MusicID = 5 } } };
         }
 
@@ -229,13 +236,24 @@ namespace enVisioner
         private void locSwitchJp(object sender, EventArgs e)
         {
             lang = "JP";
-            settings.SetKeyValue("General","Language","0");
+            settings.SetKeyValue("General","Language","1");
             Localize();
         }
 
         private void showGuide(object sender, EventArgs e)
         {
             Help.ShowHelp(this, "info.chm");
+        }
+
+        private void visSave(object sender, EventArgs e)
+        {
+            if (fileDiagSave.ShowDialog() == DialogResult.OK &&
+                fileDiagSave.FileName != "")
+            {
+                File.WriteAllBytes(fileDiagSave.FileName, ((editing)ActiveMdiChild).vision.File);
+                ((editing)ActiveMdiChild).fname = Path.GetFileName(fileDiagSave.FileName);
+                ((editing)ActiveMdiChild).Text = ((editing)ActiveMdiChild).fname;
+            }
         }
     }
 }

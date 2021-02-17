@@ -10,50 +10,63 @@ namespace enVisioner
 {
     public partial class editing : Form
     {
-        static byte[] shifter = new byte[8];
-
-        //static List<byte> data = new List<byte>(header);
-
         public Vision vision;
 
         PropEdit_NULL PropEdit_NULL_Subst = new PropEdit_NULL();
         PropEdit_Header PropEdit_Level_Subst;
+        PropEdit_Obj PropEdit_Object = new PropEdit_Obj();
         int PropEdit_Selector = 1,
             hextext_selstart, hextext_sellen, hextext_fix = 0;
-
+        public string fname = "";
+        
         public editing()
         {
             InitializeComponent();
             vision = new Vision();
+            PropEdit_Level_Subst = new PropEdit_Header(vision.header, vision);
             objlister.Nodes[0].Expand();
-            vision.data[4] = 30;
-            PropEdit_Level_Subst = new PropEdit_Header(vision.header);
+            objectEditorPanel.SelectedObject = vision.header;
+            Text = manager.MultilangText("Editor_NewFile");
         }
 
-        public editing(byte[] input)
+        public editing(byte[] input, string fname)
         {
             InitializeComponent();
             vision = new Vision(input);
+            PropEdit_Level_Subst = new PropEdit_Header(vision.header, vision);
             objlister.Nodes[0].Expand();
-            PropEdit_Level_Subst = new PropEdit_Header(vision.header);
+            objectEditorPanel.SelectedObject = vision.header;
+            vision.File = input;
+            Text = fname;
         }
 
         private void selectObj(object sender, TreeViewEventArgs e)
         {
-            switch (e.Node.Name)
+            if (e.Node.Name == "vision")
             {
-                case "vision":
-                    //PropEdit_Level_Subst.LevelType = vision.header.LevelType;
-                    //PropEdit_Level_Subst.ThemeID = vision.header.ThemeID;//ByteAccess.HiBit(vision.header.data[5]);
-                    //PropEdit_Level_Subst.MusicID = ;//ByteAccess.LoBit(vision.header.data[5]);
-                    objectEditorPanel.SelectedObject = PropEdit_Level_Subst;
-                    PropEdit_Selector = 1;
-                    break;
-                default:
-                    objectEditorPanel.SelectedObject = PropEdit_NULL_Subst;
-                    PropEdit_Selector = 0;
-                    break;
+                objectEditorPanel.SelectedObject = PropEdit_Level_Subst;
+                PropEdit_Selector = 1;
+
             }
+            else if (e.Node.Name.StartsWith("obj"))
+            {
+                objectEditorPanel.SelectedObject = PropEdit_Object;
+                PropEdit_Selector = 0;
+
+            }
+            else
+            {
+                objectEditorPanel.SelectedObject = PropEdit_NULL_Subst;
+                PropEdit_Selector = 0;
+            }
+        }
+
+        public void updateTree()
+        {
+            objlister.Nodes[0].Nodes.Clear();
+            for (int i = 0; i < vision.objects.Count; i++)
+                objlister.Nodes[0].Nodes.Add("obj"+i.ToString(),"Object");
+            objlister.Nodes[0].Expand();
         }
 
         private void hextextKeys(object sender, KeyPressEventArgs e)
@@ -97,19 +110,18 @@ namespace enVisioner
             switch (PropEdit_Selector)
             {
                 case 1:
-                    vision.header = PropEdit_Level_Subst.Exchange();
-                    vision.header.StartPosition = new XYU16(3,4);
+                    //vision.header = PropEdit_Level_Subst.Exchange();
                     //vision.header.StartPosition.x = 100;
                     //vision.header.LevelType = 100;
                     //vision.header.LevelSize.y = 100;
-                    PropEdit_Level_Subst = new PropEdit_Header(vision.header);
+                    vision.header = PropEdit_Level_Subst.__header;
                     break;
             }
         }
 
         private void updateData(object sender, EventArgs e)
         {
-            if (hextext_fix == 0)
+            /*if (hextext_fix == 0)
             {
                 if (hextext.SelectionStart != 0)
                 {
@@ -120,20 +132,10 @@ namespace enVisioner
                 //hextext_sellen = hextext.SelectionLength;
                 //if (hextext.Text.Replace("\n", "").Replace("\r", "").Length % 2 != 0)
                 //hextext.Text += "0";
-                if (hextext.Text.Length < 32)
-                {
-                    hextext.Text = BitConverter.ToString(vision.header.data).Replace("-", string.Empty);
-                }
-                else
-                {
-                    //vision.header.data = Encoding.ASCII.GetBytes(hextext.Text.Substring(32));
-                    for (int i = 2; i < vision.header.data.Length; i++)
-                        vision.header.data[i] = byte.Parse(hextext.Text.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
-                }
-                hextext.Text.Remove(5, 1);
+                hextext.Text = BitConverter.ToString(vision.File).Replace("-", string.Empty);
                 hextext_fix = 0;
                 hextext.SelectionStart = hextext_selstart;
-            }
+            }*/
             //hextext.Select(hextext_selstart, 0);
             //MessageBox.Show(byte.Parse(hextext.Text.Substring(0, 2), System.Globalization.NumberStyles.HexNumber).ToString("X"));
         }
@@ -145,13 +147,13 @@ namespace enVisioner
 
         private void updateDataDisplay(object sender, PaintEventArgs e)
         {
-            hextext.Text = BitConverter.ToString(vision.header.data).Replace("-", string.Empty) + '\n';
-            if (vision.data.ToArray().Length > 10)
-                hextext.Text += BitConverter.ToString(vision.data.ToArray()).Replace("-", string.Empty);
+            /*hextext.Text = BitConverter.ToString(vision.File).Replace("-", string.Empty) + '\n';
+            if (vision.File.Length > 10)
+                hextext.Text += BitConverter.ToString(vision.File).Replace("-", string.Empty);
             for (int i = 16; i < hextext.Text.Length; i += 16)
             {
                 hextext.Text.Insert(i, "\n");
-            }
+            }*/
         }
 
         /*private void editrawdatatbox(object sender, KeyEventArgs e)
@@ -160,41 +162,6 @@ namespace enVisioner
                 e.KeyCode == Keys.Space || (e.KeyCode >= Keys.A && e.KeyCode <= Keys.Z));
         }*/
     }
-
-    public enum objtype
-    {
-        Item,
-        Entity,
-        Door,
-        Sign,
-        Fore = 0xF,
-        Back = 0xE
-    };
-
-    public enum item
-    {
-        Gem,
-        Diamond,
-        Heart,
-        Star,
-        Life
-    };
-
-    public enum entity
-    {
-        Mu,
-        Mufly,
-        Box,
-        Ball
-    };
-
-    public enum door
-    {
-        Goal,
-        Locked0,
-        Locked1,
-        Warp
-    };
 
     /*[DefaultProperty("StartPosition")]
     public class PropEdit_Level
@@ -215,18 +182,19 @@ namespace enVisioner
     }*/
 
     [DefaultProperty("Type")]
-    public class PropEdit_Item
+    public class PropEdit_Obj
     {
         [Category("Identifier")]
-        //[Description("")]
-        public objtype Type { get; set; }
+        [Description("Defines an object type")]
+        public ObjectType Type { get; set; }
 
         [Category("Identifier")]
-        //[Description("")]
-        public item Subtype { get; set; }
+        [Description("A type of the type of object")]
+        public byte Subtype { get; set; }
+        //figure out how to switch enums
 
         [Category("Information")]
-        //[Description("")]
+        [Description("The placement of the object")]
         public XYU16 Position { get; set; }
     }
 
@@ -239,12 +207,8 @@ namespace enVisioner
     /// </summary>
     public class PropEdit_Header
     {
-        private Vision.Header __header;
-
-        public Vision.Header Exchange()
-        {
-            return __header;
-        }
+        public Vision.Header __header;
+        public Vision __parent;
 
         /// <summary>
         /// List of addresses for each piece of data in this object
@@ -268,10 +232,6 @@ namespace enVisioner
             get
             {
                 return __header.FileVersion;
-            }
-            set
-            {
-                __header.FileVersion = value;
             }
         }
 
@@ -336,6 +296,7 @@ namespace enVisioner
             }
             set
             {
+                __header.StartPosition = new XYU16(value.X, value.Y);
                 //if (value.X < ushort.MaxValue && value.Y < ushort.MaxValue &&
                 //value.X >= 0 && value.Y >= 0)
                 //__header.StartPosition = new XYU16(value.X, value.Y);
@@ -355,13 +316,15 @@ namespace enVisioner
             }
             set
             {
-                __header.StartPosition = new XYU16(value.X, value.Y);
+                __header.LevelSize = new XYU16(value.X, value.Y);
+                __parent.tiles = new byte[value.X * value.Y];
             }
         }
 
-        public PropEdit_Header(Vision.Header curheader)
+        public PropEdit_Header(Vision.Header curheader, Vision vis)
         {
             __header = curheader;
+            __parent = vis;
         }
     }
 
