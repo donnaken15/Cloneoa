@@ -22,7 +22,7 @@ some custom content, but apparently not.<br/>
 
 | Role                            | User                 |
 |:--------------------------------|---------------------:|
-| Music Ripping                   | Zophar               |
+| Music Ripping                   | Zophar, CaitSith2    |
 | Sprite Ripping                  | SpritersResource     |
 | Code / Director / Edits         | donnaken15           |
 | Original Game                   | Namco                |

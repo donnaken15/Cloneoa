@@ -10,17 +10,18 @@ if !cantmove
 
 	if floattime > 0 player_speed /= 2
 
+	if (ground)
+	{
+		if ((keyboard_check(ctrl_left) ||
+				keyboard_check(ctrl_right)) && !moving) char_index = 10
+		if ((!keyboard_check(ctrl_left) &&
+				!keyboard_check(ctrl_right)) && moving) char_index = 0
+	}
+
 	if keyboard_check(ctrl_right) && !keyboard_check(ctrl_left) { flip = 0 x += player_speed moving = 1 }
 	if keyboard_check(ctrl_left) { flip = 1 if x > 0 x -= player_speed moving = 1 }
 
 	if !keyboard_check(ctrl_right) && !keyboard_check(ctrl_left) moving = 0
-
-	char_index += char_speed
-
-	if (keyboard_check_pressed(ctrl_left) ||
-			keyboard_check_pressed(ctrl_right)) && ground char_index = 10
-	if ((keyboard_check_released(ctrl_left) ||
-			keyboard_check_released(ctrl_right)) && ground && !moving) char_index = 0
 
 	if vspeed != 0 && !cantfloat { ground = 0 }
 
@@ -59,7 +60,7 @@ if !cantmove
 		if (floattime mod 15) = 1 && !sound_isplaying(snd_float)
 			sound_play(snd_float)
 
-		if floattime && keyboard_check_released(ctrl_jump)
+		if floattime && (keyboard_check_released(ctrl_jump) || !keyboard_check(ctrl_jump))
 		{
 			floattime = 0
 			float = 0
@@ -120,6 +121,8 @@ if !cantmove
 			sound_play(snd_wahoo)
 		}
 	}
+
+	char_index += char_speed
 }
 
 if invnc_frames > 0
@@ -205,16 +208,14 @@ if invnc_frames = 0 && !draw
 		touching_ent.grabby = noone && !touching_ent.throw &&
 		touching_ent.respawn_cooldown <= 0
 	{
-		sound_play(snd_hurt)
 		invnc_frames = 180
 		health-=1
 		hurt_time=16
 		cantmove=1
 		if health = 0
-		{
-			sound_stop(snd_hurt)
 			sound_play(snd_death)
-		}
+		else
+			sound_play(snd_hurt)
 		//godmode effect xd -> y-=1
 	}
 }

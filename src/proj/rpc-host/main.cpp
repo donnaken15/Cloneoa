@@ -35,8 +35,9 @@ DWORD ppid(DWORD pid)
 	return (ppid);
 }
 
-//char TMP[_MAX_PATH],
-//char TMPF[_MAX_PATH], RPC_CMD[256];
+char TMP[_MAX_PATH];
+char TMPF[_MAX_PATH], RPC_CMD[0x100];
+HANDLE RPC_CMD_F;
 
 int main(int argc, char*argv[])
 {
@@ -48,15 +49,20 @@ int main(int argc, char*argv[])
 	//rpc.state = "";
 	rpc.details = argv[1];
 	rpc.state = "Playing Level";
+	rpc.largeImageKey = "kmain";
 	rpc.startTimestamp = time(0);
 	rpc.instance = 1;
-	//GetTempPath(_MAX_PATH, TMPF);
-	///strncpy(TMPF, TMP, _MAX_PATH);
-	//strcat(TMPF, "KLO-RPC-CMD");
+	GetTempPath(_MAX_PATH, TMPF);
+	strncpy(TMPF, (TMP), _MAX_PATH);
+	strcat(TMPF, "KLO-RPC-CMD");
 	//ifstream file;
 	Discord_UpdatePresence(&rpc);
 	parent = OpenProcess(PROCESS_ALL_ACCESS, TRUE, ppid(GetCurrentProcessId()));
+	RPC_CMD_F = CreateFile(TMPF, GENERIC_READ, FILE_SHARE_READ,
+		0, CREATE_NEW, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_DELETE_ON_CLOSE, 0);
 	while (1) {
+		ReadFile(RPC_CMD_F, RPC_CMD, 0x100, 0, 0);
+		SetFilePointer(RPC_CMD_F, 0, 0, FILE_BEGIN);
 		if (WaitForSingleObject(parent, 200) != WAIT_TIMEOUT) {
 			Discord_Shutdown();
 			break;

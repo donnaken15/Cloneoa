@@ -26,6 +26,7 @@ if health = 0 && invnc_frames = 0 && cantmove
 	{
 		if lives > 0
 		{
+			with controller { load_level(fname) }
 			char_index = 0
 			cantmove = 0
 			health = 3
@@ -328,18 +329,18 @@ draw_sprite_part(hudspr,0,0,0,8,16,view_xview[0]+view_wview[0]-8,view_yview[0]+v
 		{
 			draw_sprite_part(hudspr,0,0,28,15,15,view_xview[0]+8+(i*16),view_yview[0]+view_hview[0]-15)
 		}
-		draw_sprite_part(hudspr,0,108,16,16,12,view_xview[0]+200,view_yview[0]+view_hview[0]-14)
+		draw_sprite_part(hudspr,0,108,16,16,12,view_xview[0]+view_wview[0]-40,view_yview[0]+view_hview[0]-14)
 		// make script to draw numbers, big and small
 		// also make compatible with freesize by changing right leaning sprites to be relative to end of screen
 		// position for reference:
-		draw_digit(view_xview[0]+224-7,view_yview[0]+view_hview[0]-12,lives,1)
+		draw_digit(view_xview[0]+view_wview[0]-16-7,view_yview[0]+view_hview[0]-12,lives,1)
 	}
 	if max_gems
 	{
-		draw_sprite_part(hudspr,0,100,16,8,12,view_xview[0]+152,view_yview[0]+view_hview[0]-14)
-		draw_sprite_part(hudspr,0,122,57,5,7,view_xview[0]+176,view_yview[0]+view_hview[0]-8)
-		draw_digit(view_xview[0]+180,view_yview[0]+view_hview[0]-8,max_gems)
-		draw_digit(view_xview[0]+176-14,view_yview[0]+view_hview[0]-11,gems,1)
+		draw_sprite_part(hudspr,0,100,16,8,12,view_xview[0]+view_wview[0]-88,view_yview[0]+view_hview[0]-14)
+		draw_sprite_part(hudspr,0,122,57,5,7,view_xview[0]+view_wview[0]-64,view_yview[0]+view_hview[0]-8)
+		draw_digit(view_xview[0]+view_wview[0]-60,view_yview[0]+view_hview[0]-8,max_gems)
+		draw_digit(view_xview[0]+view_wview[0]-64-14,view_yview[0]+view_hview[0]-11,gems,1)
 	}
 }
 
@@ -358,6 +359,5 @@ if debug_draw
 	draw_text(view_xview[0],view_yview[0],
 	"pos: "+string_format(x,6,1)+" * "+string_format(y,6,1)+chr($D)+
 	"grav:	"+string_format(gravity,4,1)+" vs: "+string_format(vspeed,4,1)+" flt: "+string(float)+chr($D)+
-	"char idx: "+string_format(char_index,5,2)+" spd: "+string_format(char_speed,5,2)+chr($D)+
-	"gems: "+string_format(gems,3,0))
+	"char idx: "+string_format(char_index,5,2)+" spd: "+string_format(char_speed,5,2))
 }

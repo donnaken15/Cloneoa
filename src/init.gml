@@ -42,7 +42,6 @@ path_sfx = path_root+"sfx/"
 path_mus = path_root+"mus/"
 path_bin = path_root+"bin/"
 if parameter_count() = 0 {
-	//mus_file = sound_add(path_mus+"file.wav",1,1)
 	mus_file = sound_add(path_mus+"file.wav",1,1)
 	snd_wahoo = sound_add(path_sfx+"wahoo.wav",0,1)
 	sound_loop(mus_file)
@@ -58,17 +57,15 @@ if parameter_count() = 0 {
 depth = 100
 base_gravity = 0.21
 
-if fname != ""
+if fname != "" && file_exists(fname)
 {
-
 	/// SETTINGS
 	ini_open(path_bin+"settings.ini")
 	{
 		realtimesrc = ini_read_real("Debug","RealtimeSrc",0)
-		debug_draw = ini_read_real("Debug","DebugDraw",0)
+		debug_draw = ini_read_real("Debug","DebugDraw",debug_mode)
 		lang = ini_read_real("General","Language",0)
 
-		// INDIVIDUAL SHIFT ISNT WORKING WTF
 		ctrl_left  = ini_read_real("Controls","Left" ,vk_left)
 		ctrl_up    = ini_read_real("Controls","Up"   ,vk_up)
 		ctrl_right = ini_read_real("Controls","Right",vk_right)
@@ -80,8 +77,6 @@ if fname != ""
 		handytitle = ini_read_real("General","HandyTitle",0)
 	}
 
-	debug_draw |= debug_mode
-
 	if !realtimesrc {
 	file_text_read_all_scr =
 		execute_file(path_src+"scr/file_text_read_all.gml",path_src+"scr/file_text_read_all.gml")
@@ -91,9 +86,6 @@ if fname != ""
 	file_text_read_all_scr = path_src+"scr/file_text_read_all.gml"
 	get_code_scr = path_src+"scr/get_code.gml" }
 
-	printf_scr = get_code(path_src+"scr/printf.gml")
-	clear_scr = get_code(path_src+"scr/clear.gml")
-	conlines_scr = get_code(path_src+"scr/conlines.gml")
 	lobit_scr = get_code(path_src+"scr/lobit.gml")
 	lobyte_scr = get_code(path_src+"scr/lobyte.gml")
 	hibit_scr = get_code(path_src+"scr/hibit.gml")
@@ -102,14 +94,15 @@ if fname != ""
 	create_part_scr = get_code(path_src+"part/scr/cctor.gml")
 	draw_digit_scr = get_code(path_src+"scr/draw_digit.gml")
 	ktkn_scr = get_code(path_src+"scr/ktkn.gml")
+	load_level_scr = get_code(path_src+"scr/load_level.gml")
 
+	// CODE ADDING STUFF
 	{
 		object_event_clear(controller,	ev_step,0)
 		object_event_clear(controller,	ev_draw,0)
 		object_event_clear(player,		ev_step,0)
 		object_event_clear(player,		ev_draw,0)
 		object_event_clear(tile,		ev_create,0)
-		//object_event_clear(tile,		ev_draw,0)
 		object_event_clear(item,		ev_draw,0)
 		object_event_clear(item,		ev_destroy,0)
 		object_event_clear(enemy,		ev_step,0)
@@ -129,191 +122,6 @@ if fname != ""
 		object_event_add(particle,	ev_draw,	0,get_code(path_src+"part/draw.gml",		0))
 		object_event_add(windbullet,ev_step,	0,get_code(path_src+"klo/wndb/step.gml",	0))
 		object_event_add(windbullet,ev_draw,	0,get_code(path_src+"klo/wndb/draw.gml",	0))
-		//object_event_add(tile,ev_draw,0,"depth=-1;draw_rectangle_color(x,y,x+8,y+8,c_yellow,c_yellow,c_yellow,c_yellow,1)")
-	}
-
-	globalvar log,logmax,logfull,posx,posy;
-	log = chr($D)
-	logmax = 2048
-
-	/// LEVEL STUFF
-	{
-		lvinfo = file_bin_open(fname,0)
-
-		// START OF FILE
-		filecur = 0
-		file_bin_seek(lvinfo,filecur)
-
-		if file_bin_read_byte(lvinfo) = $AC
-		{
-			filecur += 1
-			if file_bin_read_byte(lvinfo) = $1E
-			{
-				// 0x02 - filever {
-				filecur += 1
-				file_bin_seek(lvinfo,filecur)
-				var fvermatch;
-				fvermatch = file_bin_read_byte(lvinfo) * 256
-				filecur += 1
-				file_bin_seek(lvinfo,filecur)
-				fvermatch += file_bin_read_byte(lvinfo)
-				if fver != fvermatch {
-					show_error("FILE ERROR!"+chr($D)+"Unmatching level version"+chr($D)+
-								string(fver)+" != "+string(fvermatch)+chr($D)+
-								"This level may not be compatible"+chr($D),true)
-				}
-				/* }
-				   0x04 - level type, music, theme id {
-				*/
-				filecur += 1
-				file_bin_seek(lvinfo,filecur)
-				lvtype = file_bin_read_byte(lvinfo)
-				filecur += 1
-				file_bin_seek(lvinfo,filecur)
-				var musthe;
-				musthe = file_bin_read_byte(lvinfo)
-				themeid = HIBIT(musthe)
-				musicid = LOBIT(musthe)
-				filecur += 2
-				worldstr="w"+string_replace(string_format(themeid,2,0),' ','0')
-				background_replace(tiles,path_gfx+"world/"+worldstr+"/tiles.png",true,false)
-				worldstr="w"+string_replace(string_format(musicid,2,0),' ','0')
-				if musicid {
-					sound_replace(mus_int,path_mus+worldstr+"_int.wav",1,1)
-					sound_replace(mus_lp ,path_mus+worldstr+"_lp.wav" ,1,1)
-				}
-				/* }
-				   0x08 - level size and start position {
-				*/
-				for (i=0;i<4;i+=1)
-				{
-					filecur += 1
-					file_bin_seek(lvinfo,filecur)
-					levelsizeraw[i] = file_bin_read_byte(lvinfo)
-				}
-				for (i=0;i<4;i+=1)
-				{
-					filecur += 1
-					file_bin_seek(lvinfo,filecur)
-					startposraw[i] = file_bin_read_byte(lvinfo)
-				}
-				var k;
-				for (i=0;i<2;i+=1)
-				{
-					for (j=0;j<2;j+=1)
-					{
-						switch (j)
-						{
-							case 0:
-							k = 256
-							break
-							case 1:
-							k = 1
-							break
-						}
-						startpos[i] += startposraw[j+(i*2)] * k
-						levelsize[i] += levelsizeraw[j+(i*2)] * k
-					}
-				}
-				levelbounds[0] = 0					//top
-				levelbounds[1] = 0					//left
-				levelbounds[2] = levelsize[0]*4		//right
-				levelbounds[3] = levelsize[1]*8		//bottom
-				/* }
-					0x10 - bitmap to tiles {
-				*/
-				for (j=0;j<levelsize[1];j+=1)
-				{
-					for (i=0;i<levelsize[0];i+=2)
-					{
-						filecur += 1
-						filesz = file_bin_size(lvinfo)
-						if (filecur < filesz) {
-							file_bin_seek(lvinfo,filecur)
-							_tempvar0 = file_bin_read_byte(lvinfo)
-							if (_tempvar0)
-							{
-								instance_create(i*4,j*8,tile)
-								tile_add(tiles,(((_tempvar0-1)*8)mod 128),((floor(_tempvar0/16))*8),8,8,i*4,j*8,0)
-							}
-						} else {
-							abortload=1
-							show_error(
-								"File loading ended prematurely."+chr($D)+"Expected level size: "+
-									string(levelsize[0])+"x"+string(levelsize[1])+" | "+string(levelsize[0]*levelsize[1])+chr($D)+
-									"EOF position:        "+string(i+1)+"x"+string(j+1)+" | "+string((i+1)*(j+1)),false)
-							break;
-						}
-					}
-					if abortload { break; abortload = 0 }
-				}
-				while (filecur mod 16 != 0)
-					filecur += 1
-				file_bin_seek(lvinfo,filecur)
-				/* }
-					0xXX - objects {
-				*/
-				while (filecur < filesz)
-				{
-					// reading process
-					// x0 - type
-					_tempvar_obj_confirmcreate = 1
-					_tempvar_obj_type = file_bin_read_byte(lvinfo)
-					// x1 - subtype
-					filecur += 1
-					_tempvar_obj_subtype = file_bin_read_byte(lvinfo)
-					// x2 - properties
-					filecur += 2
-					_tempvar_obj_props[0] = file_bin_read_byte(lvinfo)
-					_tempvar_obj_props[1] = file_bin_read_byte(lvinfo)
-					_tempvar_obj_pos[0] = 0
-					_tempvar_obj_pos[1] = 0
-					// x4 - position
-					for (i=0;i<4;i+=1)
-					{
-						//file_bin_seek(lvinfo,filecur)
-						_tempvar_obj_rawpos[i] = file_bin_read_byte(lvinfo)
-						filecur += 1
-					}
-					for (i=0;i<2;i+=1)
-					{
-						for (j=0;j<2;j+=1)
-						{
-							switch (j)
-							{
-								case 0:
-								k = 256
-								break
-								case 1:
-								k = 1
-								break
-							}
-							_tempvar_obj_pos[i] += _tempvar_obj_rawpos[j+(i*2)] * k
-						}
-					}
-					if filecur > filesz
-					{
-						show_error("@ "+string_format(filesz,6,0)+" bytes: Invalid object length, reached EOF.",false)
-						_tempvar_obj_confirmcreate = 0
-					}
-					create_object(_tempvar_obj_type,_tempvar_obj_subtype,
-						_tempvar_obj_props[0],	_tempvar_obj_props[1],
-						_tempvar_obj_pos[0],	_tempvar_obj_pos[1])
-					filecur += 1
-				}
-				/* } 0xXX - EOF */
-			}
-			else {
-				show_error("Invalid file signature.",false)
-				game_end()
-			}
-		}
-		else {
-			show_error("Invalid file signature.",false)
-			game_end()
-		}
-
-		file_bin_close(lvinfo)
 	}
 
 	/// SPRITE STUFF
@@ -349,14 +157,11 @@ if fname != ""
 		snd_throw = sound_add(path_sfx+"throw.wav",0,1)
 		snd_wahoo = sound_add(path_sfx+"wahoo.wav",0,1)
 		snd_confirm = sound_add(path_sfx+"confirm.wav",0,1)
-
-		sound_play(mus_int)
-		sound_volume(mus_int,0.87)
-		sound_volume(mus_lp,0.87)
-		music_part = 0
 	}
 
-	/// PLAYER STUFF
+	load_level(fname)
+	
+	// PLAYER STUFF
 	{
 		health = 3
 		lives = 5
@@ -381,13 +186,13 @@ if fname != ""
 			entcol[2] = 7
 			entcol[3] = 0
 			depth = -3
-			invnc_frames = 0//180
+			invnc_frames = 0
 			draw = true
 			grab = noone
 		}
 	}
 
-	if !lang //(implement switch)
+	//if !lang
 	{
 		keystr[vk_left     ] =  "Left Arrow"
 		keystr[vk_up       ] =    "Up Arrow"
@@ -396,8 +201,8 @@ if fname != ""
 		keystr[vk_return   ] = "Return"
 		keystr[vk_enter    ] = "Enter"
 		keystr[vk_space    ] = "Space"
-		keystr[vk_nokey    ] = "None" // ???
-		keystr[vk_anykey   ] = "*"    // ???
+		keystr[vk_nokey    ] = "None"
+		keystr[vk_anykey   ] = "*"
 		keystr[vk_escape   ] = "Escape"
 		keystr[vk_control  ] = "Control"
 		keystr[vk_lcontrol ] = "Left Control"
@@ -462,19 +267,21 @@ if fname != ""
 		keystr[188] = 'Comma'
 		keystr[190] = 'Period'
 		keystr[191] = 'Slash'
-		keystr[20 ] = 'Caps Lock' // whyx d
+		keystr[20 ] = 'Caps Lock'
 		keystr[144] = 'Num Lock'
 		keystr[145] = 'Scroll Lock'
 		keystr[19 ] = 'Pause'
 		keystr[12 ] = "Numpad 5 Unlocked"
 
 		pause_btns[0] = "Continue Game"
-		pause_btns[1] = "Last Checkpoint"
+		pause_btns[1] = "unavailable"
+		//pause_btns[1] = "Last Checkpoint"
 		pause_btns[2] = "Restart Vision"
 		pause_btns[3] = "Configuration"
 		pause_btns[4] = "Exit"
 	}
-	else
+	
+	if lang
 	{
 		globalvar __kana_rpms;
 		// wtf is this V
@@ -544,18 +351,18 @@ if fname != ""
 		__kana_rpms[1]="["
 		__kana_rpms[0]="."
 	}
-	// DO CHARSET OR SPRITE FONT
 
 	frame = 0
 
 	view_hborder[0] = view_wview[0]
 	view_vborder[0] = view_hview[0]
 
-	window_set_region_scale(floor(ini_read_real("Display","Scale",2)),true)
-	//fix not being able to downsize window
-	//because it worked before on x1 scale
 	freesize = ini_read_real("Display","FreeSize",0)
-	if !freesize window_set_sizeable(false)
+	if !freesize {
+		window_set_sizeable(false)
+		window_set_region_scale(floor(ini_read_real("Display","Scale",2)),true)
+		// figure out why this prevents downsizing window
+	}
 	
 	if ini_read_real("Display","FullScreen",0)
 	{

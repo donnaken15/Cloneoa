@@ -1,0 +1,221 @@
+if file_exists(argument0)
+{
+	lvinfo = file_bin_open(argument0,0)
+
+	// START OF FILE
+	filecur = 0
+	file_bin_seek(lvinfo,filecur)
+
+	if file_bin_read_byte(lvinfo) = $AC
+	{
+		filecur += 1
+		if file_bin_read_byte(lvinfo) = $1E
+		{
+			// 0x02 - filever {
+			filecur += 1
+			file_bin_seek(lvinfo,filecur)
+			var fvermatch;
+			fvermatch = file_bin_read_byte(lvinfo) * 256
+			filecur += 1
+			file_bin_seek(lvinfo,filecur)
+			fvermatch += file_bin_read_byte(lvinfo)
+			if fver != fvermatch {
+				show_error("FILE ERROR!"+chr($D)+"Unmatching level version"+chr($D)+
+							string(fver)+" != "+string(fvermatch)+chr($D)+
+							"This level may not be compatible"+chr($D),true)
+			}
+			/* }
+			   0x04 - level type, music, theme id {
+			*/
+			filecur += 1
+			file_bin_seek(lvinfo,filecur)
+			lvtype = file_bin_read_byte(lvinfo)
+			filecur += 1
+			file_bin_seek(lvinfo,filecur)
+			var musthe;
+			musthe = file_bin_read_byte(lvinfo)
+			themeid = HIBIT(musthe)
+			musicid = LOBIT(musthe)
+			filecur += 2
+			worldstr="w"+string_replace(string_format(themeid,2,0),' ','0')
+			background_replace(tiles,path_gfx+"world/"+worldstr+"/tiles.png",true,false)
+			worldstr="w"+string_replace(string_format(musicid,2,0),' ','0')
+			if musicid {
+				sound_replace(mus_int,path_mus+worldstr+"_int.wav",1,1)
+				sound_replace(mus_lp ,path_mus+worldstr+"_lp.wav" ,1,1)
+			}
+			/* }
+			   0x08 - level size and start position {
+			*/
+			startpos[0]=0
+			startpos[1]=0
+			levelsize[0]=0
+			levelsize[1]=0
+			for (i=0;i<4;i+=1)
+			{
+				filecur += 1
+				file_bin_seek(lvinfo,filecur)
+				levelsizeraw[i] = file_bin_read_byte(lvinfo)
+			}
+			for (i=0;i<4;i+=1)
+			{
+				filecur += 1
+				file_bin_seek(lvinfo,filecur)
+				startposraw[i] = file_bin_read_byte(lvinfo)
+			}
+			var k;
+			for (i=0;i<2;i+=1)
+			{
+				for (j=0;j<2;j+=1)
+				{
+					switch (j)
+					{
+						case 0:
+						k = 256
+						break
+						case 1:
+						k = 1
+						break
+					}
+					startpos[i] += startposraw[j+(i*2)] * k
+					levelsize[i] += levelsizeraw[j+(i*2)] * k
+				}
+			}
+			levelbounds[0] = 0					//top
+			levelbounds[1] = 0					//left
+			levelbounds[2] = levelsize[0]*8		//right
+			levelbounds[3] = levelsize[1]*8		//bottom
+			/* }
+				0x10 - bitmap to tiles {
+			*/
+			instance_activate_object(tile)
+			while instance_number(tile) > 0 {
+				with (tile) { instance_destroy() }
+			}
+			tile_layer_delete(0)
+			filesz = file_bin_size(lvinfo)
+			for (j=0;j<levelsize[1];j+=1)
+			{
+				for (i=0;i<levelsize[0];i+=1)
+				{
+					filecur += 1
+					if (filecur < filesz) {
+						file_bin_seek(lvinfo,filecur)
+						_tempvar0 = file_bin_read_byte(lvinfo)
+						if (_tempvar0)
+						{
+							with instance_create(i*8,j*8,tile) { visible = 0 }
+							tile_add(tiles,(((_tempvar0-1)*8)mod 128),((floor(_tempvar0/16))*8),8,8,i*8,j*8,0)
+						}
+					} else {
+						abortload=1
+						show_error(
+							"File loading ended prematurely."+chr($D)+"Expected level size: "+
+								string(levelsize[0])+"x"+string(levelsize[1])+" | "+string(levelsize[0]*levelsize[1])+chr($D)+
+								"EOF position:        "+string(i+1)+"x"+string(j+1)+" | "+string((i+1)*(j+1)),false)
+						break;
+					}
+				}
+				if abortload { break; abortload = 0 }
+			}
+			while (filecur mod 16 != 0)
+				filecur += 1
+			file_bin_seek(lvinfo,filecur)
+			/* }
+				0xXX - objects {
+			*/
+			max_gems = 0
+			can_get_hurt = 0
+			with (item) { type=99; subtype=99; instance_destroy() }
+			with (enemy) { instance_destroy() }
+			while (filecur < filesz)
+			{
+				// reading process
+				// x0 - type
+				_tempvar_obj_confirmcreate = 1
+				_tempvar_obj_type = file_bin_read_byte(lvinfo)
+				// x1 - subtype
+				filecur += 1
+				_tempvar_obj_subtype = file_bin_read_byte(lvinfo)
+				// x2 - properties
+				filecur += 2
+				_tempvar_obj_props[0] = file_bin_read_byte(lvinfo)
+				_tempvar_obj_props[1] = file_bin_read_byte(lvinfo)
+				_tempvar_obj_pos[0] = 0
+				_tempvar_obj_pos[1] = 0
+				// x4 - position
+				for (i=0;i<4;i+=1)
+				{
+					//file_bin_seek(lvinfo,filecur)
+					_tempvar_obj_rawpos[i] = file_bin_read_byte(lvinfo)
+					filecur += 1
+				}
+				for (i=0;i<2;i+=1)
+				{
+					for (j=0;j<2;j+=1)
+					{
+						switch (j)
+						{
+							case 0:
+							k = 256
+							break
+							case 1:
+							k = 1
+							break
+						}
+						_tempvar_obj_pos[i] += _tempvar_obj_rawpos[j+(i*2)] * k
+					}
+				}
+				if filecur > filesz
+				{
+					show_error("@ "+string_format(filesz,6,0)+" bytes: Invalid object length, reached EOF.",false)
+					_tempvar_obj_confirmcreate = 0
+				}
+				create_object(_tempvar_obj_type,_tempvar_obj_subtype,
+					_tempvar_obj_props[0],	_tempvar_obj_props[1],
+					_tempvar_obj_pos[0],	_tempvar_obj_pos[1])
+				filecur += 1
+			}
+			/* } 0xXX - EOF */
+		}
+		else {
+			show_error("Invalid file signature.",false)
+			game_end()
+		}
+	}
+	else {
+		show_error("Invalid file signature.",false)
+		game_end()
+	}
+
+	file_bin_close(lvinfo)
+	
+	with (player)
+	{
+		x = startpos[0] * 8
+		y = startpos[1] * 8
+		xstart = x
+		ystart = y
+		vspeed = 0
+		hspeed = 0
+		gravity = 0
+		float = 0
+		jump = 0
+		gems = 0
+		grab = noone
+		char_index = 0
+		cantmove = 0
+		flip = 0
+		slide = 0
+	}
+	
+	sound_stop_all()
+	sound_play(mus_int)
+	sound_volume(mus_int,0.87)
+	sound_volume(mus_lp,0.87)
+	music_part = 0
+	frame = 0
+} else {
+	show_error("That file does not exist:"+chr($D)+argument0,false)
+	game_end()
+}

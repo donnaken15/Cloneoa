@@ -67,8 +67,8 @@ if pause {
 				78,1,c_white,1)
 			draw_sprite_part(hudspr,0,12,43,12,14,
 				view_xview[0]+(view_wview[0]/4)+98,view_yview[0]+20)
-			draw_text(view_xview[0]+(view_wview[0]/2)-1,view_yview[0]+20,"Configuration")
-			draw_text(view_xview[0]+(view_wview[0]/2),view_yview[0]+40,"Keys")
+			draw_text(view_xview[0]+(view_wview[0]/2)-1,view_yview[0]+20,config_str_head)
+			draw_text(view_xview[0]+(view_wview[0]/2),view_yview[0]+40,config_str_key)
 			for (j = 0; j < 2; j += 1)
 			draw_sprite_part_ext(hudspr,0,24,43,16,17,
 						view_xview[0]+(view_wview[0]/4)-48+(216*j),
