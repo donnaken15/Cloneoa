@@ -21,7 +21,7 @@ Play.bat
 *.userosscache
 *.sln.docstates
 
-sfx/Sample*
+Sample*
 
 # Build results
 [Dd]ebug/
