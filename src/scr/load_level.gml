@@ -16,8 +16,6 @@ if file_exists(argument0)
 			file_bin_seek(lvinfo,filecur)
 			var fvermatch;
 			fvermatch = file_bin_read_byte(lvinfo) * 256
-			filecur += 1
-			file_bin_seek(lvinfo,filecur)
 			fvermatch += file_bin_read_byte(lvinfo)
 			if fver != fvermatch {
 				show_error("FILE ERROR!"+chr($D)+"Unmatching level version"+chr($D)+
@@ -27,11 +25,8 @@ if file_exists(argument0)
 			/* }
 			   0x04 - level type, music, theme id {
 			*/
-			filecur += 1
-			file_bin_seek(lvinfo,filecur)
-			lvtype = file_bin_read_byte(lvinfo)
-			filecur += 1
-			file_bin_seek(lvinfo,filecur)
+			lvflags = file_bin_read_byte(lvinfo)
+			filecur += 3
 			var musthe;
 			musthe = file_bin_read_byte(lvinfo)
 			themeid = HIBIT(musthe)
@@ -94,29 +89,80 @@ if file_exists(argument0)
 			}
 			tile_layer_delete(0)
 			filesz = file_bin_size(lvinfo)
-			for (j=0;j<levelsize[1];j+=1)
+			// get compression flag
+			switch ((lvflags & $30) >> 4)
 			{
-				for (i=0;i<levelsize[0];i+=1)
-				{
-					filecur += 1
-					if (filecur < filesz) {
-						file_bin_seek(lvinfo,filecur)
-						_tempvar0 = file_bin_read_byte(lvinfo)
-						if (_tempvar0)
+				case 0:
+					for (j=0;j<levelsize[1];j+=1)
+					{
+						for (i=0;i<levelsize[0];i+=1)
 						{
-							with instance_create(i*8,j*8,tile) { visible = 0 }
-							tile_add(tiles,(((_tempvar0-1)*8)mod 128),((floor(_tempvar0/16))*8),8,8,i*8,j*8,0)
+							filecur += 1
+							if (filecur < filesz) {
+								file_bin_seek(lvinfo,filecur)
+								_tempvar0 = file_bin_read_byte(lvinfo)
+								if (_tempvar0)
+								{
+									with instance_create(i*8,j*8,tile) { visible = 0 }
+									tile_add(tiles,(((_tempvar0-1)*8)mod 128),((floor(_tempvar0/16))*8),8,8,i*8,j*8,0)
+								}
+							} else {
+								abortload=1
+								show_error(
+									"File loading ended prematurely."+chr($D)+"Expected level size: "+
+										string(levelsize[0])+"x"+string(levelsize[1])+" | "+string(levelsize[0]*levelsize[1])+chr($D)+
+										"EOF position:        "+string(i+1)+"x"+string(j+1)+" | "+string((i+1)*(j+1)),false)
+								break;
+							}
 						}
-					} else {
-						abortload=1
-						show_error(
-							"File loading ended prematurely."+chr($D)+"Expected level size: "+
-								string(levelsize[0])+"x"+string(levelsize[1])+" | "+string(levelsize[0]*levelsize[1])+chr($D)+
-								"EOF position:        "+string(i+1)+"x"+string(j+1)+" | "+string((i+1)*(j+1)),false)
-						break;
+						if abortload { break; abortload = 0 }
 					}
-				}
-				if abortload { break; abortload = 0 }
+					break
+				case 1:
+					tilecur = 0 // cursor in file
+					tilearr = 0 // tile array
+					tileal  = (levelsize[0] * levelsize[1])
+					tileid  = 0 // current tile byte
+					tileln  = 0 // current tile length
+					tileby  = 0
+					while (tilecur < tileal)
+					{
+						if (file_bin_position(lvinfo) < file_bin_size(lvinfo)) {
+							//show_error(string(file_bin_position(lvinfo)),false)
+							tileid=file_bin_read_byte(lvinfo)
+							tileln=file_bin_read_byte(lvinfo)
+							tileby+=2
+							//show_error(string(file_bin_position(lvinfo)),false)
+							//if(tileid)
+							{
+								for (i=0;i<tileln+1;i+=1)
+								{
+									tilearr[tilecur] = tileid
+									tilecur+=1
+								}
+							}
+							//else
+								//tilecur += tileln
+						} else {
+							abortload=1
+							show_error(
+								"File loading ended prematurely."+chr($D)+"Expected amount of tiles: "+chr($D)+
+									"     "+string(levelsize[0]*levelsize[1])+chr($D)+
+									"Got: "+chr($D)+"     "+string(tilecur),false)
+							break;
+						}
+						
+					}
+					for (i=0;i<(tilecur);i+=1)
+					{
+						if (tilearr[i])
+						{
+							with instance_create((i mod levelsize[0])*8,floor(i/(levelsize[0]))*8,tile) { visible = 0 }
+							tile_add(tiles,(((tilearr[i]-1)mod 128)*8),((floor(tilearr[i]/16))*8),8,8,(i mod levelsize[0])*8,floor(i/levelsize[0])*8,0)
+						}
+					}
+					filecur += tileby
+					break
 			}
 			while (filecur mod 16 != 0)
 				filecur += 1
@@ -131,19 +177,19 @@ if file_exists(argument0)
 			while (filecur < filesz)
 			{
 				// reading process
-				// x0 - type
+				// x0 - type & subtype
 				_tempvar_obj_confirmcreate = 1
 				_tempvar_obj_type = file_bin_read_byte(lvinfo)
-				// x1 - subtype
-				filecur += 1
-				_tempvar_obj_subtype = file_bin_read_byte(lvinfo)
-				// x2 - properties
-				filecur += 2
+				_tempvar_obj_subtype = _tempvar_obj_type & 15
+				_tempvar_obj_type = (_tempvar_obj_type & $F0) >> 4
+				// x1 - properties
 				_tempvar_obj_props[0] = file_bin_read_byte(lvinfo)
 				_tempvar_obj_props[1] = file_bin_read_byte(lvinfo)
+				_tempvar_obj_props[2] = file_bin_read_byte(lvinfo)
+				filecur += 3
+				// x4 - position
 				_tempvar_obj_pos[0] = 0
 				_tempvar_obj_pos[1] = 0
-				// x4 - position
 				for (i=0;i<4;i+=1)
 				{
 					//file_bin_seek(lvinfo,filecur)
