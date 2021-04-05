@@ -128,12 +128,10 @@ if file_exists(argument0)
 					while (tilecur < tileal)
 					{
 						if (file_bin_position(lvinfo) < file_bin_size(lvinfo)) {
-							//show_error(string(file_bin_position(lvinfo)),false)
 							tileid=file_bin_read_byte(lvinfo)
 							tileln=file_bin_read_byte(lvinfo)
 							tileby+=2
-							//show_error(string(file_bin_position(lvinfo)),false)
-							//if(tileid)
+							if(tileid)
 							{
 								for (i=0;i<tileln+1;i+=1)
 								{
@@ -141,8 +139,8 @@ if file_exists(argument0)
 									tilecur+=1
 								}
 							}
-							//else
-								//tilecur += tileln
+							else
+								tilecur += tileln+1
 						} else {
 							abortload=1
 							show_error(
@@ -151,14 +149,14 @@ if file_exists(argument0)
 									"Got: "+chr($D)+"     "+string(tilecur),false)
 							break;
 						}
-						
+
 					}
 					for (i=0;i<(tilecur);i+=1)
 					{
 						if (tilearr[i])
 						{
 							with instance_create((i mod levelsize[0])*8,floor(i/(levelsize[0]))*8,tile) { visible = 0 }
-							tile_add(tiles,(((tilearr[i]-1)mod 128)*8),((floor(tilearr[i]/16))*8),8,8,(i mod levelsize[0])*8,floor(i/levelsize[0])*8,0)
+							tile_add(tiles,((((tilearr[i]-1))*8)mod 128),((floor(tilearr[i]/16))*8),8,8,(i mod levelsize[0])*8,floor(i/levelsize[0])*8,0)
 						}
 					}
 					filecur += tileby
@@ -235,7 +233,7 @@ if file_exists(argument0)
 	}
 
 	file_bin_close(lvinfo)
-	
+
 	with (player)
 	{
 		x = startpos[0] * 8
@@ -254,7 +252,7 @@ if file_exists(argument0)
 		flip = 0
 		slide = 0
 	}
-	
+
 	sound_stop_all()
 	sound_play(mus_int)
 	sound_volume(mus_int,0.87)

@@ -68,11 +68,11 @@ if pause
 			if pause_jp_fix < 2 && lang // HATE THIS DUSHFGJBRUWFOI ENGINE
 			{
 				pause_jp_fix += 1
-				pause_btns[0] = ktkn("YUNTEiNIyu-:KE`-MU")
+				pause_btns[0] = ktkn("  YUNTEiNIyu-:KE`-MU  ") //lowercase NI
 				//pause_btns[1] = ktkn("RA-SUTO:TIeKUHO'ITO")
-				pause_btns[2] = ktkn("RI-SUTA-TO:REHE`RU") // why are extra chars appearing
+				pause_btns[2] = ktkn("RI-SUTA-TO:REHE`RU")
 				pause_btns[3] = ktkn("SETEINKU`SU`")
-				pause_btns[4] = ktkn("KUITUTO") //itu
+				pause_btns[4] = ktkn("KUITUTO")
 					//chr($DA)+chr($CC)+chr($C4)+chr($A5)+
 					//chr($B1)+chr($DB)+chr($B0)
 				keystr[vk_left     ] = ktkn("REHUTO:ARO-")
@@ -116,21 +116,21 @@ if pause
 				keystr[vk_f10      ] = "F10"
 				keystr[vk_f11      ] = "F11"
 				keystr[vk_f12      ] = "F12"
-				keystr[vk_numpad0  ] = "Numpad 0"
-				keystr[vk_numpad1  ] = "Numpad 1"
-				keystr[vk_numpad2  ] = "Numpad 2"
-				keystr[vk_numpad3  ] = "Numpad 3"
-				keystr[vk_numpad4  ] = "Numpad 4"
-				keystr[vk_numpad5  ] = "Numpad 5"
-				keystr[vk_numpad6  ] = "Numpad 6"
-				keystr[vk_numpad7  ] = "Numpad 7"
-				keystr[vk_numpad8  ] = "Numpad 8"
-				keystr[vk_numpad9  ] = "Numpad 9"
-				keystr[vk_multiply ] = "Multiply"
-				keystr[vk_divide   ] = "Divide"
-				keystr[vk_add      ] = "Add"
-				keystr[vk_subtract ] = "Subtract"
-				keystr[vk_decimal  ] = "Decimal"
+				keystr[vk_numpad0  ] = ktkn("KI-HA'tuTO`0  ")
+				keystr[vk_numpad1  ] = ktkn("KI-HA'tuTO`1  ")
+				keystr[vk_numpad2  ] = ktkn("KI-HA'tuTO`2  ")
+				keystr[vk_numpad3  ] = ktkn("KI-HA'tuTO`3  ")
+				keystr[vk_numpad4  ] = ktkn("KI-HA'tuTO`4  ")
+				keystr[vk_numpad5  ] = ktkn("KI-HA'tuTO`5  ")
+				keystr[vk_numpad6  ] = ktkn("KI-HA'tuTO`6  ")
+				keystr[vk_numpad7  ] = ktkn("KI-HA'tuTO`7  ")
+				keystr[vk_numpad8  ] = ktkn("KI-HA'tuTO`8  ")
+				keystr[vk_numpad9  ] = ktkn("KI-HA'tuTO`9  ")
+				keystr[vk_multiply ] = ktkn("KI-HA'tuTO`*  ")
+				keystr[vk_divide   ] = ktkn("KI-HA'tuTO`/  ")
+				keystr[vk_add      ] = ktkn("KI-HA'tuTO`+  ")
+				keystr[vk_subtract ] = ktkn("KI-HA'tuTO`-  ")
+				keystr[vk_decimal  ] = ktkn("KI-HA'tuTO`.  ")
 				for (i=0;i<10;i+=1)
 					keystr[ord(string(i))] = string(i)
 				for (i=0;i<26;i+=1)
@@ -142,7 +142,7 @@ if pause
 				keystr[187] = 'Equal'
 				keystr[219] = '['
 				keystr[221] = ']'
-				keystr[220] = 'Backslash'
+				keystr[220] = '\'
 				keystr[186] = 'Semicolon'
 				keystr[222] = 'Apostraphe'
 				keystr[188] = 'Comma'

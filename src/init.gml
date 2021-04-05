@@ -3,7 +3,7 @@ globalvar fname,level,lvinfo,filecur,filesz,
 themeid,musicid,lvtype,startposraw,debug_draw,
 startpos,gems,stars,starmax,frame,handytitle,
 levelsize,levelsizeraw,freesize,_tempvar0,base_gravity,
-realtimesrc,confnt,pause,levelbounds,gems,stars,
+realtimesrc,confnt,pause,levelbounds,gems,stars,noclip,
 path_root,path_src,
 path_gfx,path_sfx,
 path_mus,path_bin,
@@ -52,115 +52,17 @@ if parameter_count() = 0 {
 		sound_stop(mus_file)
 	}
 } else
-    fname = parameter_string(1)
+	fname = parameter_string(1)
 
 depth = 100
 base_gravity = 0.21
 
 if fname != "" && file_exists(fname)
 {
-	/// SETTINGS
-	ini_open(path_bin+"settings.ini")
-	{
-		realtimesrc = ini_read_real("Debug","RealtimeSrc",0)
-		debug_draw = ini_read_real("Debug","DebugDraw",debug_mode)
-		lang = ini_read_real("General","Language",0)
-
-		ctrl_left  = ini_read_real("Controls","Left" ,vk_left)
-		ctrl_up    = ini_read_real("Controls","Up"   ,vk_up)
-		ctrl_right = ini_read_real("Controls","Right",vk_right)
-		ctrl_down  = ini_read_real("Controls","Down" ,vk_down)
-		ctrl_jump  = ini_read_real("Controls","Jump" ,ord('Z'))
-		ctrl_fire  = ini_read_real("Controls","Fire" ,ord('X'))
-		ctrl_start = ini_read_real("Controls","Start",vk_return)
-
-		handytitle = ini_read_real("General","HandyTitle",0)
-	}
-
-	if !realtimesrc {
-	file_text_read_all_scr =
-		execute_file(path_src+"scr/file_text_read_all.gml",path_src+"scr/file_text_read_all.gml")
-	get_code_scr = file_text_read_all(path_src+"scr/get_code.gml")
-	}
-	else {
-	file_text_read_all_scr = path_src+"scr/file_text_read_all.gml"
-	get_code_scr = path_src+"scr/get_code.gml" }
-
-	lobit_scr = get_code(path_src+"scr/lobit.gml")
-	lobyte_scr = get_code(path_src+"scr/lobyte.gml")
-	hibit_scr = get_code(path_src+"scr/hibit.gml")
-	hibyte_scr = get_code(path_src+"scr/hibyte.gml")
-	create_obj_scr = get_code(path_src+"obj/scr/cctor.gml")
-	create_part_scr = get_code(path_src+"part/scr/cctor.gml")
-	draw_digit_scr = get_code(path_src+"scr/draw_digit.gml")
-	ktkn_scr = get_code(path_src+"scr/ktkn.gml")
-	load_level_scr = get_code(path_src+"scr/load_level.gml")
-
-	// CODE ADDING STUFF
-	{
-		object_event_clear(controller,	ev_step,0)
-		object_event_clear(controller,	ev_draw,0)
-		object_event_clear(player,		ev_step,0)
-		object_event_clear(player,		ev_draw,0)
-		object_event_clear(tile,		ev_create,0)
-		object_event_clear(item,		ev_draw,0)
-		object_event_clear(item,		ev_destroy,0)
-		object_event_clear(enemy,		ev_step,0)
-		object_event_clear(enemy,		ev_draw,0)
-		object_event_clear(particle,	ev_draw,0)
-		object_event_clear(windbullet,	ev_step,0)
-		object_event_clear(windbullet,	ev_draw,0)
-		object_event_add(controller,ev_step,	0,get_code(path_src+"ctrl/step.gml",		0))
-		object_event_add(controller,ev_draw,	0,get_code(path_src+"ctrl/draw.gml",		0))
-		object_event_add(player,	ev_step,	0,get_code(path_src+"klo/step.gml",			0))
-		object_event_add(player,	ev_draw,	0,get_code(path_src+"klo/draw.gml",			0))
-		object_event_add(tile,		ev_create,	0,get_code(path_src+"tile/create.gml",		0))
-		object_event_add(item,		ev_draw,	0,get_code(path_src+"obj/item/draw.gml",	0))
-		object_event_add(item,		ev_destroy,	0,get_code(path_src+"obj/item/destroy.gml",	0))
-		object_event_add(enemy,		ev_step,	0,get_code(path_src+"obj/ent/step.gml",		0))
-		object_event_add(enemy,		ev_draw,	0,get_code(path_src+"obj/ent/draw.gml",		0))
-		object_event_add(particle,	ev_draw,	0,get_code(path_src+"part/draw.gml",		0))
-		object_event_add(windbullet,ev_step,	0,get_code(path_src+"klo/wndb/step.gml",	0))
-		object_event_add(windbullet,ev_draw,	0,get_code(path_src+"klo/wndb/draw.gml",	0))
-	}
-
-	/// SPRITE STUFF
-	{
-		sprite_replace(klospr,path_gfx+"common/player.png",0,1,0,0,0)
-		sprite_replace(hudspr,path_gfx+"common/hud.png",0,1,0,0,0)
-		sprite_replace(itemspr,path_gfx+"common/item.png",0,1,0,0,0)
-		sprite_replace(partspr,path_gfx+"common/particle.png",0,1,0,0,0)
-		sprite_replace(enemyspr,path_gfx+"common/enemy.png",0,1,0,0,0)
-		sprite_replace(objspr,path_gfx+"common/obj.png",0,1,0,0,0)
-		confnt = font_add_sprite(sprite_add(path_gfx+"misc/debug.png",94,0,0,0,0),ord('!'),0,0)
-	}
-
-	/// SOUND STUFF
-	{
-		globalvar snd_jump, snd_land, snd_pause, snd_scroll, snd_heal,
-				snd_gem, snd_float, music_part, snd_hurt, snd_fire,
-				snd_grab, snd_kill, snd_death, snd_death2, snd_throw,
-				snd_confirm;
-		snd_jump = sound_add(path_sfx+"jump.wav",0,1)
-		snd_land = sound_add(path_sfx+"land.wav",0,1)
-		snd_pause = sound_add(path_sfx+"pause.wav",0,1)
-		snd_scroll = sound_add(path_sfx+"scroll.wav",0,1)
-		snd_gem = sound_add(path_sfx+"gem.wav",0,1)
-		snd_float = sound_add(path_sfx+"float.wav",0,1)
-		snd_hurt = sound_add(path_sfx+"hurt.wav",0,1)
-		snd_fire = sound_add(path_sfx+"fire.wav",0,1)
-		snd_heal = sound_add(path_sfx+"heal.wav",0,1)
-		snd_grab = sound_add(path_sfx+"grab.wav",0,1)
-		snd_kill = sound_add(path_sfx+"kill.wav",0,1)
-		snd_death = sound_add(path_sfx+"death.wav",0,1)
-		snd_death2 = sound_add(path_sfx+"death2.wav",0,1)
-		snd_throw = sound_add(path_sfx+"throw.wav",0,1)
-		snd_wahoo = sound_add(path_sfx+"wahoo.wav",0,1)
-		snd_confirm = sound_add(path_sfx+"confirm.wav",0,1)
-	}
+	execute_file(path_src+"scr/reload.gml")
 
 	load_level(fname)
-	
+
 	// PLAYER STUFF
 	{
 		health = 3
@@ -189,6 +91,11 @@ if fname != "" && file_exists(fname)
 			invnc_frames = 0
 			draw = true
 			grab = noone
+			noclip = 0
+			player_speed   = 1.5
+			view_hspeed[0] = 1.5
+			current_speed  = player_speed
+			noclip_speed   = 2
 		}
 	}
 
@@ -280,76 +187,77 @@ if fname != "" && file_exists(fname)
 		pause_btns[3] = "Configuration"
 		pause_btns[4] = "Exit"
 	}
-	
+
 	if lang
 	{
 		globalvar __kana_rpms;
 		// wtf is this V
 		// $A1 to $DD
 		// reverse these lines
-		__kana_rpms[62]="'"
-		__kana_rpms[61]="`"
-		__kana_rpms[60]="N"
-		__kana_rpms[59]="WA"
-		__kana_rpms[58]="RO"
-		__kana_rpms[57]="RE"
-		__kana_rpms[56]="RU"
-		__kana_rpms[55]="RI"
-		__kana_rpms[54]="RA"
-		__kana_rpms[53]="YO"
-		__kana_rpms[52]="YU"
-		__kana_rpms[51]="YA"
-		__kana_rpms[50]="MO"
-		__kana_rpms[49]="ME"
-		__kana_rpms[48]="MU"
-		__kana_rpms[47]="MI"
-		__kana_rpms[46]="MA"
-		__kana_rpms[45]="HO"
-		__kana_rpms[44]="HE"
-		__kana_rpms[43]="HU"
-		__kana_rpms[42]="HI"
-		__kana_rpms[41]="HA"
-		__kana_rpms[40]="NO"
-		__kana_rpms[39]="NE"
-		__kana_rpms[38]="NU"
-		__kana_rpms[37]="NI"
-		__kana_rpms[36]="NA"
-		__kana_rpms[35]="TO"
-		__kana_rpms[34]="TE"
-		__kana_rpms[33]="TU"
-		__kana_rpms[32]="TI"
-		__kana_rpms[31]="TA"
-		__kana_rpms[30]="SO"
-		__kana_rpms[29]="SE"
-		__kana_rpms[28]="SU"
-		__kana_rpms[27]="SI"
-		__kana_rpms[26]="SA"
-		__kana_rpms[25]="KO"
-		__kana_rpms[24]="KE"
-		__kana_rpms[23]="KU"
-		__kana_rpms[22]="KI"
-		__kana_rpms[21]="KA"
-		__kana_rpms[20]="O"
-		__kana_rpms[19]="E"
-		__kana_rpms[18]="U"
-		__kana_rpms[17]="I"
-		__kana_rpms[16]="A"
-		__kana_rpms[15]="-"
-		__kana_rpms[14]="tu"
-		__kana_rpms[13]="yo"
-		__kana_rpms[12]="yu"
-		__kana_rpms[11]="ya"
-		__kana_rpms[10]="o"
-		__kana_rpms[9]="e"
-		__kana_rpms[8]="u"
-		__kana_rpms[7]="i"
-		__kana_rpms[6]="a"
-		__kana_rpms[5]="wo"
-		__kana_rpms[4]=":"
-		__kana_rpms[3]=","
-		__kana_rpms[2]="]"
-		__kana_rpms[1]="["
+
 		__kana_rpms[0]="."
+		__kana_rpms[1]="["
+		__kana_rpms[2]="]"
+		__kana_rpms[3]=","
+		__kana_rpms[4]=":"
+		__kana_rpms[5]="wo"
+		__kana_rpms[6]="a"
+		__kana_rpms[7]="i"
+		__kana_rpms[8]="u"
+		__kana_rpms[9]="e"
+		__kana_rpms[10]="o"
+		__kana_rpms[11]="ya"
+		__kana_rpms[12]="yu"
+		__kana_rpms[13]="yo"
+		__kana_rpms[14]="tu"
+		__kana_rpms[15]="-"
+		__kana_rpms[16]="A"
+		__kana_rpms[17]="I"
+		__kana_rpms[18]="U"
+		__kana_rpms[19]="E"
+		__kana_rpms[20]="O"
+		__kana_rpms[21]="KA"
+		__kana_rpms[22]="KI"
+		__kana_rpms[23]="KU"
+		__kana_rpms[24]="KE"
+		__kana_rpms[25]="KO"
+		__kana_rpms[26]="SA"
+		__kana_rpms[27]="SI"
+		__kana_rpms[28]="SU"
+		__kana_rpms[29]="SE"
+		__kana_rpms[30]="SO"
+		__kana_rpms[31]="TA"
+		__kana_rpms[32]="TI"
+		__kana_rpms[33]="TU"
+		__kana_rpms[34]="TE"
+		__kana_rpms[35]="TO"
+		__kana_rpms[36]="NA"
+		__kana_rpms[37]="NI"
+		__kana_rpms[38]="NU"
+		__kana_rpms[39]="NE"
+		__kana_rpms[40]="NO"
+		__kana_rpms[41]="HA"
+		__kana_rpms[42]="HI"
+		__kana_rpms[43]="HU"
+		__kana_rpms[44]="HE"
+		__kana_rpms[45]="HO"
+		__kana_rpms[46]="MA"
+		__kana_rpms[47]="MI"
+		__kana_rpms[48]="MU"
+		__kana_rpms[49]="ME"
+		__kana_rpms[50]="MO"
+		__kana_rpms[51]="YA"
+		__kana_rpms[52]="YU"
+		__kana_rpms[53]="YO"
+		__kana_rpms[54]="RA"
+		__kana_rpms[55]="RI"
+		__kana_rpms[56]="RU"
+		__kana_rpms[57]="RE"
+		__kana_rpms[58]="RO"
+		__kana_rpms[59]="WA"
+		__kana_rpms[60]="N"
+		__kana_rpms[61]="`"
+		__kana_rpms[62]="'"
 	}
 
 	frame = 0
@@ -363,7 +271,7 @@ if fname != "" && file_exists(fname)
 		window_set_region_scale(floor(ini_read_real("Display","Scale",2)),true)
 		// figure out why this prevents downsizing window
 	}
-	
+
 	if ini_read_real("Display","FullScreen",0)
 	{
 		window_set_fullscreen(1)

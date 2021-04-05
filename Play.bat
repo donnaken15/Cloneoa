@@ -1,1 +1,1 @@
-start "Cloneoa" bin\Cloneoa
+start "Cloneoa" bin\Cloneoa %*

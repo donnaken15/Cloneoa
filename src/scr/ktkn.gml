@@ -4,9 +4,13 @@
 if lang
 {
 	__new_string = argument0;
-
-	for(i=0;i<63;i+=1)
-		__new_string = string_replace_all(__new_string,__kana_rpms[62-i],chr($DF-i))
+	
+	//repeat(20)
+	{
+		__new_string = string_replace_all(__new_string,"NI",chr($A1+37))
+		for(i=62;i>=0;i-=1)
+			__new_string = string_replace_all(__new_string,__kana_rpms[i],chr($A1+i))
+	}
 	
 	return __new_string;
 }
