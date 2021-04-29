@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "langswap", "langswap\langswap.csproj", "{D32D73DB-9DD6-4533-961B-807AFFF12C16}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentation", "{C7DB3303-50F1-44CC-92DA-53B8D3B971D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pages", "pages", "{9B9BB369-6E96-4868-AA39-B556E9B8956E}"
@@ -61,77 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{E8BF9E9F-7
 		new_icon.ico = new_icon.ico
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_main", "_main", "{EB3A927B-BF58-4D6F-9428-61DE23863419}"
-	ProjectSection(SolutionItems) = preProject
-		..\init.gml = ..\init.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ctrl", "ctrl", "{CFF76B89-F436-47A9-B093-1AE7012318A6}"
-	ProjectSection(SolutionItems) = preProject
-		..\ctrl\draw.gml = ..\ctrl\draw.gml
-		..\ctrl\step.gml = ..\ctrl\step.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "klo", "klo", "{49A4650C-0C1C-4D31-BA70-C35372CA69F0}"
-	ProjectSection(SolutionItems) = preProject
-		..\klo\draw.gml = ..\klo\draw.gml
-		..\klo\step.gml = ..\klo\step.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wndb", "wndb", "{135548D3-93CE-44D2-AD16-3D22ED9FDEE0}"
-	ProjectSection(SolutionItems) = preProject
-		..\klo\wndb\draw.gml = ..\klo\wndb\draw.gml
-		..\klo\wndb\step.gml = ..\klo\wndb\step.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "obj", "obj", "{62642BC3-1999-49FD-B31D-E57019CB00EA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ent", "ent", "{7FD26D49-34CC-40CB-B834-76259CBE6A9C}"
-	ProjectSection(SolutionItems) = preProject
-		..\obj\ent\draw.gml = ..\obj\ent\draw.gml
-		..\obj\ent\step.gml = ..\obj\ent\step.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "item", "item", "{C5BD7CCB-C580-49DA-8E74-9F64D96C170D}"
-	ProjectSection(SolutionItems) = preProject
-		..\obj\item\destroy.gml = ..\obj\item\destroy.gml
-		..\obj\item\draw.gml = ..\obj\item\draw.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scr", "scr", "{F0CC7542-2C07-40A7-90D6-FC802C34DA48}"
-	ProjectSection(SolutionItems) = preProject
-		..\obj\scr\cctor.gml = ..\obj\scr\cctor.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "part", "part", "{3A846E3C-5196-41B6-9F65-28D33439BAD9}"
-	ProjectSection(SolutionItems) = preProject
-		..\part\draw.gml = ..\part\draw.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scr", "scr", "{4F37C84B-0EEC-4716-ADFC-3F04E34AA0DC}"
-	ProjectSection(SolutionItems) = preProject
-		..\part\scr\cctor.gml = ..\part\scr\cctor.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scr", "scr", "{22BB581B-4043-4012-AF0B-D3890635B37C}"
-	ProjectSection(SolutionItems) = preProject
-		..\scr\draw_digit.gml = ..\scr\draw_digit.gml
-		..\scr\file_text_read_all.gml = ..\scr\file_text_read_all.gml
-		..\scr\get_code.gml = ..\scr\get_code.gml
-		..\scr\hibit.gml = ..\scr\hibit.gml
-		..\scr\hibyte.gml = ..\scr\hibyte.gml
-		..\scr\ktkn.gml = ..\scr\ktkn.gml
-		..\scr\load_level.gml = ..\scr\load_level.gml
-		..\scr\lobit.gml = ..\scr\lobit.gml
-		..\scr\lobyte.gml = ..\scr\lobyte.gml
-		..\scr\reload.gml = ..\scr\reload.gml
-		..\scr\split.gml = ..\scr\split.gml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tile", "tile", "{B406D9E4-19A5-467C-8C4A-A2CBE5D6BC22}"
-	ProjectSection(SolutionItems) = preProject
-		..\tile\create.gml = ..\tile\create.gml
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "langswap", "tools\langswap.csproj", "{D32D73DB-9DD6-4533-961B-807AFFF12C16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,18 +71,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|x64.Build.0 = Debug|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|x86.Build.0 = Debug|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|x64.ActiveCfg = Release|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|x64.Build.0 = Release|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|x86.ActiveCfg = Release|Any CPU
-		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|x86.Build.0 = Release|Any CPU
 		{4BD253BE-596F-4FA0-B6C1-064D064C0A86}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{4BD253BE-596F-4FA0-B6C1-064D064C0A86}.Debug|x64.ActiveCfg = Debug|x64
 		{4BD253BE-596F-4FA0-B6C1-064D064C0A86}.Debug|x64.Build.0 = Debug|x64
@@ -178,6 +94,18 @@ Global
 		{EF421584-5015-49A9-97AA-16D77838CA82}.Release|x64.Build.0 = Release|Any CPU
 		{EF421584-5015-49A9-97AA-16D77838CA82}.Release|x86.ActiveCfg = Release|Any CPU
 		{EF421584-5015-49A9-97AA-16D77838CA82}.Release|x86.Build.0 = Release|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|x64.Build.0 = Debug|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Debug|x86.Build.0 = Debug|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|x64.ActiveCfg = Release|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|x64.Build.0 = Release|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|x86.ActiveCfg = Release|Any CPU
+		{D32D73DB-9DD6-4533-961B-807AFFF12C16}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -188,17 +116,6 @@ Global
 		{0E6F152C-A441-4288-9068-D350726AA225} = {C7DB3303-50F1-44CC-92DA-53B8D3B971D2}
 		{059BB3FE-4837-4F90-9D95-2BF9E105A964} = {0E6F152C-A441-4288-9068-D350726AA225}
 		{D61B551B-B79B-4EEA-A0F2-48BD5053631C} = {0E6F152C-A441-4288-9068-D350726AA225}
-		{CFF76B89-F436-47A9-B093-1AE7012318A6} = {EB3A927B-BF58-4D6F-9428-61DE23863419}
-		{49A4650C-0C1C-4D31-BA70-C35372CA69F0} = {EB3A927B-BF58-4D6F-9428-61DE23863419}
-		{135548D3-93CE-44D2-AD16-3D22ED9FDEE0} = {49A4650C-0C1C-4D31-BA70-C35372CA69F0}
-		{62642BC3-1999-49FD-B31D-E57019CB00EA} = {EB3A927B-BF58-4D6F-9428-61DE23863419}
-		{7FD26D49-34CC-40CB-B834-76259CBE6A9C} = {62642BC3-1999-49FD-B31D-E57019CB00EA}
-		{C5BD7CCB-C580-49DA-8E74-9F64D96C170D} = {62642BC3-1999-49FD-B31D-E57019CB00EA}
-		{F0CC7542-2C07-40A7-90D6-FC802C34DA48} = {62642BC3-1999-49FD-B31D-E57019CB00EA}
-		{3A846E3C-5196-41B6-9F65-28D33439BAD9} = {EB3A927B-BF58-4D6F-9428-61DE23863419}
-		{4F37C84B-0EEC-4716-ADFC-3F04E34AA0DC} = {3A846E3C-5196-41B6-9F65-28D33439BAD9}
-		{22BB581B-4043-4012-AF0B-D3890635B37C} = {EB3A927B-BF58-4D6F-9428-61DE23863419}
-		{B406D9E4-19A5-467C-8C4A-A2CBE5D6BC22} = {EB3A927B-BF58-4D6F-9428-61DE23863419}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67D976C2-34AE-4EDA-B2AD-836889FD9105}
