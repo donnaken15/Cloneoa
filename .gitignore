@@ -127,3 +127,4 @@ ServiceFabricBackup/
 *.vbw
 
 src/proj/installer/test.exe
+desktop.ini

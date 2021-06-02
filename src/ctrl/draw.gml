@@ -4,8 +4,6 @@ draw_rectangle_color(levelbounds[1],levelbounds[0],
 					levelbounds[0]+levelbounds[3]-1,
 		c_white,c_white,c_white,c_white,false)
 
-
-
 if pause {
 	switch pause_menu
 	{

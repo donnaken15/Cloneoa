@@ -194,6 +194,7 @@ if fname != "" && file_exists(fname)
 		// wtf is this V
 		// $A1 to $DD
 		// reverse these lines
+		// TODO: finish split script
 
 		__kana_rpms[0]="."
 		__kana_rpms[1]="["
@@ -269,7 +270,7 @@ if fname != "" && file_exists(fname)
 	if !freesize {
 		window_set_sizeable(false)
 		window_set_region_scale(floor(ini_read_real("Display","Scale",2)),true)
-		// figure out why this prevents downsizing window
+		// TODO: figure out why this prevents downsizing window
 	}
 
 	if ini_read_real("Display","FullScreen",0)
