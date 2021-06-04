@@ -39,6 +39,7 @@ ktkn_scr        = get_code(path_src+"scr/ktkn.gml")
 load_level_scr  = get_code(path_src+"scr/load_level.gml")
 split_scr       = get_code(path_src+"scr/split.gml")
 reload_scr      = get_code(path_src+"scr/reload.gml")
+//coll_scr        = get_code(path_src+"scr/coll.gml") WWTFFFF
 
 // CODE ADDING STUFF
 {

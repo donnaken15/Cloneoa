@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef unsigned short WORD;
+typedef unsigned short	WORD;
 typedef unsigned char	BYTE;
 #define MAKEWORD(a,b) ((WORD) (((BYTE) (b)) | ((WORD) ((BYTE) (a))) << 8))
 

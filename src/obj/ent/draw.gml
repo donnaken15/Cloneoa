@@ -91,18 +91,18 @@
 			// FLYING
 			case 1000:
 				char_speed = 0.13333
-				draw_sprite_part_ext(enemyspr,0,0,79,24,25,round(x)-10+(flip*(27)),round(y)-19,1+(flip*-2),1,c_white,1)
+				draw_sprite_part_ext(enemyspr,0,0,79,24,25,round(x)-10+(flip*(27)),round(y)-19-4,1+(flip*-2),1,c_white,1)
 				break
 			case 1001:
-				draw_sprite_part_ext(enemyspr,0,56,131,24,22,round(x)-10+(flip*(27)),round(y)-18,1+(flip*-2),1,c_white,1)
+				draw_sprite_part_ext(enemyspr,0,56,131,24,22,round(x)-10+(flip*(27)),round(y)-18-4,1+(flip*-2),1,c_white,1)
 				break
 			case 1002:
-				draw_sprite_part_ext(enemyspr,0,24,79,25,25,round(x)-10+(flip*(27)),round(y)-21,1+(flip*-2),1,c_white,1)
+				draw_sprite_part_ext(enemyspr,0,24,79,25,25,round(x)-10+(flip*(27)),round(y)-21-4,1+(flip*-2),1,c_white,1)
 				break
 			case 1004:
 				char_index=1000
 			case 1003:
-				draw_sprite_part_ext(enemyspr,0,49,77,23,27,round(x)-9+(flip*(25)),round(y)-23,1+(flip*-2),1,c_white,1)
+				draw_sprite_part_ext(enemyspr,0,49,77,23,27,round(x)-9+(flip*(25)),round(y)-23-4,1+(flip*-2),1,c_white,1)
 				break
 			// GRABBED
 			case 1005:
@@ -135,10 +135,10 @@
 		}
 	}
 
-	//if grabby = noone && debug_mode && debug_draw
-		//draw_rectangle_color(x-12,y-28,x+16,y+4,c_yellow,c_yellow,c_yellow,c_yellow,1)
+	if grabby = noone && debug_draw
+		draw_rectangle_color(x-12,y-28,x+16,y+4,c_yellow,c_yellow,c_yellow,c_yellow,1)
 
-	if debug_mode && debug_draw
+	//if debug_draw
 		draw_rectangle_color(x+entcol[1],y+entcol[0],x+entcol[2],y+entcol[3],c_red,c_red,c_red,c_red,1)
 	//draw_point(x,y)
 	//draw_sprite(collision_enemy,0,x,y)

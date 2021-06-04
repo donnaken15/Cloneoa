@@ -11,6 +11,7 @@ in.txt
 out.txt
 *.htac*
 .DS_Store
+Rubbish/
 
 Play.bat
 
