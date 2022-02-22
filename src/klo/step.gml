@@ -33,7 +33,7 @@ if !noclip
 		if vspeed >= 0 && jump { char_index = 25 jump = 0 float = 1 }
 
 		if moving { if slide < 6 slide += 0.5 }
-		else { if slide > 0 { slide -= 1 if !flip x += 1 else x -= 1 } }
+		else { if slide > 0 && x > 0 { slide -= 1 if !flip x += 1 else x -= 1 } }
 
 		if grab = noone
 		{

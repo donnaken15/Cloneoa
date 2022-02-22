@@ -138,10 +138,10 @@
 	if grabby = noone && debug_draw
 		draw_rectangle_color(x-12,y-28,x+16,y+4,c_yellow,c_yellow,c_yellow,c_yellow,1)
 
-	//if debug_draw
+	if debug_draw
 		draw_rectangle_color(x+entcol[1],y+entcol[0],x+entcol[2],y+entcol[3],c_red,c_red,c_red,c_red,1)
 	//draw_point(x,y)
-	//draw_sprite(collision_enemy,0,x,y)
+	//draw_sprite_ext(collision_enemy,0,x,y,1,1,0,c_red,1)
 
 	//draw_text(x,y-64,string(floor(((respawn_cooldown+80))/12) mod 4))
 

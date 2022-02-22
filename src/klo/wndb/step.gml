@@ -2,7 +2,7 @@
 xprevious2 = xprevious
 yprevious2 = yprevious
 
-touching_ent = collision_rectangle(x-(5*1),y-(3*2),x+(5*1),y+(2*2),enemy,false,true)
+touching_ent = collision_rectangle(x-(5*1),y-(3*2)+16,x+(5*1),y+(2*2)+16,enemy,false,true)
 if touching_ent != noone && touching_ent.grabby = noone
 {
 	touching_ent.grabby = player

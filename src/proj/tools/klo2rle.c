@@ -12,13 +12,20 @@ FILE*files[2];
 unsigned short w,h;
 unsigned long filecur=0,filesz;
 
-int main(int argc, char*argv[])
+int   argc;
+char**argv, env;
+int _start()
 {
+	__getmainargs(&argc,&argv,&env,0);
+	//main(__argc,__argv);
+
+//int main(int argc, char*argv[])
+//{
 	if (argc > 2)
 	{
 		//if (argv[1] == argv[2])
 		//{
-			//puts("Input and output files cannot be the same.");
+			//puts("Input and output file names cannot be the same.");
 			//return 5;
 		//}
 		files[0] = fopen(argv[1],"rb");

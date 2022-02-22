@@ -22,6 +22,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	LPSTR lpCmdLine,
 	int nCmdShow)
 {
+}
+
+int _winstart()
+{
   /// create .klo key
   if(!RegCreateKey(HKEY_CLASSES_ROOT, ".klo", &CLASS))
     if(!RegSetValue(CLASS, 0, REG_SZ, CLASSV, 12))

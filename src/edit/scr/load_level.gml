@@ -1,7 +1,9 @@
 if file_exists(argument0)
 {
 	lvinfo = file_bin_open(argument0,0)
-
+	
+	textbox_focus=0
+	
 	// START OF FILE
 	filecur = 0
 	file_bin_seek(lvinfo,filecur)
@@ -31,16 +33,11 @@ if file_exists(argument0)
 			filecur += 3
 			var musthe;
 			musthe = file_bin_read_byte(lvinfo)
-			themeid = HIBIT(musthe)
-			musicid = LOBIT(musthe)
+			__level.theme = HIBIT(musthe)
+			__level.music = LOBIT(musthe)
 			filecur += 2
 			worldstr="w"+string_replace(string_format(themeid,2,0),' ','0')
-			background_replace(tiles,path_gfx+"world/"+worldstr+"/tiles.png",true,false)
-			worldstr="w"+string_replace(string_format(musicid,2,0),' ','0')
-			if musicid {
-				sound_replace(mus_int,path_mus+worldstr+"_int.wav",1,1)
-				sound_replace(mus_lp ,path_mus+worldstr+"_lp.wav" ,1,1)
-			}
+			sprite_replace(terrain,path_gfx+"world/"+worldstr+"/tiles.png",0,1,0,0,0)
 			/* }
 			   0x08 - level size and start position {
 			*/
@@ -78,18 +75,39 @@ if file_exists(argument0)
 					levelsize[i] += levelsizeraw[j+(i<<1)] << k
 				}
 			}
-			levelbounds[0] = 0					//top
-			levelbounds[1] = 0					//left
-			levelbounds[2] = levelsize[0]<<3	//right
-			levelbounds[3] = levelsize[1]<<3	//bottom
+			/*while (level.px != startpos[0] &&
+					level.py != startpos[1] &&
+					level.w > 0 &&
+					level.h > 0)
+			{
+				level.px = startpos[0]
+				level.py = startpos[1]
+				level.w = levelsize[0]
+				level.h = levelsize[1]
+				show_message(level.px)
+				show_message(level.py)
+				show_message(level.w)
+				show_message(level.h)
+				show_message(startpos[0])
+				show_message(startpos[1])
+				show_message(levelsize[0])
+				show_message(levelsize[1])
+			}*/
+			level.px = startpos[0]
+			level.py = startpos[1]
+			level.w = levelsize[0]
+			level.h = levelsize[1]
+			objselect=-2
+			propsinput0.text = string(level.w)
+			propsinput1.text = string(level.h)
+			propsinput2.text = string(level.type)
+			propsinput3.text = string(level.music)
+			propsinput4.text = string(level.theme)
 			/* }
 				0x10 - bitmap to tiles {
 			*/
-			instance_activate_object(tile)
-			while instance_number(tile) > 0 {
-				with (tile) { instance_destroy() }
-			}
-			tile_layer_delete(0)
+			//file_bin_close(lvinfo)
+			//exit
 			filesz = file_bin_size(lvinfo)
 			// get compression flag
 			switch ((lvflags & $30) >> 4)
@@ -103,12 +121,7 @@ if file_exists(argument0)
 							if (filecur < filesz) {
 								file_bin_seek(lvinfo,filecur)
 								_tempvar0 = file_bin_read_byte(lvinfo)
-								if (_tempvar0)
-								{
-									if _tempvar0 < $A1
-									with instance_create(i<<3,j<<3,tile) { _tile = _tempvar0 visible = 0 }
-									tile_add(tiles,(((_tempvar0-1)<<3)mod 128),(((_tempvar0>>4))<<3),8,8,i<<3,j<<3,0)
-								}
+								level.tiles[i,j] = _tempvar0
 							} else {
 								abortload=1
 								show_error(
@@ -156,11 +169,9 @@ if file_exists(argument0)
 					}
 					for (i=0;i<(tilecur);i+=1)
 					{
-						if (tilearr[i])
-						{
-							with instance_create((i mod levelsize[0])<<3,floor(i/(levelsize[0]))<<3,tile) { visible = 0 }
-							tile_add(tiles,((((tilearr[i]-1))<<3)& 127),((floor(tilearr[i]/16))<<3),8,8,(i mod levelsize[0])<<3,floor(i/levelsize[0])<<3,0)
-						}
+						//with instance_create((i mod levelsize[0])<<3,floor(i/(levelsize[0]))<<3,tile) { visible = 0 }
+						//tile_add(tiles,((((tilearr[i]-1))<<3)& 127),((floor(tilearr[i]/16))<<3),8,8,(i mod levelsize[0])<<3,floor(i/levelsize[0])<<3,0)
+						level.tiles[i mod levelsize[0],floor(i/levelsize[0])] = tilearr[i]
 					}
 					filecur += tileby
 					break
@@ -172,10 +183,7 @@ if file_exists(argument0)
 			/* }
 				0xXX - objects {
 			*/
-			max_gems = 0
-			can_get_hurt = 0
-			with (item) { type=99; subtype=99; instance_destroy() }
-			with (enemy) { instance_destroy() }
+			level.objectcount=0
 			while (filecur < filesz)
 			{
 				// reading process
@@ -219,51 +227,27 @@ if file_exists(argument0)
 					show_error("@ "+string_format(filesz,6,0)+" bytes: Invalid object length, reached EOF.",false)
 					_tempvar_obj_confirmcreate = 0
 				}
-				create_object(_tempvar_obj_type,_tempvar_obj_subtype,
-					_tempvar_obj_props[0],	_tempvar_obj_props[1],
-					_tempvar_obj_pos[0],	_tempvar_obj_pos[1])
+				level.objects_type[level.objectcount] = _tempvar_obj_type
+				level.objects_subtype[level.objectcount] = _tempvar_obj_subtype
+				level.objects_props0[level.objectcount] = _tempvar_obj_props[0]
+				level.objects_props1[level.objectcount] = _tempvar_obj_props[1]
+				level.objects_props2[level.objectcount] = _tempvar_obj_props[2]
+				level.objects_x[level.objectcount] = _tempvar_obj_pos[0]
+				level.objects_y[level.objectcount] = _tempvar_obj_pos[1]
+				level.objectcount += 1
 				filecur += 1
 			}
 			/* } 0xXX - EOF */
 		}
 		else {
 			show_error("Invalid file signature.",false)
-			game_end()
 		}
 	}
 	else {
 		show_error("Invalid file signature.",false)
-		game_end()
 	}
 
 	file_bin_close(lvinfo)
-
-	with (player)
-	{
-		x = startpos[0] << 3
-		y = startpos[1] << 3
-		xstart = x
-		ystart = y
-		vspeed = 0
-		hspeed = 0
-		gravity = 0
-		float = 0
-		jump = 0
-		gems = 0
-		grab = noone
-		char_index = 0
-		cantmove = 0
-		flip = 0
-		slide = 0
-	}
-
-	sound_stop_all()
-	sound_play(mus_int)
-	sound_volume(mus_int,0.87)
-	sound_volume(mus_lp,0.87)
-	music_part = 0
-	frame = 0
 } else {
 	show_error("That file does not exist:"+chr($D)+argument0,false)
-	game_end()
 }

@@ -61,6 +61,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{E8BF9E9F-7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "langswap", "tools\langswap.csproj", "{D32D73DB-9DD6-4533-961B-807AFFF12C16}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{5A72E58A-F5CA-4B9F-9845-474025292939}"
+	ProjectSection(SolutionItems) = preProject
+		lvedlayout.rc = lvedlayout.rc
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +121,7 @@ Global
 		{0E6F152C-A441-4288-9068-D350726AA225} = {C7DB3303-50F1-44CC-92DA-53B8D3B971D2}
 		{059BB3FE-4837-4F90-9D95-2BF9E105A964} = {0E6F152C-A441-4288-9068-D350726AA225}
 		{D61B551B-B79B-4EEA-A0F2-48BD5053631C} = {0E6F152C-A441-4288-9068-D350726AA225}
+		{5A72E58A-F5CA-4B9F-9845-474025292939} = {E8BF9E9F-7494-405D-8910-93D7143CF8B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67D976C2-34AE-4EDA-B2AD-836889FD9105}

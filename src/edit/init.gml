@@ -1,8 +1,8 @@
-globalvar fname, lang;
+globalvar fname, lang, menu, realtimesrc, icons, textbox, plyspr, itmspr, objspr, enmspr;
 //fname = ""
 path_root = program_directory+"/../"
 path_src = path_root+"src/edit/"
-path_gfx = path_root+"gfx/"
+path_gfx = path_root+"gfx/edit/"
 path_sfx = path_root+"sfx/"
 path_mus = path_root+"mus/"
 path_bin = path_root+"bin/"
@@ -15,12 +15,21 @@ ini_close()
 ini_open(path_bin+"settings.ini")
 {
 	lang = ini_read_real("General","Language",0)
+	langlast = lang
+	realtimesrc = ini_read_real("Debug","RealtimeSrc",0)
+	if !__first_frame {
+	view_wview[0] = ini_read_real("Editor","ResX",500)
+	view_hview[0] = ini_read_real("Editor","ResY",400)
+	window_set_size(ini_read_real("Editor","ResX",500), ini_read_real("Editor","ResY",400))
+	__first_frame=1 room_restart() }
+	window_set_position(
+	ini_read_real("Editor","PosX",(display_get_width()/2)-(window_get_width()/2)),
+	ini_read_real("Editor","PosY",(display_get_height()/2)-(window_get_height()/2)))
+	room_caption = "enViSiONer_0.4"
 }
 
 // KATAKANA
-if lang
 {
-	draw_set_font(font_jp)
 	globalvar __kana_rpms;
 	// wtf is this V
 	// $A1 to $DD
@@ -89,11 +98,16 @@ if lang
 	__kana_rpms[61]="`"
 	__kana_rpms[62]="'"
 }
-else
-	draw_set_font(font_en)
 
 {
+	textbox = object_add()
+	fname=""
+	dragging=noone
 	execute_file(path_src+"scr/reload.gml")
+	execute_code(new_level_scr)
+	if (parameter_count() > 0)
+		//if file_exists(parameter_string(1))
+			execute_file(path_src+'scr/load_level.gml',parameter_string(1))
 
 }
 
